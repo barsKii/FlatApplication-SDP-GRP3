@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FlatApp</string>
+    <string name="title_activity_shopping_list">ShoppingListActivity</string>
 </resources>

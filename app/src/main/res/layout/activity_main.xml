@@ -5,11 +5,13 @@
               android:gravity="center"
               android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/question_text_view"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/shopping_list_button"
+        android:layout_width="275dp"
         android:layout_height="wrap_content"
-        android:padding="24dp" />
+        android:text="SHOPPING LIST"
+        android:layout_gravity="center_horizontal"
+        android:onClick="showShoppingListClick"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -18,14 +20,8 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/grocery_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Groceries" />
-
-        <Button
             android:id="@+id/calendar_button"
-            android:layout_width="wrap_content"
+            android:layout_width="275dp"
             android:layout_height="wrap_content"
             android:text="Calendar" />
 
@@ -41,16 +37,17 @@
 
         <Button
             android:id="@+id/tasks_button"
-            android:layout_width="wrap_content"
+            android:layout_width="275dp"
             android:layout_height="wrap_content"
             android:text="Tasks" />
 
-        <Button
-            android:id="@+id/bills_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bills" />
-
     </LinearLayout>
+
+    <Button
+        android:id="@+id/bills_button"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:text="Bills"
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>
