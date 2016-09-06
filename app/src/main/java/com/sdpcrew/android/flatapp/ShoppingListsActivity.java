@@ -31,7 +31,7 @@ public class ShoppingListsActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> adapter, View v, int i, long l) {
                     Intent in = new Intent(v.getContext(), SingleListActivity.class);
-                    in.putExtra("list", lists.get(i).getList());
+                    in.putExtra("list", i);
                     startActivity(in);
                 }
             });
@@ -40,7 +40,7 @@ public class ShoppingListsActivity extends AppCompatActivity {
 
     public void createNewShoppingList(View v) {
         LayoutInflater layoutInflater = LayoutInflater.from(this);
-        View promptView = layoutInflater.inflate(R.layout.input_dialog, null);
+        View promptView = layoutInflater.inflate(R.layout.new_list_dialog, null);
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setView(promptView);
 

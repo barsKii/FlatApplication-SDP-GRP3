@@ -3,4 +3,6 @@
     <string name="title_activity_shopping_list">ShoppingListActivity</string>
     <string name="new_list_heading">Create New List</string>
     <string name="new_list_hint">Enter list name here…</string>
+    <string name="new_list_item_heading">Add item</string>
+    <string name="new_list_item_hint">Enter item name here…</string>
 </resources>
