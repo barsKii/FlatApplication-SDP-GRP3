@@ -5,13 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button mGroceryButton;
-    private Button mCalendarButton;
-    private Button mTasksButton;
-    private Button mBillsButton;
+    private ImageButton mGroceryButton;
+    private ImageButton mCalendarButton;
+    private ImageButton mTasksButton;
+    private ImageButton mBillsButton;
 
 
     @Override
@@ -21,11 +22,11 @@ public class MainActivity extends AppCompatActivity {
 
         // All buttons initialized to the linked button, no listener as of yet. Coolies
         // LEAVE GROCERY AS IS. DON'T ADD LISTENER.
-        mGroceryButton = (Button) findViewById(R.id.shopping_list_button);
+        mGroceryButton = (ImageButton) findViewById(R.id.shopping_list_button);
 
-        mCalendarButton = (Button) findViewById(R.id.calendar_button);
-        mTasksButton = (Button) findViewById(R.id.tasks_button);
-        mBillsButton = (Button) findViewById(R.id.bills_button);
+        mCalendarButton = (ImageButton) findViewById(R.id.calendar_button);
+        mTasksButton = (ImageButton) findViewById(R.id.tasks_button);
+        mBillsButton = (ImageButton) findViewById(R.id.bills_button);
 
 
 

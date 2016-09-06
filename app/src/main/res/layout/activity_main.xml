@@ -1,53 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:gravity="center"
-              android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sdpcrew.android.flatapp.MainActivity">
 
-    <Button
-        android:id="@+id/shopping_list_button"
-        android:layout_width="275dp"
-        android:layout_height="wrap_content"
-        android:text="SHOPPING LIST"
-        android:layout_gravity="center_horizontal"
-        android:onClick="showShoppingListClick"/>
+    <include layout="@layout/toolbar_customer"
+        android:id="@+id/SearchToolBar"/>
 
-    <LinearLayout
+    <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:orientation="horizontal">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/SearchToolBar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/gridLayout">
 
-        <Button
+        <ImageButton
+            app:srcCompat="@drawable/cal"
+            android:background="@color/tile2"
             android:id="@+id/calendar_button"
-            android:layout_width="275dp"
-            android:layout_height="wrap_content"
-            android:text="Calendar" />
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_height="200dp"
+            android:layout_width="191dp" />
 
-    </LinearLayout>
+        <ImageButton
+            app:srcCompat="@drawable/bills"
+            android:id="@+id/bills_button"
+            android:background="@color/tile4"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_height="200dp"
+            android:layout_width="191dp" />
 
+        <ImageButton
+            android:layout_height="200dp"
+            app:srcCompat="@drawable/shop"
+            android:id="@+id/shopping_list_button"
+            android:background="@color/tile1"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_width="191dp"
+            android:onClick="showShoppingListClick"/>
 
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
-
-        <Button
+        <ImageButton
+            android:layout_height="200dp"
+            app:srcCompat="@drawable/task"
             android:id="@+id/tasks_button"
-            android:layout_width="275dp"
-            android:layout_height="wrap_content"
-            android:text="Tasks" />
+            android:background="@color/tile3"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_width="191dp" />
 
-    </LinearLayout>
+    </GridLayout>
 
-    <Button
-        android:id="@+id/bills_button"
-        android:layout_width="275dp"
-        android:layout_height="wrap_content"
-        android:text="Bills"
-        android:layout_gravity="center_horizontal" />
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/avat"
+        android:id="@+id/imageButton10"
+        android:background="#fff"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/gridLayout" />
 
-</LinearLayout>
+
+</RelativeLayout>

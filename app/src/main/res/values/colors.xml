@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- colors for tiles -->
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="tile1">#e8a964</color>
+    <color name="tile2">#de6037</color>
+    <color name="tile3">#d61818</color>
+    <color name="tile4">#73a08c</color>
 </resources>
