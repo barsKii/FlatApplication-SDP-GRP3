@@ -1,51 +1,66 @@
 package com.sdpcrew.android.flatapp;
 
-import android.app.ListActivity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class ShoppingListsActivity extends ListActivity {
-    final ArrayList<ShoppingList> lists = new ArrayList<>();
-    private Button mNewList;
+public class ShoppingListsActivity extends AppCompatActivity {
+    final static ArrayList<ShoppingList> lists = new ArrayList<>();
+    private ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_shopping_list);
+        mListView = (ListView) findViewById(R.id.shoppingListView);
 
-        ShoppingList shoppingTest1 = new ShoppingList("Tuesday shopping list");
-        ShoppingList shoppingTest2 = new ShoppingList("New world shopping");
-        ShoppingList shoppingTest3 = new ShoppingList("Next weeks shop");
-        shoppingTest1.addToList("Milk");
-        shoppingTest1.addToList("Bread");
-        shoppingTest1.addToList("Butter");
-        shoppingTest1.addToList("Bacon");
-        shoppingTest2.addToList("Eggs");
-        shoppingTest3.addToList("Rice");
-        lists.add(shoppingTest1);
-        lists.add(shoppingTest2);
-        lists.add(shoppingTest3);
+        if (mListView != null) {
+            mListView.setAdapter(new ArrayAdapter<>(this, R.layout.text_view, lists));
 
-        setListAdapter(new ArrayAdapter(this, R.layout.activity_shopping_list, lists));
+            mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapter, View v, int i, long l) {
+                    Intent in = new Intent(v.getContext(), SingleListActivity.class);
+                    in.putExtra("list", lists.get(i).getList());
+                    startActivity(in);
+                }
+            });
+        }
+    }
 
-        ListView lv = getListView();
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapter, View v, int i, long l) {
-                Intent in = new Intent(v.getContext(), SingleListActivity.class);
-                in.putExtra("list", lists.get(i).getList());
-                startActivity(in);
-            }
-        });
+    public void createNewShoppingList(View v) {
+        LayoutInflater layoutInflater = LayoutInflater.from(this);
+        View promptView = layoutInflater.inflate(R.layout.input_dialog, null);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setView(promptView);
 
-        //setListAdapter(new ArrayAdapter(this, R.layout.activity_shopping_list, lists));
-
+        final EditText editText = (EditText) promptView.findViewById(R.id.editText);
+        // setup a dialog window
+        alertDialogBuilder.setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        lists.add(new ShoppingList("" +editText.getText()));
+                    }
+                })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+        // create an alert dialog
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+        mListView.setAdapter(new ArrayAdapter<>(this, R.layout.text_view, lists));
     }
 }

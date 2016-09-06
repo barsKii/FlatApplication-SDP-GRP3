@@ -7,66 +7,66 @@
     android:layout_height="match_parent"
     tools:context="com.sdpcrew.android.flatapp.MainActivity">
 
-    <include layout="@layout/toolbar_customer"
-        android:id="@+id/SearchToolBar"/>
+    <include
+        android:id="@+id/SearchToolBar"
+        layout="@layout/toolbar_customer" />
 
     <GridLayout
+        android:id="@+id/gridLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/SearchToolBar"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/gridLayout">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/SearchToolBar">
 
         <ImageButton
-            app:srcCompat="@drawable/cal"
-            android:background="@color/tile2"
             android:id="@+id/calendar_button"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_height="200dp"
-            android:layout_width="191dp" />
-
-        <ImageButton
-            app:srcCompat="@drawable/bills"
-            android:id="@+id/bills_button"
-            android:background="@color/tile4"
-            android:layout_row="1"
-            android:layout_column="1"
-            android:layout_height="200dp"
-            android:layout_width="191dp" />
-
-        <ImageButton
-            android:layout_height="200dp"
-            app:srcCompat="@drawable/shop"
-            android:id="@+id/shopping_list_button"
-            android:background="@color/tile1"
-            android:layout_row="0"
-            android:layout_column="0"
             android:layout_width="191dp"
-            android:onClick="showShoppingListClick"/>
+            android:layout_height="200dp"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:background="@color/tile2"
+            app:srcCompat="@drawable/cal" />
 
         <ImageButton
+            android:id="@+id/bills_button"
+            android:layout_width="191dp"
             android:layout_height="200dp"
-            app:srcCompat="@drawable/task"
-            android:id="@+id/tasks_button"
-            android:background="@color/tile3"
+            android:layout_column="1"
             android:layout_row="1"
+            android:background="@color/tile4"
+            app:srcCompat="@drawable/bills" />
+
+        <ImageButton
+            android:id="@+id/shopping_list_button"
+            android:layout_width="191dp"
+            android:layout_height="200dp"
             android:layout_column="0"
-            android:layout_width="191dp" />
+            android:layout_row="0"
+            android:background="@color/tile1"
+            android:onClick="showShoppingListClick"
+            app:srcCompat="@drawable/shop" />
+
+        <ImageButton
+            android:id="@+id/tasks_button"
+            android:layout_width="191dp"
+            android:layout_height="200dp"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:background="@color/tile3"
+            app:srcCompat="@drawable/task" />
 
     </GridLayout>
 
     <ImageButton
+        android:id="@+id/imageButton10"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srcCompat="@drawable/avat"
-        android:id="@+id/imageButton10"
-        android:background="#fff"
+        android:layout_below="@+id/gridLayout"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/gridLayout" />
-
+        android:background="#fff"
+        app:srcCompat="@drawable/avat" />
 
 </RelativeLayout>

@@ -14,6 +14,8 @@ public class SingleListActivity extends ListActivity {
         super.onCreate(savedInstanceState);
 
         list = getIntent().getExtras().getStringArrayList("list");
-        setListAdapter(new ArrayAdapter(this, R.layout.activity_list, list));
+        if(list != null) {
+            setListAdapter(new ArrayAdapter<>(this, R.layout.text_view, list));
+        }
     }
 }
