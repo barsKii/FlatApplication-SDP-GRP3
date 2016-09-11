@@ -21,13 +21,13 @@
         android:layout_margin="16dp"
         android:clickable="true"
         android:onClick="createNewShoppingList"
-        android:src="@drawable/plus"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         app:layout_anchorGravity="bottom|right|end"
         app:backgroundTint="#ff9100"
         app:rippleColor="#FFF" />
+        <!-- android:src="@drawable/plus" -->
 
 </RelativeLayout>
 

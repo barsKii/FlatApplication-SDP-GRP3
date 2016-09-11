@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".ShoppingListsActivity" />
         <activity android:name=".SingleListActivity"></activity>
+        <activity android:name=".Calender.CalendarMain"></activity>
     </application>
 
 </manifest>

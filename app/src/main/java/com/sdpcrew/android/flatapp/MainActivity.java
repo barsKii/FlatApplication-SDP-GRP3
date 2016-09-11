@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.sdpcrew.android.flatapp.Calender.CalendarMain;
+
 public class MainActivity extends AppCompatActivity {
 
     private ImageButton mCalendarButton;
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.welcome);
 
         // All buttons initialized to the linked button, no listener as of yet. Coolies
-        mCalendarButton = (ImageButton) findViewById(R.id.calendar_button);
+
         mTasksButton = (ImageButton) findViewById(R.id.tasks_button);
         mBillsButton = (ImageButton) findViewById(R.id.bills_button);
 
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 setContentView(R.layout.activity_main);
             }
-        },5000);
+        },3000);
 
     }
 
@@ -40,4 +42,7 @@ public class MainActivity extends AppCompatActivity {
        startActivity(new Intent(this, ShoppingListsActivity.class));
     }
     // Shane's code ends here.
+    public void showCalendar (View v) {
+        startActivity(new Intent(this, CalendarMain.class));
+    }
 }

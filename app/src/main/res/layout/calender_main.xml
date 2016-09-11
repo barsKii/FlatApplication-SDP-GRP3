@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:id="@+id/calendar_layout">
+
+    <include
+        android:id="@+id/SearchToolBar"
+        layout="@layout/toolbar_customer" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:id="@+id/calendar_container">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dip"
+            android:textColor="#fff"
+            android:textSize="18dip"
+            android:textStyle="bold"
+            android:id="@+id/calendar_title"/>
+
+        <RelativeLayout
+            android:layout_width="40dip"
+            android:layout_height="30dip"
+            android:id="@+id/calendar_previous"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/leftarrow"
+                android:id="@+id/calendar_left_arrow" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="40dip"
+            android:layout_height="30dip"
+            android:id="@+id/calendar_next"
+            android:layout_alignTop="@+id/calendar_previous"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="14dp"
+            android:layout_marginEnd="14dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/rightarrow"
+                android:id="@+id/calendar_right_arrow"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <GridView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="334dp"
+        android:layout_gravity="center_horizontal"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="7"
+        android:stretchMode="columnWidth"
+        android:id="@+id/calendar_gridview"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="132dp"
+        android:id="@+id/calendar_bottom">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="28dp"
+            android:id="@+id/calendar_bottom_flow">
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                app:fabSize="mini"
+                app:srcCompat="@android:drawable/ic_input_add"
+                android:layout_marginRight="45dp"
+                android:layout_marginEnd="45dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/calendar_floatingActionButton"/>
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/tree"
+            android:id="@+id/calendar_season_tree" />
+
+    </RelativeLayout>
+
+</LinearLayout>
