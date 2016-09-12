@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="1"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:id="@+id/object_task_title"
+        tools:text="@string/title_only"
+        android:padding="20dp"
+        android:layout_toLeftOf="@+id/object_dialog_task_completed"/>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/object_dialog_task_completed"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentRight="true"
+        android:padding="4dp"/>
+
+</RelativeLayout>
