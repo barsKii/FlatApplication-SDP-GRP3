@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.sdpcrew.android.flatapp.TasksManager.TaskManagerActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     private ImageButton mCalendarButton;
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 setContentView(R.layout.activity_main);
             }
-        },5000);
+        },1000);
 
     }
 
@@ -40,4 +42,8 @@ public class MainActivity extends AppCompatActivity {
        startActivity(new Intent(this, ShoppingListsActivity.class));
     }
     // Shane's code ends here.
+
+    public void showTaskManagerClick(View v) {
+        startActivity(new Intent(this, TaskManagerActivity.class));
+    }
 }

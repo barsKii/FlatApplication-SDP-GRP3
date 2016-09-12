@@ -21,7 +21,6 @@
         android:layout_margin="16dp"
         android:clickable="true"
         android:onClick="createNewShoppingList"
-        android:src="@drawable/plus"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"

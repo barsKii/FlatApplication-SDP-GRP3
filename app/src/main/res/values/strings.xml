@@ -5,4 +5,21 @@
     <string name="new_list_hint">Enter list name here…</string>
     <string name="new_list_item_heading">Add item</string>
     <string name="new_list_item_hint">Enter item name here…</string>
+
+
+    <string name="empty_screen">No Task Created</string>
+    <string name="task_add_button">New Task</string>
+    <string name="menu_add_button">New Qualifier</string>
+    <string name="activity_twopane_qualifier">Qualifiers</string>
+    <string name="activity_twopane_tasks">Tasks</string>
+    <string name="hint_enter_title">Enter Title Here</string>
+    <string name="title_only">Title:</string>
+    <string name="dialog_title_task">Task:</string>
+    <string name="dialog_title_qualifier">Qualifier:</string>
+    <string name="menu_delete_button">Delete</string>
+    <string name="menu_no_qualifier_selected">No Qualifier Selected</string>
+    <string name="dialog_task_done">Done</string>
+    <string name="no_title_task_enter">No title enter. No Task created</string>
+    <string name="no_title_qualifier_enter">No title enter. No Qualifier created</string>
+
 </resources>

@@ -14,9 +14,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".ShoppingListsActivity" />
         <activity android:name=".SingleListActivity"></activity>
+
+        <activity android:name=".TasksManager.TaskManagerActivity"
+                  android:parentActivityName=".MainActivity"
+                  android:theme="@style/FlatAppTaskManager">
+              </activity>
+
     </application>
 
 </manifest>
