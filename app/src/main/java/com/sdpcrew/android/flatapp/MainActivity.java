@@ -9,6 +9,8 @@ import android.widget.ImageButton;
 
 import com.sdpcrew.android.flatapp.TasksManager.TaskManagerActivity;
 
+import com.sdpcrew.android.flatapp.Calender.CalendarMain;
+
 public class MainActivity extends AppCompatActivity {
 
     private ImageButton mCalendarButton;
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 setContentView(R.layout.activity_main);
             }
-        },1000);
+        },3000);
 
     }
 
@@ -45,5 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void showTaskManagerClick(View v) {
         startActivity(new Intent(this, TaskManagerActivity.class));
+    }
+    public void showCalendar (View v) {
+        startActivity(new Intent(this, CalendarMain.class));
     }
 }
