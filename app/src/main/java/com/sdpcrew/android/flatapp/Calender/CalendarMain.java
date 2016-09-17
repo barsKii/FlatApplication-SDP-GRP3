@@ -49,6 +49,7 @@ public class CalendarMain extends AppCompatActivity {
         });
 
         RelativeLayout next = (RelativeLayout) findViewById(R.id.calendar_next);
+
         next.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -73,11 +74,18 @@ public class CalendarMain extends AppCompatActivity {
                 } else if ((gridvalue < 7) && (position > 28)) {
                     setNextMonth();
                     refreshCalendar();
+                }else{
+                    setContentView(R.layout.calendar_day_list);
+                    ((TextView) findViewById(R.id.calendar_day_list_date)).setText(selectedGridDate);
                 }
                 ((CalendarAdapter) parent.getAdapter()).setSelected(v);
                 showToast(selectedGridDate);
+
             }
         });
+
+
+
     }
 
     public void setUpCalendar() {
@@ -126,6 +134,7 @@ public class CalendarMain extends AppCompatActivity {
         handler.post(calendarUpdater); // generate some calendar items
 
         title.setText(android.text.format.DateFormat.format("MMMM yyyy", calendar));
+        title.setTextSize(20);
     }
 
     public Runnable calendarUpdater = new Runnable() {

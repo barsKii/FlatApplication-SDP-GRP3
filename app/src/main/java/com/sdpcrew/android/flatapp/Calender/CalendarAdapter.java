@@ -59,7 +59,6 @@ public class CalendarAdapter extends BaseAdapter {
     public void refreshDays() {
         items.clear();
         dayEvents.clear();// keep an eye on varibale for future
-        Locale.setDefault(Locale.US);
         prevMonth = (GregorianCalendar) calendarRef.clone();// clone again for proctection
         firstDayOfMonth = getFirstDayOfMonth();
         MaxWeekInMonth = getMaxWeekInMonth();
@@ -127,15 +126,15 @@ public class CalendarAdapter extends BaseAdapter {
         String[] separatedTime = dayEvents.get(position).split("-");
         String gridvalue = separatedTime[2].replaceFirst("^0*", "");
         if ((Integer.parseInt(gridvalue) > 1) && (position < firstDayOfMonth)) {
-            dayView.setTextColor(Color.WHITE);
+            dayView.setTextColor(Color.GRAY);
             dayView.setClickable(false);
             dayView.setFocusable(false);
         } else if ((Integer.parseInt(gridvalue) < 7) && (position > 28)) {
-            dayView.setTextColor(Color.WHITE);
+            dayView.setTextColor(Color.GRAY);
             dayView.setClickable(false);
             dayView.setFocusable(false);
         } else {
-            dayView.setTextColor(Color.BLUE);
+            dayView.setTextColor(Color.WHITE);
         }
         if (dayEvents.get(position).equals(curentDate)) {
             setSelected(v);
