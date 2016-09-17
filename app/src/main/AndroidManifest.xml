@@ -23,7 +23,6 @@
                   android:parentActivityName=".MainActivity"
                   android:theme="@style/FlatAppTaskManager">
               </activity>
-
         <activity android:name=".Calender.CalendarMain"></activity>
     </application>
 
