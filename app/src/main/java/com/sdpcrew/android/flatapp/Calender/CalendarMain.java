@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import com.sdpcrew.android.flatapp.*;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +19,7 @@ import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 public class CalendarMain extends AppCompatActivity {
 
@@ -76,7 +79,7 @@ public class CalendarMain extends AppCompatActivity {
                     refreshCalendar();
                 }else{
                     setContentView(R.layout.calendar_day_list);
-                    ((TextView) findViewById(R.id.calendar_day_list_date)).setText(selectedGridDate);
+
                 }
                 ((CalendarAdapter) parent.getAdapter()).setSelected(v);
                 showToast(selectedGridDate);
@@ -161,4 +164,8 @@ public class CalendarMain extends AppCompatActivity {
             calendarAdapter.notifyDataSetChanged();
         }
     };
+
+    public void addCalendarEvents (View v) {
+        startActivity(new Intent(this, CalenderEventHandler.class));
+    }
 }
