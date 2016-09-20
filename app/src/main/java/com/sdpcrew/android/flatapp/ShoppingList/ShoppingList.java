@@ -1,4 +1,4 @@
-package com.sdpcrew.android.flatapp;
+package com.sdpcrew.android.flatapp.ShoppingList;
 
 import java.util.ArrayList;
 

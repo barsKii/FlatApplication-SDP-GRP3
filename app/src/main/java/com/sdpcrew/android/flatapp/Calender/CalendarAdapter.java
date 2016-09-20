@@ -169,7 +169,7 @@ public class CalendarAdapter extends BaseAdapter {
             previousView.setBackgroundResource(R.drawable.list_item_background);
         }
         previousView = view;
-        view.setBackgroundResource(R.drawable.calendar_cell);
+        view.setBackgroundResource(R.drawable.calendar_cel_selectl);
         return view;
     }
 
