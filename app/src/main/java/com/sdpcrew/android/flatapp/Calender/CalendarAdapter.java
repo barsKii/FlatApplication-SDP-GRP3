@@ -6,9 +6,14 @@ import android.widget.TextView;
 import android.widget.ImageView;
 import com.sdpcrew.android.flatapp.*;
 import android.content.Context;
+
+import java.io.Console;
 import java.util.*;
 import java.text.*;
 import android.graphics.Color;
+import android.util.*;
+import android.widget.Toast;
+
 
 /**
  * Created by iAmacone on 11/09/16.
@@ -20,9 +25,9 @@ public class CalendarAdapter extends BaseAdapter {
 
     public static List<String> dayEvents;
     private Calendar calendarRef;
-    public GregorianCalendar prevMonth;
-    public GregorianCalendar Monthg;
-    private GregorianCalendar CalendarClone;
+    public Calendar prevMonth;
+    public Calendar Monthg;
+    private Calendar CalendarClone;
 
     private View previousView;
 
@@ -39,19 +44,24 @@ public class CalendarAdapter extends BaseAdapter {
     int offDays;
 
     String itemvalue;
+    private static final String TAG = "Calender";
 
-    public CalendarAdapter(Context c, GregorianCalendar CalendarDetails) {
+    public CalendarAdapter(Context c, Calendar CalendarDetails) {
         /* inti variables */
-        dayEvents = new ArrayList();
+        CalendarAdapter.dayEvents = new ArrayList();
         calendarRef = CalendarDetails;
-        CalendarClone = (GregorianCalendar) CalendarDetails.clone();
-        this.items = new ArrayList<String>();
+        CalendarClone = (Calendar) CalendarDetails.clone();
         mContext = c;
-
         calendarRef.set(Calendar.DAY_OF_MONTH,1);
+
+        this.items = new ArrayList<String>();
+
         df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+
         curentDate = df.format(CalendarClone.getTime());
+
         refreshDays();
+
     }
 
 
@@ -59,20 +69,20 @@ public class CalendarAdapter extends BaseAdapter {
     public void refreshDays() {
         items.clear();
         dayEvents.clear();// keep an eye on varibale for future
-        prevMonth = (GregorianCalendar) calendarRef.clone();// clone again for proctection
+        prevMonth = (Calendar) calendarRef.clone();// clone again for proctection
         firstDayOfMonth = getFirstDayOfMonth();
         MaxWeekInMonth = getMaxWeekInMonth();
         MonthLength = MaxWeekInMonth * 7;// help make the grid
         DaysInAMonth = getMaxDaysInAMonth();
         offDays = DaysInAMonth - (firstDayOfMonth - 1);
-        Monthg = (GregorianCalendar) prevMonth.clone();
-        Monthg.set(GregorianCalendar.DAY_OF_MONTH, offDays + 1);
+        Monthg = (Calendar) prevMonth.clone();
+        Monthg.set(Calendar.DAY_OF_MONTH, offDays + 1);
 
         //Build Grid
         for (int n = 0; n < MonthLength; n++) {
 
             itemvalue = df.format(Monthg.getTime());
-            Monthg.add(GregorianCalendar.DATE, 1);
+            Monthg.add(Calendar.DATE, 1);
             dayEvents.add(itemvalue);
 
         }
@@ -80,12 +90,12 @@ public class CalendarAdapter extends BaseAdapter {
 
     private int getMaxDaysInAMonth() {
         int maxDays;
-        if (calendarRef.get(GregorianCalendar.MONTH) == calendarRef.getActualMinimum(GregorianCalendar.MONTH)) {
-            calendarRef.set((calendarRef.get(GregorianCalendar.YEAR) - 1), calendarRef.getActualMaximum(GregorianCalendar.MONTH), 1);
+        if (calendarRef.get(Calendar.MONTH) == calendarRef.getActualMinimum(Calendar.MONTH)) {
+            prevMonth.set((calendarRef.get(Calendar.YEAR) - 1), calendarRef.getActualMaximum(Calendar.MONTH), 1);
         } else {
-            calendarRef.set(GregorianCalendar.MONTH, calendarRef.get(GregorianCalendar.MONTH) - 1);
+            prevMonth.set(Calendar.MONTH, calendarRef.get(Calendar.MONTH) - 1);
         }
-        maxDays = calendarRef.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
+        maxDays = prevMonth.getActualMaximum(Calendar.DAY_OF_MONTH);
         return maxDays;
     }
 
@@ -118,13 +128,13 @@ public class CalendarAdapter extends BaseAdapter {
         View v = convertView;
         TextView dayView;
         if (convertView == null) {
-            LayoutInflater vi = (LayoutInflater) mContext
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater vi = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = vi.inflate(R.layout.calendar_tile, null);
         }
         dayView = (TextView) v.findViewById(R.id.date);
         String[] separatedTime = dayEvents.get(position).split("-");
         String gridvalue = separatedTime[2].replaceFirst("^0*", "");
+
         if ((Integer.parseInt(gridvalue) > 1) && (position < firstDayOfMonth)) {
             dayView.setTextColor(Color.GRAY);
             dayView.setClickable(false);
@@ -149,7 +159,7 @@ public class CalendarAdapter extends BaseAdapter {
         if (date.length() == 1) {
             date = "0" + date;
         }
-        String monthStr = "" + (calendarRef.get(GregorianCalendar.MONTH) + 1);
+        String monthStr = "" + (calendarRef.get(Calendar.MONTH) + 1);
         if (monthStr.length() == 1) {
             monthStr = "0" + monthStr;
         }
@@ -174,11 +184,11 @@ public class CalendarAdapter extends BaseAdapter {
     }
 
     public int getFirstDayOfMonth(){
-        return calendarRef.get(GregorianCalendar.DAY_OF_WEEK);
+        return calendarRef.get(Calendar.DAY_OF_WEEK);
     }
 
     public int getMaxWeekInMonth(){
-        return calendarRef.getActualMaximum(GregorianCalendar.WEEK_OF_MONTH);
+        return calendarRef.getActualMaximum(Calendar.WEEK_OF_MONTH);
     }
 
 
