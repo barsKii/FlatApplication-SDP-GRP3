@@ -19,7 +19,7 @@
     <string name="menu_delete_button">Delete</string>
     <string name="menu_no_qualifier_selected">No Qualifier Selected</string>
     <string name="dialog_task_done">Done</string>
-    <string name="no_title_task_enter">No title enter. No Task created</string>
-    <string name="no_title_qualifier_enter">No title enter. No Qualifier created</string>
+    <string name="no_title_task_enter">No title entered. No Task created</string>
+    <string name="no_title_qualifier_enter">No title entered. No Qualifier created</string>
 
 </resources>

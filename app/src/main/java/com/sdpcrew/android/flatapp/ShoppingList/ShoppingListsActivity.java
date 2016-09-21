@@ -1,8 +1,9 @@
-package com.sdpcrew.android.flatapp;
+package com.sdpcrew.android.flatapp.ShoppingList;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -11,6 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import com.sdpcrew.android.flatapp.R;
 
 import java.util.ArrayList;
 
@@ -50,6 +53,7 @@ public class ShoppingListsActivity extends AppCompatActivity {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         lists.add(new ShoppingList("" +editText.getText()));
+                        updateListView();
                     }
                 })
                 .setNegativeButton("Cancel",
@@ -61,6 +65,10 @@ public class ShoppingListsActivity extends AppCompatActivity {
         // create an alert dialog
         AlertDialog alert = alertDialogBuilder.create();
         alert.show();
+    }
+
+    public void updateListView() {
         mListView.setAdapter(new ArrayAdapter<>(this, R.layout.text_view, lists));
     }
+
 }

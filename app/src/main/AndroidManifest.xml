@@ -19,8 +19,8 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".ShoppingListsActivity" />
-        <activity android:name=".SingleListActivity"></activity>
+        <activity android:name=".ShoppingList.ShoppingListsActivity"/>
+        <activity android:name=".ShoppingList.SingleListActivity"></activity>
 
         <activity android:name=".TasksManager.TaskManagerActivity"
                   android:parentActivityName=".MainActivity"

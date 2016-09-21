@@ -1,4 +1,4 @@
-package com.sdpcrew.android.flatapp;
+package com.sdpcrew.android.flatapp.ShoppingList;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import java.util.ArrayList;
+import com.sdpcrew.android.flatapp.R;
 
 public class SingleListActivity extends AppCompatActivity {
     ShoppingList list;

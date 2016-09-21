@@ -5,6 +5,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.sdpcrew.android.flatapp.ShoppingList.ShoppingListsActivity;
 import com.sdpcrew.android.flatapp.TasksManager.TaskManagerActivity;
 import com.sdpcrew.android.flatapp.Calender.CalendarMain;
 
@@ -26,11 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // Shane's code starts here. Please don't touch :)
     public void showShoppingListClick(View v) {
        startActivity(new Intent(this, ShoppingListsActivity.class));
     }
-    // Shane's code ends here.
 
     public void showTaskManagerClick(View v) {
         startActivity(new Intent(this, TaskManagerActivity.class));
