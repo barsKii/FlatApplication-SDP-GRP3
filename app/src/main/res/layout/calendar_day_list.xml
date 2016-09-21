@@ -4,12 +4,16 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
 
-    <ListView
+   <!-- <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/calendar_day_list">
 
 
-    </ListView>
+    </ListView>-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/calendar_test_string"/>
 
 </LinearLayout>

@@ -29,6 +29,7 @@
             android:layout_row="0"
             android:background="@color/tile2"
             android:onClick="showCalendar"
+            android:longClickable="true"
             app:srcCompat="@drawable/cal" />
 
         <ImageButton

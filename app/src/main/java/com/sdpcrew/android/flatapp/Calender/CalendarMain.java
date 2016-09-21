@@ -3,7 +3,7 @@ package com.sdpcrew.android.flatapp.Calender;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
+import java.util.Calendar;
 import java.util.Locale;
 import com.sdpcrew.android.flatapp.*;
 
@@ -23,24 +23,47 @@ import android.widget.Toast;
 
 public class CalendarMain extends AppCompatActivity {
 
-    public GregorianCalendar calendar;
+    public Calendar calendar;
+    public Calendar cal;
     public CalendarAdapter calendarAdapter;
 
     public GridView calendarGridView;
 
-    public ArrayList<String> eventList;
     public Handler handler;
-    public GregorianCalendar itemmonth;
+    public ArrayList<String> eventList;
+
+
+    TextView title;
+    TextView qoute;
+
+    RelativeLayout previous;
+    RelativeLayout next;
+
+    String[] separatedTime;
+    String selectedGridDate;
+
+    public String [] qoutes = {"Let go of that ,which does not serve you",
+            "It does not matter how slowly you go as long as you do not stop",
+            "You have to learn the rules of the game and then have to play better than anyone else",
+            "Problems are not signs they are guidelines",
+            "Don’t watch the clock; do what it does. Keep going",
+            "Expect problems and eat them for breakfast",
+            "The best revenge is massive success",
+            "Don’t be afraid to stand for what you believe in even if that means standing alone",
+            "In order to succeed your desire for success should be greater then fear of failure",
+            "Accepting responsibility for your life ",
+            "Challenges are what makes life interesting and overcoming them makes life meaningful",
+            "i don’t regret the things I’ve done, i regret the things it i didnt do"};
 
 
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calender_main);
-        eventList = new ArrayList<String>();
+
         setUpCalendar();
 
-        RelativeLayout previous = (RelativeLayout) findViewById(R.id.calendar_previous);
+        previous = (RelativeLayout) findViewById(R.id.calendar_previous);
 
         previous.setOnClickListener(new OnClickListener() {
 
@@ -51,8 +74,7 @@ public class CalendarMain extends AppCompatActivity {
             }
         });
 
-        RelativeLayout next = (RelativeLayout) findViewById(R.id.calendar_next);
-
+        next = (RelativeLayout) findViewById(R.id.calendar_next);
         next.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -67,8 +89,8 @@ public class CalendarMain extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
                 ((CalendarAdapter) parent.getAdapter()).setSelected(v);
-                String selectedGridDate = CalendarAdapter.dayEvents.get(position);
-                String[] separatedTime = selectedGridDate.split("-");
+                selectedGridDate = CalendarAdapter.dayEvents.get(position);
+                separatedTime = selectedGridDate.split("-");
                 String gridvalueString = separatedTime[2].replaceFirst("^0*", "");
                 int gridvalue = Integer.parseInt(gridvalueString);
                 if ((gridvalue > 10) && (position < 8)) {
@@ -79,47 +101,64 @@ public class CalendarMain extends AppCompatActivity {
                     refreshCalendar();
                 }else{
                     setContentView(R.layout.calendar_day_list);
-
+                    TextView date = (TextView)  findViewById(R.id.calendar_test_string);
+                    date.setText(separatedTime[0]+"/"+separatedTime[1]+"/"+separatedTime[2]);
                 }
                 ((CalendarAdapter) parent.getAdapter()).setSelected(v);
                 showToast(selectedGridDate);
 
             }
         });
-
-
-
     }
 
+    /**
+     * qiuck reference to calender
+     * E.G GUIDE
+     * MMMM - January
+     * MM - JAN
+     * M - 1
+     */
+
+
     public void setUpCalendar() {
-        calendar = (GregorianCalendar) GregorianCalendar.getInstance(Locale.getDefault());
-        itemmonth = (GregorianCalendar) calendar.clone();
-        calendarAdapter = new CalendarAdapter(this,calendar);
+
+
+        calendar = calendar.getInstance(Locale.getDefault());
+        cal = (Calendar) calendar.clone();
+
+        eventList = new ArrayList<String>();
+
+        calendarAdapter = new CalendarAdapter(this, calendar);
         calendarGridView = (GridView) findViewById(R.id.calendar_gridview);
         calendarGridView.setAdapter(calendarAdapter);
+
         handler = new Handler();
-        handler.post(this.calendarUpdater);
-        ((TextView) findViewById(R.id.calendar_title)).setText(android.text.format.DateFormat.format("MMMM yyyy", calendar));
+        handler.post(calendarUpdater);
+
+        title = (TextView) findViewById(R.id.calendar_title);
+        title.setText(android.text.format.DateFormat.format("MMMM yyyy", calendar));
+        qoute= (TextView) findViewById(R.id.calendar_qoute);
+        qoute.setText(qoutes[getCalendarMonth()]);
+
+    }
+    public int getCalendarMonth(){
+        return calendar.get(Calendar.MONTH);
     }
 
     protected void setNextMonth() {
-        if (calendar.get(GregorianCalendar.MONTH) == calendar.getActualMaximum(GregorianCalendar.MONTH)) {
-            calendar.set((calendar.get(GregorianCalendar.YEAR) + 1),
-                    calendar.getActualMinimum(GregorianCalendar.MONTH), 1);
+        if (calendar.get(Calendar.MONTH) == calendar.getActualMaximum(Calendar.MONTH)) {
+            calendar.set((calendar.get(Calendar.YEAR) + 1), calendar.getActualMinimum(Calendar.MONTH), 1);
         } else {
-            calendar.set(GregorianCalendar.MONTH,
-                    calendar.get(GregorianCalendar.MONTH) + 1);
+            calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) + 1);
         }
 
     }
 
     protected void setPreviousMonth() {
-        if (calendar.get(GregorianCalendar.MONTH) == calendar.getActualMinimum(GregorianCalendar.MONTH)) {
-            calendar.set((calendar.get(GregorianCalendar.YEAR) - 1),
-                    calendar.getActualMaximum(GregorianCalendar.MONTH), 1);
+        if (calendar.get(Calendar.MONTH) == calendar.getActualMinimum(Calendar.MONTH)) {
+            calendar.set((calendar.get(Calendar.YEAR) - 1), calendar.getActualMaximum(Calendar.MONTH), 1);
         } else {
-            calendar.set(GregorianCalendar.MONTH,
-                    calendar.get(GregorianCalendar.MONTH) - 1);
+            calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) - 1);
         }
 
     }
@@ -130,14 +169,14 @@ public class CalendarMain extends AppCompatActivity {
     }
 
     public void refreshCalendar() {
-        TextView title = (TextView) findViewById(R.id.calendar_title);
+
 
         calendarAdapter.refreshDays();
         calendarAdapter.notifyDataSetChanged();
         handler.post(calendarUpdater); // generate some calendar items
 
         title.setText(android.text.format.DateFormat.format("MMMM yyyy", calendar));
-        title.setTextSize(20);
+        qoute.setText((qoutes[calendar.get(Calendar.MONTH)]));
     }
 
     public Runnable calendarUpdater = new Runnable() {
@@ -147,17 +186,17 @@ public class CalendarMain extends AppCompatActivity {
             eventList.clear();
 
             // Print dates of the current week
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd",Locale.US);
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd",Locale.getDefault());
             String itemvalue;
             for (int i = 0; i < 7; i++) {
-                itemvalue = df.format(itemmonth.getTime());
-                itemmonth.add(GregorianCalendar.DATE, 1);
-                eventList.add("2016-09-12");
-                eventList.add("2016-10-07");
-                eventList.add("2016-10-15");
-                eventList.add("2016-10-20");
-                eventList.add("2016-11-30");
-                eventList.add("2016-11-28");
+                itemvalue = df.format(cal.getTime());
+                cal.add(Calendar.DATE, 1);
+                eventList.add("2012-09-12");
+                eventList.add("2012-10-07");
+                eventList.add("2012-10-15");
+                eventList.add("2012-10-20");
+                eventList.add("2012-11-30");
+                eventList.add("2012-11-28");
             }
 
             calendarAdapter.setItems(eventList);
