@@ -26,7 +26,9 @@ public class ShoppingList {
         return listName;
     }
     public void addToList(String item) {
-        list.add(item);
+        if(item != null && !item.trim().isEmpty()) {
+            list.add(item);
+        }
     }
     public void deleteFromList(int index) {
         list.remove(index);
