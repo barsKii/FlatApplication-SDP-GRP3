@@ -31,6 +31,9 @@ public class ShoppingList {
     public void deleteFromList(int index) {
         list.remove(index);
     }
+    public void editListItem(int index, String newName) {
+        list.set(index,newName);
+    }
     public String toString() {
         return getListName();
     }

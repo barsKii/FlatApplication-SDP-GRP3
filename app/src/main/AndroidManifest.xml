@@ -20,9 +20,9 @@
 
         </activity>
         <activity android:name=".ShoppingList.ShoppingListsActivity">
-            android:configChanges="orientation|keyboard"</>
+            android:configChanges="orientation|keyboard"</activity>
         <activity android:name=".ShoppingList.SingleListActivity">
-            android:configChanges="orientation|keyboard"</>
+            android:configChanges="orientation|keyboard"</activity>
 
         <activity android:name=".TasksManager.TaskManagerActivity"
                   android:parentActivityName=".MainActivity"

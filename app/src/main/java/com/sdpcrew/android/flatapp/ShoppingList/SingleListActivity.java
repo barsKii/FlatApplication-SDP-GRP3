@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -24,6 +26,44 @@ public class SingleListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list);
         mListView = (ListView) findViewById(R.id.shoppingListView);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v, int pos, long id) {
+                final int i = pos;
+                LayoutInflater layoutInflater = LayoutInflater.from(v.getContext());
+                View promptView = layoutInflater.inflate(R.layout.edit_item_dialog, null);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(v.getContext());
+                alertDialogBuilder.setView(promptView);
+
+                final EditText editText = (EditText) promptView.findViewById(R.id.editText);
+                // setup a dialog window
+                alertDialogBuilder.setCancelable(false)
+                        .setPositiveButton("Change", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                list.editListItem(i ,""+editText.getText());
+                                updateListView();
+                            }
+                        })
+                        .setNegativeButton("Cancel",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                })
+                        .setNeutralButton("Delete Item",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        list.deleteFromList(i);
+                                        updateListView();
+                                    }
+                                });
+                // create an alert dialog
+                AlertDialog alert = alertDialogBuilder.create();
+                alert.show();
+            }
+        });
+
+
         listNum = getIntent().getExtras().getInt("list");
         list = ShoppingListsActivity.lists.get(listNum);
 
@@ -59,6 +99,7 @@ public class SingleListActivity extends AppCompatActivity {
         });
 
     }
+
     public void updateListView() {
         if (list != null) {
             mListView.setAdapter(new ArrayAdapter<>(this, R.layout.text_view, list.getList()));
