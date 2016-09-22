@@ -43,6 +43,7 @@ public class SingleListActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 ShoppingListsActivity.lists.get(listNum);
                                 list.addToList("" + editText.getText());
+                                updateListView();
                             }
                         })
                         .setNegativeButton("Cancel",
@@ -54,9 +55,11 @@ public class SingleListActivity extends AppCompatActivity {
                 // create an alert dialog
                 AlertDialog alert = alertDialogBuilder.create();
                 alert.show();
-                mListView.setAdapter(new ArrayAdapter<>(v.getContext(), R.layout.text_view, list.getList()));
             }
         });
+
+    }
+    public void updateListView() {
         if (list != null) {
             mListView.setAdapter(new ArrayAdapter<>(this, R.layout.text_view, list.getList()));
         }
