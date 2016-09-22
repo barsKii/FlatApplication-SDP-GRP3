@@ -19,8 +19,10 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".ShoppingList.ShoppingListsActivity"/>
-        <activity android:name=".ShoppingList.SingleListActivity"></activity>
+        <activity android:name=".ShoppingList.ShoppingListsActivity">
+            android:configChanges="orientation|keyboard"</>
+        <activity android:name=".ShoppingList.SingleListActivity">
+            android:configChanges="orientation|keyboard"</>
 
         <activity android:name=".TasksManager.TaskManagerActivity"
                   android:parentActivityName=".MainActivity"
