@@ -9,6 +9,7 @@ import android.view.View;
 import com.sdpcrew.android.flatapp.ShoppingList.ShoppingListsActivity;
 import com.sdpcrew.android.flatapp.TasksManager.TaskManagerActivity;
 import com.sdpcrew.android.flatapp.Calender.CalendarMain;
+import com.sdpcrew.android.flatapp.BillsManager.BillListActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,5 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void showCalendar (View v) {
         startActivity(new Intent(this, CalendarMain.class));
+    }
+
+    public void showBillClick (View v) {
+        startActivity(new Intent(this, BillListActivity.class));
     }
 }
