@@ -24,14 +24,14 @@ public class CalendarAdapter extends BaseAdapter {
     private Context mContext;
 
     public static List<String> dayEvents;
-    private Calendar calendarRef;
-    public Calendar prevMonth;
-    public Calendar Monthg;
-    private Calendar CalendarClone;
 
-    private View previousView;
+    private Calendar mCalendarRef;
+    public Calendar mPrevMonth;
+    public Calendar mMonth;
+    private Calendar mCalendarClone;
 
-    private String curentDate;
+    private View mPreviousView;
+    private String mCurentDate;
     private DateFormat df;
 
     private ArrayList<String> items;
@@ -49,40 +49,48 @@ public class CalendarAdapter extends BaseAdapter {
     public CalendarAdapter(Context c, Calendar CalendarDetails) {
         /* inti variables */
         CalendarAdapter.dayEvents = new ArrayList();
-        calendarRef = CalendarDetails;
-        CalendarClone = (Calendar) CalendarDetails.clone();
+        mCalendarRef = CalendarDetails; //save calendar from main to be handled
+        mCalendarClone = (Calendar) CalendarDetails.clone(); //clone for changes, to refer to originally values passed
+
         mContext = c;
-        calendarRef.set(Calendar.DAY_OF_MONTH,1);
+        mCalendarRef.set(Calendar.DAY_OF_MONTH,1);
 
         this.items = new ArrayList<String>();
-
+        //get current date without interference of calendar class index values
         df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-
-        curentDate = df.format(CalendarClone.getTime());
-
+        mCurentDate = df.format(mCalendarClone.getTime());
         refreshDays();
 
     }
 
 
-
+    /**
+     * Build calender variables
+     * such as max days in year and
+     * offset to be display and passed to
+     * calendar main
+     */
     public void refreshDays() {
+        /*items.clear(); will be changed in the next integration to if() statement filtering out intial start
+           as items is working on a hard coded basis for testing.
+         */
+
         items.clear();
         dayEvents.clear();// keep an eye on varibale for future
-        prevMonth = (Calendar) calendarRef.clone();// clone again for proctection
+        mPrevMonth = (Calendar) mCalendarRef.clone();// clones for difference from next,prev clicks
         firstDayOfMonth = getFirstDayOfMonth();
         MaxWeekInMonth = getMaxWeekInMonth();
         MonthLength = MaxWeekInMonth * 7;// help make the grid
         DaysInAMonth = getMaxDaysInAMonth();
         offDays = DaysInAMonth - (firstDayOfMonth - 1);
-        Monthg = (Calendar) prevMonth.clone();
-        Monthg.set(Calendar.DAY_OF_MONTH, offDays + 1);
+        mMonth = (Calendar) mPrevMonth.clone();
+        mMonth.set(Calendar.DAY_OF_MONTH, offDays + 1);
 
         //Build Grid
         for (int n = 0; n < MonthLength; n++) {
 
-            itemvalue = df.format(Monthg.getTime());
-            Monthg.add(Calendar.DATE, 1);
+            itemvalue = df.format(mMonth.getTime());
+            mMonth.add(Calendar.DATE, 1);
             dayEvents.add(itemvalue);
 
         }
@@ -90,12 +98,12 @@ public class CalendarAdapter extends BaseAdapter {
 
     private int getMaxDaysInAMonth() {
         int maxDays;
-        if (calendarRef.get(Calendar.MONTH) == calendarRef.getActualMinimum(Calendar.MONTH)) {
-            prevMonth.set((calendarRef.get(Calendar.YEAR) - 1), calendarRef.getActualMaximum(Calendar.MONTH), 1);
+        if (mCalendarRef.get(Calendar.MONTH) == mCalendarRef.getActualMinimum(Calendar.MONTH)) {
+            mPrevMonth.set((mCalendarRef.get(Calendar.YEAR) - 1), mCalendarRef.getActualMaximum(Calendar.MONTH), 1);
         } else {
-            prevMonth.set(Calendar.MONTH, calendarRef.get(Calendar.MONTH) - 1);
+            mPrevMonth.set(Calendar.MONTH, mCalendarRef.get(Calendar.MONTH) - 1);
         }
-        maxDays = prevMonth.getActualMaximum(Calendar.DAY_OF_MONTH);
+        maxDays = mPrevMonth.getActualMaximum(Calendar.DAY_OF_MONTH);
         return maxDays;
     }
 
@@ -146,9 +154,9 @@ public class CalendarAdapter extends BaseAdapter {
         } else {
             dayView.setTextColor(Color.WHITE);
         }
-        if (dayEvents.get(position).equals(curentDate)) {
+        if (dayEvents.get(position).equals(mCurentDate)) {
             setSelected(v);
-            previousView = v;
+            mPreviousView = v;
         } else {
             v.setBackgroundResource(R.drawable.list_item_background);
         }
@@ -159,7 +167,7 @@ public class CalendarAdapter extends BaseAdapter {
         if (date.length() == 1) {
             date = "0" + date;
         }
-        String monthStr = "" + (calendarRef.get(Calendar.MONTH) + 1);
+        String monthStr = "" + (mCalendarRef.get(Calendar.MONTH) + 1);
         if (monthStr.length() == 1) {
             monthStr = "0" + monthStr;
         }
@@ -175,20 +183,20 @@ public class CalendarAdapter extends BaseAdapter {
     }
 
     public View setSelected(View view) {
-        if (previousView != null) {
-            previousView.setBackgroundResource(R.drawable.list_item_background);
+        if (mPreviousView != null) {
+            mPreviousView.setBackgroundResource(R.drawable.list_item_background);
         }
-        previousView = view;
+        mPreviousView = view;
         view.setBackgroundResource(R.drawable.calendar_cel_selectl);
         return view;
     }
 
     public int getFirstDayOfMonth(){
-        return calendarRef.get(Calendar.DAY_OF_WEEK);
+        return mCalendarRef.get(Calendar.DAY_OF_WEEK);
     }
 
     public int getMaxWeekInMonth(){
-        return calendarRef.getActualMaximum(Calendar.WEEK_OF_MONTH);
+        return mCalendarRef.getActualMaximum(Calendar.WEEK_OF_MONTH);
     }
 
 
