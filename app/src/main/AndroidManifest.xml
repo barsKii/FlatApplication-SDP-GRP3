@@ -30,8 +30,13 @@
               </activity>
         <activity android:name=".Calender.CalendarMain"></activity>
         <activity android:name=".Calender.CalenderEventHandler"></activity>
-        <activity android:name=".BillsManager.BillListActivity"></activity>
-        <activity android:name=".BillsManager.BillActivity"></activity>
+        <activity android:name=".BillsManager.BillListActivity"
+                  android:parentActivityName=".MainActivity"
+                  android:theme="@style/FlatAppBillTheme"></activity>
+        <activity android:name=".BillsManager.BillPagerActivity"
+                  android:theme="@style/FlatAppBillTheme"
+                  android:parentActivityName=".BillsManager.BillListActivity">
+        </activity>
     </application>
 
 

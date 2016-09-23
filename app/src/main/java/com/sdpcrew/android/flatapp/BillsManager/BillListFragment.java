@@ -2,10 +2,15 @@ package com.sdpcrew.android.flatapp.BillsManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -19,8 +24,17 @@ import java.util.List;
  */
 public class BillListFragment extends Fragment{
 
+    private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
+
     private RecyclerView mBillRecyclerView;
     private BillAdapter mAdapter;
+    private boolean mSubtitleVisible;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -28,6 +42,10 @@ public class BillListFragment extends Fragment{
 
         mBillRecyclerView = (RecyclerView) view.findViewById(R.id.bill_recycler_view);
         mBillRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        if(savedInstanceState != null) {
+            mSubtitleVisible = savedInstanceState.getBoolean(SAVED_SUBTITLE_VISIBLE);
+        }
 
         updateUI();
 
@@ -40,6 +58,60 @@ public class BillListFragment extends Fragment{
         updateUI();
     }
 
+    @Override
+    public void onSaveInstanceState (Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(SAVED_SUBTITLE_VISIBLE, mSubtitleVisible);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_bill_list, menu);
+
+        mSubtitleVisible = true;
+        updateSubtitle();
+
+        /*MenuItem subtitleItem = menu.findItem(R.id.menu_item_show_subtitle);
+        if(mSubtitleVisible) {
+            subtitleItem.setTitle(R.string.hide_subtitle);
+        } else {
+            subtitleItem.setTitle(R.string.show_subtitle);
+        }*/
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_new_bill:
+                Bill bill = new Bill();
+                BillLab.get(getActivity()).addBill(bill);
+                Intent intent = BillPagerActivity.newIntent(getActivity(), bill.getId());
+                startActivity(intent);
+                return true;
+            /*case R.id.menu_item_show_subtitle:
+                mSubtitleVisible = !mSubtitleVisible;
+                getActivity().invalidateOptionsMenu();
+                updateSubtitle();
+                return true;*/
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void updateSubtitle() {
+        BillLab billLab = BillLab.get(getActivity());
+        int billCount = billLab.getBills().size();
+        String subtitle = getString(R.string.subtitle_format, billCount);
+
+        if (!mSubtitleVisible) {
+            subtitle = null;
+        }
+
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.getSupportActionBar().setSubtitle(subtitle);
+    }
+
     private void updateUI() {
         BillLab billLab = BillLab.get(getActivity());
         List<Bill> bills = billLab.getBills();
@@ -50,12 +122,15 @@ public class BillListFragment extends Fragment{
         } else {
             mAdapter.notifyDataSetChanged();
         }
+
+        updateSubtitle();
     }
 
     private class BillHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView mTitleTextView;
         private TextView mDateTextView;
         private CheckBox mPaidCheckBox;
+        //private FloatingActionButton mNewBillButton;
 
         private Bill mBill;
 
@@ -66,6 +141,7 @@ public class BillListFragment extends Fragment{
             mTitleTextView = (TextView) itemView.findViewById(R.id.list_item_bill_title_text_view);
             mDateTextView = (TextView) itemView.findViewById(R.id.list_item_bill_date_text_view);
             mPaidCheckBox = (CheckBox) itemView.findViewById(R.id.list_item_bill_paid_check_box);
+            //mNewBillButton = (FloatingActionButton) itemView.findViewById(R.id.fragment_bill_add);
         }
 
         public void bindBill (Bill bill) {
@@ -76,7 +152,7 @@ public class BillListFragment extends Fragment{
         }
 
         public void onClick (View v) {
-            Intent intent = BillActivity.newIntent(getActivity(), mBill.getId());
+            Intent intent = BillPagerActivity.newIntent(getActivity(), mBill.getId());
             startActivity(intent);
         }
     }

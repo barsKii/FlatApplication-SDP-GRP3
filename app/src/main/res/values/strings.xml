@@ -28,5 +28,11 @@
     <string name="bill_title_label">Title</string>
     <string name="bill_details_label">Details</string>
     <string name="bill_paid_label">Paid</string>
-
+    <string name="bill_add_button">New Bill</string>
+    <string name="bill_date_picker_title">Due date for bill:</string>
+    <string name="new_bill">New Bill</string>
+    <string name="show_subtitle">Show Subtitle</string>
+    <string name="hide_subtitle">Hide Subtitle</string>
+    <string name="subtitle_format">%1$s bill(s)</string>
+    <string name="bill_due_date_label">Due Date</string>
 </resources>

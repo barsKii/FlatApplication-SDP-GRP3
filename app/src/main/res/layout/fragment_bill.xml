@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/bill_details_label"
+        android:text="@string/bill_due_date_label"
         style="?android:listSeparatorTextViewStyle"
         />
     <Button

@@ -25,14 +25,10 @@ public class BillLab {
 
     private BillLab (Context context) {
         mBills = new ArrayList<>();
+    }
 
-        // Can add bills here to test
-        for (int i = 0; i < 100; i++) {
-            Bill crime = new Bill();
-            crime.setTitle("Crime #" + i);
-            crime.setPaid(i % 2 == 0); // Every other one
-            mBills.add(crime);
-        }
+    public void addBill (Bill b) {
+        mBills.add(b);
     }
 
     public List<Bill> getBills() {

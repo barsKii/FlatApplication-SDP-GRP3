@@ -15,5 +15,13 @@
 
     </style>
 
+    <style name="FlatAppBillTheme" parent="Theme.AppCompat.Light" >
+        <item name="android:textColorPrimary">#000</item>
+        <item name="colorPrimary">@color/tile4</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
 
 </resources>

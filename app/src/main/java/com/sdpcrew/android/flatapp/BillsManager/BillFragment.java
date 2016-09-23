@@ -1,7 +1,10 @@
 package com.sdpcrew.android.flatapp.BillsManager;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -13,6 +16,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import com.sdpcrew.android.flatapp.*;
 
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -21,6 +25,9 @@ import java.util.UUID;
 public class BillFragment extends Fragment {
 
     private static final String ARG_BILL_ID = "bill_id";
+    private static final String DIALOG_DATE = "DialogDate";
+
+    private static final int REQUEST_DATE = 0;
 
     private Bill mBill;
     private EditText mTitleField;
@@ -68,20 +75,44 @@ public class BillFragment extends Fragment {
         });
 
         mDateButton = (Button) v.findViewById(R.id.bill_date);
-        mDateButton.setText(android.text.format.DateFormat.format("dd-MM-yyyy", mBill.getDate()));
-        mDateButton.setEnabled(false);
+        updateDate();
+        mDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager manager = getFragmentManager();
+                DatePickerFragment dialog = DatePickerFragment.newInstance(mBill.getDate());
+                dialog.setTargetFragment(BillFragment.this, REQUEST_DATE);
+                dialog.show(manager, DIALOG_DATE);
+            }
+        });
 
         mPaidCheckBox = (CheckBox) v.findViewById(R.id.bill_paid);
         mPaidCheckBox.setChecked(mBill.isPaid());
-       /* mPaidCheckBox.setOnClickListener(new CompoundButton.OnCheckedChangeListener() {
+        mPaidCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // Set the crime's solved property
                 mBill.setPaid(isChecked);
             }
-
-        });*/
+        });
 
         return v;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK){
+            return;
+        }
+        if (requestCode == REQUEST_DATE) {
+            Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
+            mBill.setDate(date);
+            updateDate();
+        }
+    }
+
+    private void updateDate() {
+        mDateButton.setText(android.text.format.DateFormat.format("dd-MM-yyyy", mBill.getDate()));
     }
 
 }
