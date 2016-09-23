@@ -24,4 +24,9 @@
     <string name="no_title_task_enter">No title entered. No Task created</string>
     <string name="no_title_qualifier_enter">No title entered. No Qualifier created</string>
 
+    <string name="bill_title_hint">Enter a title for the bill.</string>
+    <string name="bill_title_label">Title</string>
+    <string name="bill_details_label">Details</string>
+    <string name="bill_paid_label">Paid</string>
+
 </resources>
