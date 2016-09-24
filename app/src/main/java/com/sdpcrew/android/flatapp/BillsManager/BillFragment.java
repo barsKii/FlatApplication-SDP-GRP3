@@ -15,8 +15,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.sdpcrew.android.flatapp.*;
 
@@ -73,7 +72,8 @@ public class BillFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(TextUtils.isEmpty(s.toString())) {
-                    mTitleField.setError("Bill title Cannot be empty.");
+                    CharSequence err = getString(R.string.empty_title_warning);
+                    mTitleField.setError(err);
                     return;
                 } else {
                     mBill.setTitle(s.toString());

@@ -24,12 +24,12 @@
     <string name="no_title_task_enter">No title entered. No Task created</string>
     <string name="no_title_qualifier_enter">No title entered. No Qualifier created</string>
 
-    <string name="bill_title_hint">Enter a title for the bill.</string>
+    <string name="bill_title_hint">Enter a title for the bill.  (Required)</string>
     <string name="bill_title_label">Title</string>
     <string name="bill_details_label">Details</string>
     <string name="bill_amount_label">Amount</string>
     <string name="bill_details_hint">Enter an extra description.</string>
-    <string name="bill_amount_hint">Enter the amount for the bill.</string>
+    <string name="bill_amount_hint">Enter the amount for the bill.  (Required)</string>
     <string name="bill_paid_label">Paid</string>
     <string name="bill_add_button">New Bill</string>
     <string name="bill_date_picker_title">Due date for bill:</string>
@@ -41,7 +41,7 @@
         <item quantity="other">%1$s bills</item>
     </plurals>
     <string name="bill_due_date_label">Due Date</string>
-    <string name="empty_title_warning">You did not enter a title.</string>
+    <string name="empty_title_warning">Title cannot be empty.</string>
     <string name="failed_bill_add">Bill failed to add. Title was empty.</string>
 
 </resources>

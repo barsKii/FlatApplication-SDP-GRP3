@@ -34,13 +34,6 @@ public class BillLab {
     }
 
     public List<Bill> getBills() {
-        /*//Called by updateUI, will remove bill if last item added has no title
-        for(int i = 0; i < mBills.size(); i++){
-            if(TextUtils.isEmpty(mBills.get(i).getTitle())) {
-                mBills.remove(i);
-                return mBills;
-            }
-        }*/
         return mBills;
     }
 
