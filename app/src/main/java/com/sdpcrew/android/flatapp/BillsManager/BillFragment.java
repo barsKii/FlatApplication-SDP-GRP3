@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +15,13 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.sdpcrew.android.flatapp.*;
 
+import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -33,6 +39,7 @@ public class BillFragment extends Fragment {
     private EditText mTitleField;
     private Button mDateButton;
     private CheckBox mPaidCheckBox;
+    private EditText mAmountField;
 
     public static BillFragment newInstance (UUID billId) {
         Bundle args = new Bundle();
@@ -65,7 +72,12 @@ public class BillFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mBill.setTitle(s.toString());
+                if(TextUtils.isEmpty(s.toString())) {
+                    mTitleField.setError("Bill title Cannot be empty.");
+                    return;
+                } else {
+                    mBill.setTitle(s.toString());
+                }
             }
 
             @Override
@@ -95,6 +107,43 @@ public class BillFragment extends Fragment {
                 mBill.setPaid(isChecked);
             }
         });
+
+        mAmountField = (EditText) v.findViewById(R.id.bill_amount);
+        mAmountField.setText(mBill.getAmount());
+        mAmountField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            private String current = "";
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().equals(current)){
+                    mAmountField.removeTextChangedListener(this);
+
+                    String cleanString = s.toString().replaceAll("[$,.]", "");
+
+                    BigDecimal parsed = new BigDecimal(cleanString).setScale(2,BigDecimal.ROUND_FLOOR)
+                            .divide(new BigDecimal(100), BigDecimal.ROUND_FLOOR);
+                    String formatted = NumberFormat.getCurrencyInstance().format((parsed));
+
+                    current = formatted;
+                    mAmountField.setText(formatted);
+                    mAmountField.setSelection(formatted.length());
+                    mBill.setAmount(formatted);
+
+                    mAmountField.addTextChangedListener(this);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+
 
         return v;
     }

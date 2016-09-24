@@ -102,7 +102,7 @@ public class BillListFragment extends Fragment{
     private void updateSubtitle() {
         BillLab billLab = BillLab.get(getActivity());
         int billCount = billLab.getBills().size();
-        String subtitle = getString(R.string.subtitle_format, billCount);
+        String subtitle = getResources().getQuantityString(R.plurals.subtitle_plural, billCount, billCount);
 
         if (!mSubtitleVisible) {
             subtitle = null;
@@ -130,6 +130,7 @@ public class BillListFragment extends Fragment{
         private TextView mTitleTextView;
         private TextView mDateTextView;
         private CheckBox mPaidCheckBox;
+        private TextView mAmountTextView;
         //private FloatingActionButton mNewBillButton;
 
         private Bill mBill;
@@ -141,14 +142,16 @@ public class BillListFragment extends Fragment{
             mTitleTextView = (TextView) itemView.findViewById(R.id.list_item_bill_title_text_view);
             mDateTextView = (TextView) itemView.findViewById(R.id.list_item_bill_date_text_view);
             mPaidCheckBox = (CheckBox) itemView.findViewById(R.id.list_item_bill_paid_check_box);
+            mAmountTextView = (TextView) itemView.findViewById(R.id.list_item_bill_amount_text_view);
             //mNewBillButton = (FloatingActionButton) itemView.findViewById(R.id.fragment_bill_add);
         }
 
         public void bindBill (Bill bill) {
             mBill = bill;
             mTitleTextView.setText(mBill.getTitle());
-            mDateTextView.setText(mBill.getDate().toString());
+            mDateTextView.setText("Due: " + android.text.format.DateFormat.format("dd-MM-yyyy", mBill.getDate()));
             mPaidCheckBox.setChecked(mBill.isPaid());
+            mAmountTextView.setText(mBill.getAmount());
         }
 
         public void onClick (View v) {

@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 
 import com.sdpcrew.android.flatapp.*;
 
@@ -62,6 +63,18 @@ public class BillPagerActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //Called by updateUI, will remove bill if last item added has no title
+        for(int i = 0; i < mBills.size(); i++){
+            if(TextUtils.isEmpty(mBills.get(i).getTitle()) ||
+                    TextUtils.isEmpty(mBills.get(i).getAmount())) {
+                mBills.remove(i);
+            }
+        }
     }
 
 

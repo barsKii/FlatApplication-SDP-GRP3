@@ -13,6 +13,7 @@ public class Bill {
     private String mTitle;
     private Date mDate;
     private boolean mPaid;
+    private String mAmount;
 
     public Bill() {
         mId = UUID.randomUUID();
@@ -45,5 +46,13 @@ public class Bill {
 
     public UUID getId() {
         return mId;
+    }
+
+    public String getAmount() {
+        return mAmount;
+    }
+
+    public void setAmount(String amount) {
+        mAmount = amount;
     }
 }
