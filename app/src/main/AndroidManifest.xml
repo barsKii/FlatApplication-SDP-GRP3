@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/FlatAppCustomTheme">
         <activity android:name=".MainActivity">
+            android:configChanges="orientation" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,6 +31,7 @@
               </activity>
         <activity android:name=".Calender.CalendarMain"></activity>
         <activity android:name=".Calender.CalenderEventHandler"></activity>
+
         <activity android:name=".BillsManager.BillListActivity"
                   android:parentActivityName=".MainActivity"
                   android:theme="@style/FlatAppBillTheme"></activity>
