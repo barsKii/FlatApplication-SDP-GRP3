@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical" android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:weightSum="1">
 
     <include
         android:id="@+id/SearchToolBar"
@@ -20,30 +20,30 @@
             android:orientation="vertical" >
 
             <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <ImageButton
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:srcCompat="@drawable/shop"
-                        android:id="@+id/shopping_list_button"
-                        android:onClick="showShoppingListClick"
-                        android:background="@color/tile1"/>
-                </RelativeLayout>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/shop"
+                    android:id="@+id/shopping_list_button"
+                    android:onClick="showShoppingListClick"
+                    android:background="@color/tile1"/>
+            </RelativeLayout>
 
             <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                    <ImageButton
-                        android:layout_width="match_parent"
-                        android:layout_height="137dp"
-                        app:srcCompat="@drawable/cal"
-                        android:id="@+id/calendar_button"
-                        android:onClick="showCalendar"
-                        android:background="@color/tile2"/>
-                </RelativeLayout>
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="137dp"
+                    app:srcCompat="@drawable/cal"
+                    android:id="@+id/calendar_button"
+                    android:onClick="showCalendar"
+                    android:background="@color/tile2"/>
+            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -73,13 +73,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                 <ImageButton
+                <ImageButton
                     android:id="@+id/imageButton10"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/gridLayout"
                     android:layout_centerHorizontal="true"
-                     android:background="#fff"
+                    android:background="#fff"
                     app:srcCompat="@drawable/avat" />
             </RelativeLayout>
 

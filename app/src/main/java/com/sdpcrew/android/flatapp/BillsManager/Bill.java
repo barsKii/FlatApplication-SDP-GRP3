@@ -6,6 +6,7 @@ import com.sdpcrew.android.flatapp.*;
 
 /**
  * Created by David on 20/09/2016.
+ * Bill class is the model where a physical instance of a bill exists with appropriate accessor methods
  */
 public class Bill {
 
