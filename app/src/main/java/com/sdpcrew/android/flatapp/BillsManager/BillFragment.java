@@ -26,6 +26,7 @@ import java.util.UUID;
 
 /**
  * Created by David on 20/09/2016.
+ * Bill Fragment refers to the view when a bill is open.
  */
 public class BillFragment extends Fragment {
 
@@ -48,6 +49,7 @@ public class BillFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
 
     @Override
     public void onCreate (Bundle savedInstanceState) {
