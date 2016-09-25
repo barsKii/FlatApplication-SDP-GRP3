@@ -34,8 +34,8 @@ public class QualifierLab {
         newQualifier("Semester");
     }
 
-    public void addQualifier(Qualifier c) {
-        mQualifiers.add(c);
+    public boolean addQualifier(Qualifier c) {
+        return mQualifiers.add(c);
     }
 
     public boolean removeQualifier(Qualifier c){
