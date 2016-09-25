@@ -10,7 +10,7 @@ public class ShoppingList {
     private String listName;
     private ArrayList<String> list;
 
-    ShoppingList(String name) {
+    public ShoppingList(String name) {
         setListName(name);
         list = new ArrayList<>();
     }
@@ -23,7 +23,7 @@ public class ShoppingList {
     public ArrayList<String> getList() {
         return list;
     }
-    public String getListName() {
+    private String getListName() {
         return listName;
     }
     public void addToList(String item) {
