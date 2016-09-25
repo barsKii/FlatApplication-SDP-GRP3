@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Shane Birdsall on 1/09/2016.
+ *
  */
 public class ShoppingList {
     private String listName;

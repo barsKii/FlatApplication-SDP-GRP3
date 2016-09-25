@@ -28,7 +28,7 @@ public class ShoppingListsActivity extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.shoppingListView);
 
         if (mListView != null) {
-            mListView.setAdapter(new ArrayAdapter<>(this, R.layout.text_view, lists));
+            updateListView();
 
             mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
