@@ -23,12 +23,11 @@ public class QualifierLab {
         newQualifier.setTitle(name);
         mQualifiers.add(newQualifier);
     }
+
     private QualifierLab(Context context){
         mQualifiers = new ArrayList<>();
         newQualifier("Weekly");
         newQualifier("Fortnightly");
-        newQualifier("TriWeekly");
-        newQualifier("FourWeekly");
         newQualifier("Monthly");
         newQualifier("BiMonthly");
         newQualifier("Trimonthly");
@@ -39,10 +38,12 @@ public class QualifierLab {
         mQualifiers.add(c);
     }
 
-    public void removeQualifier(Qualifier c){
-        if(mQualifiers.contains(c))
+    public boolean removeQualifier(Qualifier c){
+        if(mQualifiers.contains(c)) {
             mQualifiers.remove(c);
-
+            return true;
+        }
+        return false;
     }
 
     public List<Qualifier> getQualifiers(){
