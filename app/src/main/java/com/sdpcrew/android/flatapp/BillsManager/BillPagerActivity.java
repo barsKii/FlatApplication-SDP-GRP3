@@ -68,13 +68,6 @@ public class BillPagerActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        //Called by updateUI, will remove bill if last item added has no title
-        for(int i = 0; i < mBills.size(); i++){
-            if(TextUtils.isEmpty(mBills.get(i).getTitle()) ||
-                    TextUtils.isEmpty(mBills.get(i).getAmount())) {
-                mBills.remove(i);
-            }
-        }
     }
 
 

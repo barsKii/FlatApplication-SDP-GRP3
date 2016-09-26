@@ -89,11 +89,6 @@ public class BillListFragment extends Fragment{
                 Intent intent = BillPagerActivity.newIntent(getActivity(), bill.getId());
                 startActivity(intent);
                 return true;
-            /*case R.id.menu_item_show_subtitle:
-                mSubtitleVisible = !mSubtitleVisible;
-                getActivity().invalidateOptionsMenu();
-                updateSubtitle();
-                return true;*/
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -101,6 +96,7 @@ public class BillListFragment extends Fragment{
 
     private void updateSubtitle() {
         BillLab billLab = BillLab.get(getActivity());
+
         int billCount = billLab.getBills().size();
         String subtitle = getResources().getQuantityString(R.plurals.subtitle_plural, billCount, billCount);
 
@@ -122,6 +118,9 @@ public class BillListFragment extends Fragment{
         } else {
             mAdapter.notifyDataSetChanged();
         }
+
+        //Goes through the list and removes incomplete bills that don't fit criteria
+        billLab.rejectIncompleteBill();
 
         updateSubtitle();
     }

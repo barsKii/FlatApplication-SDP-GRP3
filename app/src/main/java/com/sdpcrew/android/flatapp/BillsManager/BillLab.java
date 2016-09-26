@@ -33,6 +33,15 @@ public class BillLab {
         mBills.add(b);
     }
 
+    public void rejectIncompleteBill(){
+        for(int i = 0; i < mBills.size(); i++){
+            if(TextUtils.isEmpty(mBills.get(i).getTitle()) ||
+                    TextUtils.isEmpty(mBills.get(i).getAmount())) {
+                mBills.remove(i);
+            }
+        }
+    }
+
     public List<Bill> getBills() {
         return mBills;
     }
