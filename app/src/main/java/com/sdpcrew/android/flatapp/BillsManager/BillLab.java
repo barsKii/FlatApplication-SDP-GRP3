@@ -7,6 +7,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
 import com.sdpcrew.android.flatapp.*;
 
 /**
@@ -18,28 +19,28 @@ public class BillLab {
 
     private List<Bill> mBills;
 
-    public static BillLab get (Context context) {
+    public static BillLab get(Context context) {
         if (sBillLab == null) {
             sBillLab = new BillLab(context);
         }
         return sBillLab;
     }
 
-    private BillLab (Context context) {
+    private BillLab(Context context) {
         mBills = new ArrayList<>();
     }
 
-    public void addBill (Bill b) {
+    public void addBill(Bill b) {
         mBills.add(b);
     }
 
-    public void rejectIncompleteBill(){
-        for(int i = 0; i < mBills.size(); i++){
-            if(TextUtils.isEmpty(mBills.get(i).getTitle()) ||
-                    TextUtils.isEmpty(mBills.get(i).getAmount())) {
-                mBills.remove(i);
-            }
+    public void rejectIncompleteBill() {
+        int i = mBills.size() - 1;
+        if (mBills.get(i).getTitle() == null || mBills.get(i).getTitle().length() == 0 ||
+                mBills.get(i).getAmount() == null || mBills.get(i).getAmount().length() == 0) {
+            mBills.remove(i);
         }
+
     }
 
     public List<Bill> getBills() {
@@ -53,6 +54,10 @@ public class BillLab {
             }
         }
         return null;
+    }
+
+    public void refreshLab() {
+        mBills.clear();
     }
 
 }
