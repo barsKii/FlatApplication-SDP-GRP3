@@ -19,6 +19,7 @@ import java.util.GregorianCalendar;
 
 /**
  * Created by David on 23/09/2016.
+ * Fragment used to select dates for the due date of the bill
  */
 
 public class DatePickerFragment extends DialogFragment {
@@ -37,6 +38,11 @@ public class DatePickerFragment extends DialogFragment {
         return fragment;
     }
 
+    /**
+     * Creates the new Calendar layout as a popout from which the user can interact and select a date
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Date date = (Date) getArguments().getSerializable(ARG_DATE);
@@ -52,6 +58,7 @@ public class DatePickerFragment extends DialogFragment {
         mDatePicker = (DatePicker) v.findViewById(R.id.dialog_date_date_picker);
         mDatePicker.init(year, month, day, null);
 
+        //Returns the response provided by the user
         return new AlertDialog.Builder(getActivity())
                 .setView(v)
                 .setTitle(R.string.bill_date_picker_title)
@@ -69,6 +76,11 @@ public class DatePickerFragment extends DialogFragment {
                 .create();
     }
 
+    /**
+     * Packages and returns the result to the target controller that called this class
+     * @param resultCode
+     * @param date
+     */
     private void sendResult(int resultCode, Date date) {
         if (getTargetFragment() == null) {
             return;

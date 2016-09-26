@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.sdpcrew.android.flatapp.*;
 /**
  * Created by David on 21/09/2016.
+ * An abstract class used to reduce the code re-use of each fragment class
  */
 public abstract class SingleFragmentActivityBill extends AppCompatActivity {
 

@@ -12,6 +12,8 @@ import com.sdpcrew.android.flatapp.*;
 
 /**
  * Created by David on 20/09/2016.
+ * BillLab is the location where all bills are stored. It is created through the singleton method
+ * so as to ensure all bills are located in one place
  */
 public class BillLab {
 
@@ -34,6 +36,10 @@ public class BillLab {
         mBills.add(b);
     }
 
+    /**
+     * Will check the last bill added to see if it is valid and if not will remove it. Called by
+     * UpdateUI in BillListFragment
+     */
     public void rejectIncompleteBill() {
         int i = mBills.size() - 1;
         if (mBills.get(i).getTitle() == null || mBills.get(i).getTitle().length() == 0 ||

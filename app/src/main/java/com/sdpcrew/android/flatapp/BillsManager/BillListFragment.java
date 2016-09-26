@@ -21,6 +21,8 @@ import java.util.List;
 
 /**
  * Created by David on 20/09/2016.
+ * BillListFragment utilizes RecyclerView to illustrate multiple BillFragments at once and
+ * make the list scrollable without delay
  */
 public class BillListFragment extends Fragment{
 
@@ -52,6 +54,10 @@ public class BillListFragment extends Fragment{
         return view;
     }
 
+    /**
+     * UpdateUI is called as onResume() is called when ever the view is accessed or returned to and
+     * will provide an up to date list of BillFragments
+     */
     @Override
     public void onResume() {
         super.onResume();
@@ -64,6 +70,11 @@ public class BillListFragment extends Fragment{
         outState.putBoolean(SAVED_SUBTITLE_VISIBLE, mSubtitleVisible);
     }
 
+    /**
+     * Provides the bill count and the back arrow
+     * @param menu
+     * @param inflater
+     */
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
@@ -80,6 +91,12 @@ public class BillListFragment extends Fragment{
         }*/
     }
 
+    /**
+     * Relates to the selecting of a fragment and starting that BillFragment as a new activity
+     * through the BillPagerActivity
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -94,6 +111,9 @@ public class BillListFragment extends Fragment{
         }
     }
 
+    /**
+     * Provides the subtitle count of current bills
+     */
     private void updateSubtitle() {
         BillLab billLab = BillLab.get(getActivity());
 
@@ -108,6 +128,10 @@ public class BillListFragment extends Fragment{
         activity.getSupportActionBar().setSubtitle(subtitle);
     }
 
+
+    /**
+     * Updates the list of bills to be displayed by the UI
+     */
     private void updateUI() {
         BillLab billLab = BillLab.get(getActivity());
         List<Bill> bills = billLab.getBills();
@@ -125,6 +149,10 @@ public class BillListFragment extends Fragment{
         updateSubtitle();
     }
 
+    /**
+     * Provides the functionality to show each individual bill in a small fragment to fit multiple
+     * ones on a single screen and make them clickable
+     */
     private class BillHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView mTitleTextView;
         private TextView mDateTextView;

@@ -17,6 +17,7 @@ import java.util.UUID;
 
 /**
  * Created by David on 23/09/2016.
+ * BillPagerActivity provides the view for the individual bills
  */
 
 public class BillPagerActivity extends AppCompatActivity {
@@ -31,6 +32,11 @@ public class BillPagerActivity extends AppCompatActivity {
         return intent;
     }
 
+    /**
+     * Provides the view to see an individual bill fragment. Also allows the cycling sideways through
+     * bills
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

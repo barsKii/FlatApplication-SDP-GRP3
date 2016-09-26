@@ -51,6 +51,10 @@ public class BillFragment extends Fragment {
     }
 
 
+    /**
+     * Retrieves a bill from the bill lab to be represented by this fragment
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate (Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -59,6 +63,14 @@ public class BillFragment extends Fragment {
         mBill = BillLab.get(getActivity()).getBill(billId);
     }
 
+    /**
+     * Initializes the elements that will be viewed in the fragment view. Creates listeners for each
+     * item as well.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_bill, container, false);
@@ -73,6 +85,8 @@ public class BillFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Will not allow a title to be set to 0 length, will provide a warning if user
+                //deletes to 0 length
                 if(TextUtils.isEmpty(s.toString())) {
                     CharSequence err = getString(R.string.empty_title_warning);
                     mTitleField.setError(err);
@@ -93,6 +107,8 @@ public class BillFragment extends Fragment {
         mDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Functionality used to select date. Communicates between DatePickerFragment and
+                //a created FragmentManager to complete the process
                 FragmentManager manager = getFragmentManager();
                 DatePickerFragment dialog = DatePickerFragment.newInstance(mBill.getDate());
                 dialog.setTargetFragment(BillFragment.this, REQUEST_DATE);
@@ -121,6 +137,7 @@ public class BillFragment extends Fragment {
             private String current = "";
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //Ensures that the money symbol for the selected user appears and formats to currency length
                 if(!s.toString().equals(current)){
                     mAmountField.removeTextChangedListener(this);
 
@@ -150,6 +167,12 @@ public class BillFragment extends Fragment {
         return v;
     }
 
+    /**
+     * Utilized for receiving date back from DatePickerFragment
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != Activity.RESULT_OK){

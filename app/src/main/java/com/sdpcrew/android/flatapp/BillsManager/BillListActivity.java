@@ -6,6 +6,7 @@ import com.sdpcrew.android.flatapp.TasksManager.SingleFragmentActivity;
 
 /**
  * Created by David on 20/09/2016.
+ * The class initially called by MainActivity and starts the BillListFragment
  */
 public class BillListActivity extends SingleFragmentActivityBill {
 
