@@ -41,10 +41,12 @@ public class BillLab {
      * UpdateUI in BillListFragment
      */
     public void rejectIncompleteBill() {
-        int i = mBills.size() - 1;
-        if (mBills.get(i).getTitle() == null || mBills.get(i).getTitle().length() == 0 ||
-                mBills.get(i).getAmount() == null || mBills.get(i).getAmount().length() == 0) {
-            mBills.remove(i);
+        if(mBills.size()> 0) {
+            int i = mBills.size() - 1;
+            if (mBills.get(i).getTitle() == null || mBills.get(i).getTitle().length() == 0 ||
+                    mBills.get(i).getAmount() == null || mBills.get(i).getAmount().length() == 0) {
+                mBills.remove(i);
+            }
         }
 
     }
