@@ -15,6 +15,7 @@ public class ShoppingListUnitTest {
 
     @Test
     public void testShoppingList() {
+
         Assert.assertNull(shoppingList);
 
         shoppingList = new ShoppingList("");

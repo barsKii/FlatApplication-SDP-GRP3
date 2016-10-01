@@ -31,6 +31,7 @@
               </activity>
         <activity android:name=".Calender.CalendarMain"></activity>
         <activity android:name=".Calender.CalenderEventHandler"></activity>
+        <activity android:name=".Calender.CalendarActivity"></activity>
 
         <activity android:name=".BillsManager.BillListActivity"
                   android:parentActivityName=".MainActivity"

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="EventName"
+        android:text="@string/calendar_event_name"
         android:ems="10"
         android:id="@+id/calendar_event_name" />
 
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:text="Time"
+            android:text="@string/calendar_event_Time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/calendar_time_display"
@@ -32,7 +32,7 @@
     </RelativeLayout>
 
     <CheckBox
-        android:text="All day"
+        android:text="@string/calendar_all_day"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/calendar_time_display"
@@ -115,7 +115,7 @@
         android:id="@+id/calendar_events_guest">
 
         <TextView
-            android:text="Guest"
+            android:text="@string/calendar_guest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/calendar_guest_display"
@@ -129,7 +129,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Guest"
+            android:text="@string/calendar_guest"
             android:ems="10"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
@@ -158,7 +158,7 @@
         android:id="@+id/calendar_events_note">
 
         <TextView
-            android:text="Note"
+            android:text="@string/calendar_note"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/calendar_guest_note"
@@ -172,7 +172,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Description"
+            android:text="@string/calendar_desc"
             android:ems="10"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"

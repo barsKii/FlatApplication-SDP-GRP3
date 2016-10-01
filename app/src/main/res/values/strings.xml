@@ -44,4 +44,11 @@
     <string name="empty_title_warning">Title cannot be empty.</string>
     <string name="failed_bill_add">Bill failed to add. Title was empty.</string>
 
+    <string name="calendar_event_name">EventName</string>
+    <string name="calendar_event_Time">Time</string>
+    <string name="calendar_all_day">All Day</string>
+    <string name="calendar_guest">Guest</string>
+    <string name="calendar_note">Note</string>
+    <string name="calendar_desc">Description</string>
+
 </resources>

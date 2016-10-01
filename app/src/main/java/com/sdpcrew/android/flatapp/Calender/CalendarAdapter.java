@@ -82,9 +82,9 @@ public class CalendarAdapter extends BaseAdapter {
         MaxWeekInMonth = getMaxWeekInMonth();
         MonthLength = MaxWeekInMonth * 7;// help make the grid
         DaysInAMonth = getMaxDaysInAMonth();
-        offDays = DaysInAMonth - (firstDayOfMonth - 1);
+        offDays = DaysInAMonth - (firstDayOfMonth - 1);//E.G 31 -(5-1) 31-4 =27
         mMonth = (Calendar) mPrevMonth.clone();
-        mMonth.set(Calendar.DAY_OF_MONTH, offDays + 1);
+        mMonth.set(Calendar.DAY_OF_MONTH, offDays + 1);//28
 
         //Build Grid
         for (int n = 0; n < MonthLength; n++) {
@@ -96,7 +96,7 @@ public class CalendarAdapter extends BaseAdapter {
         }
     }
 
-    private int getMaxDaysInAMonth() {
+    public int getMaxDaysInAMonth() {
         int maxDays;
         if (mCalendarRef.get(Calendar.MONTH) == mCalendarRef.getActualMinimum(Calendar.MONTH)) {
             mPrevMonth.set((mCalendarRef.get(Calendar.YEAR) - 1), mCalendarRef.getActualMaximum(Calendar.MONTH), 1);
@@ -154,6 +154,7 @@ public class CalendarAdapter extends BaseAdapter {
         } else {
             dayView.setTextColor(Color.WHITE);
         }
+
         if (dayEvents.get(position).equals(mCurentDate)) {
             setSelected(v);
             mPreviousView = v;
@@ -191,13 +192,9 @@ public class CalendarAdapter extends BaseAdapter {
         return view;
     }
 
-    public int getFirstDayOfMonth(){
-        return mCalendarRef.get(Calendar.DAY_OF_WEEK);
-    }
+    public int getFirstDayOfMonth(){return mCalendarRef.get(Calendar.DAY_OF_WEEK);}
 
-    public int getMaxWeekInMonth(){
-        return mCalendarRef.getActualMaximum(Calendar.WEEK_OF_MONTH);
-    }
+    public int getMaxWeekInMonth(){return mCalendarRef.getActualMaximum(Calendar.WEEK_OF_MONTH);}
 
 
 }

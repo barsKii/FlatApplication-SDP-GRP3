@@ -1,7 +1,11 @@
 package com.sdpcrew.android.flatapp.Calender;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
+
 import com.sdpcrew.android.flatapp.R;
 import java.util.*;
 
@@ -13,13 +17,20 @@ import java.util.*;
  * add event
  */
 
-public class CalenderEventHandler extends AppCompatActivity {
+public class CalenderEventHandler extends FragmentActivity {
 
     private ArrayList<String> dayHours;
     public Calendar hours;
+    public CalendarMain cm;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.calendar_add_event);
+        setContentView(R.layout.calendar_day_list);
+
+        Bundle getDateSelected =getIntent().getExtras();
+        String dateSelect =getDateSelected.getString("DateSelected");
+
+        TextView dateSet = (TextView) findViewById(R.id.calendar_date_selected);
+        dateSet.setText(dateSelect);
     }
 }

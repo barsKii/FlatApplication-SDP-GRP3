@@ -60,6 +60,8 @@ public class CalendarMain extends AppCompatActivity {
             "Challenges are what makes life interesting and overcoming them makes life meaningful",
             "i don’t regret the things I’ve done, i regret the things it i didnt do"};
 
+    public int handler =0;
+
     /**
      * setOnClickListners will
      * be rewritten in the iteration
@@ -112,13 +114,16 @@ public class CalendarMain extends AppCompatActivity {
                     refreshCalendar();
                 }else{
                     /* will be change to  */
-                    setContentView(R.layout.calendar_day_list);
-                    TextView date = (TextView)  findViewById(R.id.calendar_test_string);
-                    date.setText(separatedTime[0]+"/"+separatedTime[1]+"/"+separatedTime[2]);
+                    handler =1;
+
 
                 }
-                ((CalendarAdapter) parent.getAdapter()).setSelected(v);
-                showToast(selectedGridDate);
+                if(handler==0) {
+                    ((CalendarAdapter) parent.getAdapter()).setSelected(v);
+                    showToast(selectedGridDate);
+                }  else{
+                    showCalendarDate(v,selectedGridDate);
+                }
 
             }
         });
@@ -217,10 +222,13 @@ public class CalendarMain extends AppCompatActivity {
     };
 
     public void addCalendarEvents (View v) {
-        startActivity(new Intent(this, CalenderEventHandler.class));
+        startActivity(new Intent(this, CalendarActivity.class));
     }
 
-    public void showCalendarDate (View v) {
-        startActivity(new Intent(this, CalenderEventHandler.class));
+    public void showCalendarDate (View v,String dateSelected) {
+
+        Intent calendarDateSelected = new Intent(this, CalenderEventHandler.class);
+        calendarDateSelected.putExtra("DateSelected",dateSelected);
+        startActivity(calendarDateSelected);
     }
 }
