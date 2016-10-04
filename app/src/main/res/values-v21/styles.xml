@@ -1,6 +1,12 @@
 <resources>
 
-    <style name="FlatAppCustomTheme" parent="Theme.AppCompat.Light.NoActionBar" >
+    <!--<style name="FlatAppCustomTheme" parent="Theme.AppCompat.Light.NoActionBar" >-->
+        <!--<item name="android:textColorPrimary">@android:color/background_light</item>-->
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+    <!--</style>-->
+    <style name="FlatAppCustomTheme" parent="Theme.AppCompat.Light" >
         <item name="android:textColorPrimary">@android:color/background_light</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -21,6 +27,10 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
+    </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/start</item>
     </style>
 
 

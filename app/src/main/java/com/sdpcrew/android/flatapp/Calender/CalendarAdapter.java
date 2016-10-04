@@ -71,7 +71,7 @@ public class CalendarAdapter extends BaseAdapter {
      * calendar main
      */
     public void refreshDays() {
-        /*items.clear(); will be changed in the next integration to if() statement filtering out intial start
+        /*items.clear(); will be changed in the next integration to if() statement filtering out intial start.xml
            as items is working on a hard coded basis for testing.
          */
 

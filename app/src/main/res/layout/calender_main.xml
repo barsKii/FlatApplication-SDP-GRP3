@@ -7,9 +7,9 @@
     android:orientation="vertical"
     android:id="@+id/calendar_layout">
 
-    <include
-        android:id="@+id/SearchToolBar"
-        layout="@layout/toolbar_customer" />
+    <!--<include-->
+        <!--android:id="@+id/SearchToolBar"-->
+        <!--layout="@layout/toolbar_customer" />-->
 
     <RelativeLayout
         android:layout_width="match_parent"

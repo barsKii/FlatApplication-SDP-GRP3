@@ -7,9 +7,9 @@
     android:layout_height="match_parent"
     tools:context="com.sdpcrew.android.flatapp.MainActivity">
 
-    <include
-        android:id="@+id/SearchToolBar"
-        layout="@layout/toolbar_customer" />
+    <!--<include-->
+        <!--android:id="@+id/SearchToolBar"-->
+        <!--layout="@layout/toolbar_customer" />-->
 
     <GridLayout
         android:id="@+id/gridLayout"
@@ -19,7 +19,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/SearchToolBar">
+        >
+        <!--android:layout_below="@+id/SearchToolBar"-->
 
         <ImageButton
             android:id="@+id/calendar_button"

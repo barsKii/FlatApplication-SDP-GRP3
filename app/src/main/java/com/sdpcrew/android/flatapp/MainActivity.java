@@ -13,20 +13,10 @@ import com.sdpcrew.android.flatapp.BillsManager.BillListActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Handler mControlTimer = new Handler();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.welcome);
-
-        mControlTimer.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                setContentView(R.layout.activity_main);
-            }
-        },1000);
-
+        setContentView(R.layout.activity_main);
     }
 
     public void showShoppingListClick(View v) {

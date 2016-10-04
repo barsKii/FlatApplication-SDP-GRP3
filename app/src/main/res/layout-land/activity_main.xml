@@ -1,90 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical" android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:weightSum="1">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.sdpcrew.android.flatapp.MainActivity">
 
-    <include
-        android:id="@+id/SearchToolBar"
-        layout="@layout/toolbar_customer" />
-
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="2">
 
-        <LinearLayout
+        <ImageButton
+            android:id="@+id/calendar_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/tile2"
+            android:onClick="showCalendar"
+            android:longClickable="true"
+            app:srcCompat="@drawable/cal"/>
+        <ImageButton
+            android:id="@+id/shopping_list_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/tile1"
+            android:onClick="showShoppingListClick"
+            app:srcCompat="@drawable/shop"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="2">
+
+        <ImageButton
+            android:id="@+id/bills_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/tile4"
+            app:srcCompat="@drawable/bills"
+            android:onClick="showBillClick"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/tasks_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/tile3"
+            app:srcCompat="@drawable/task"
+            android:onClick="showTaskManagerClick"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="1">
+        <ImageButton
+            android:id="@+id/imageButton10"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageButton
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:srcCompat="@drawable/shop"
-                    android:id="@+id/shopping_list_button"
-                    android:onClick="showShoppingListClick"
-                    android:background="@color/tile1"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageButton
-                    android:layout_width="match_parent"
-                    android:layout_height="137dp"
-                    app:srcCompat="@drawable/cal"
-                    android:id="@+id/calendar_button"
-                    android:onClick="showCalendar"
-                    android:background="@color/tile2"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageButton
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:srcCompat="@drawable/task"
-                    android:id="@+id/tasks_button"
-                    android:background="@color/tile3"
-                    android:onClick="showTaskManagerClick"/>
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageButton
-                    android:layout_width="match_parent"
-                    android:layout_height="137dp"
-                    app:srcCompat="@drawable/bills"
-                    android:id="@+id/bills_button"
-                    android:background="@color/tile4"
-                    android:onClick="showBillClick"/>/>
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageButton
-                    android:id="@+id/imageButton10"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@+id/gridLayout"
-                    android:layout_centerHorizontal="true"
-                    android:background="#fff"
-                    app:srcCompat="@drawable/avat" />
-            </RelativeLayout>
-
-        </LinearLayout>
-    </ScrollView>
-
+            android:layout_height="match_parent"
+            android:background="#fff"
+            app:srcCompat="@drawable/avat" />
+    </LinearLayout>
 
 </LinearLayout>

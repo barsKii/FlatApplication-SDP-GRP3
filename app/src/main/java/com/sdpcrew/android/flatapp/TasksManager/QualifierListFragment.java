@@ -101,7 +101,7 @@ public class QualifierListFragment extends Fragment {
         }
     }
 
-        @Override
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recyclerview_qualifierlist, container, false);
@@ -113,15 +113,15 @@ public class QualifierListFragment extends Fragment {
         mAddButton = (FloatingActionButton) getActivity().findViewById(R.id.fragment_task_add);
         mAddButton.setVisibility(View.GONE);
 
-            if (savedInstanceState != null) {
-                if(savedInstanceState.getBoolean(SAVED_mAddButton)){
+        if (savedInstanceState != null) {
+           if(savedInstanceState.getBoolean(SAVED_mAddButton)){
                     mAddButton.setVisibility(View.VISIBLE);
-                }
-                if(savedInstanceState.get(SAVED_QUALIFIER_SELECTED) != null){
+            }
+            if(savedInstanceState.get(SAVED_QUALIFIER_SELECTED) != null){
                     mQualifierSelected = QualifierLab.get(getContext()).
                             getQualifier((String) savedInstanceState.get(SAVED_QUALIFIER_SELECTED));
-                }
             }
+        }
 
         updateUI();
 
