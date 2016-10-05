@@ -15,10 +15,15 @@ public class Bill {
     private Date mDate;
     private boolean mPaid;
     private String mAmount;
+    private String mDescription;
+
+    public Bill(UUID id) {
+        mId = id;
+        mDate = new Date();
+    }
 
     public Bill() {
-        mId = UUID.randomUUID();
-        mDate = new Date();
+        this(UUID.randomUUID());
     }
 
     public boolean isPaid() {
@@ -55,5 +60,13 @@ public class Bill {
 
     public void setAmount(String amount) {
         mAmount = amount;
+    }
+
+    public String getDescription() {
+        return mDescription;
+    }
+
+    public void setDescription(String description) {
+        mDescription = description;
     }
 }

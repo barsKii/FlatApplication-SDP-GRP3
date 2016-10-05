@@ -18,7 +18,7 @@ public class Splash extends Activity {
             started = savedInstanceState.getBoolean(STARTED);
         }
         //This is not working at the moment
-        if(!started){
+        if(started){
             Intent mainIntent = new Intent(Splash.this,MainActivity.class);
             Splash.this.startActivity(mainIntent);
             Splash.this.finish();
