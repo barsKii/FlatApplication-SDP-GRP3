@@ -23,7 +23,12 @@ import com.sdpcrew.android.flatapp.R;
 
 import java.util.List;
 
+/**
+ * This is a fragment which controls and maintain the list of qualifiers(Cleaning roaster, lists and or etc)
+ * This fragment will call other fragments and it should be initialized by an activity.
+ */
 public class QualifierListFragment extends Fragment {
+
     private static final String SAVED_QUALIFIER_SELECTED ="GetQualiifier" ;
     private static final String SAVED_mAddButton = "SAVED_button_condition";
     private static final String DIALOG_QUALIFIER ="NewQualifier";
