@@ -10,7 +10,7 @@ import org.junit.Test;
 import java.util.List;
 
 public class QualifierLabUnitTest {
-    QualifierLab lab;
+    private QualifierLab lab;
 
     @Before
     public void setUp() {

@@ -30,7 +30,8 @@
         <activity android:name=".ShoppingList.ShoppingListsActivity"
             android:parentActivityName=".MainActivity">
             android:configChanges="orientation|keyboard"</activity>
-        <activity android:name=".ShoppingList.SingleListActivity">
+        <activity android:name=".ShoppingList.SingleListActivity"
+            android:parentActivityName=".ShoppingList.ShoppingListsActivity">
             android:configChanges="orientation|keyboard"</activity>
 
         <activity android:name=".TasksManager.TaskManagerActivity"
@@ -39,20 +40,20 @@
             tools:ignore="InnerclassSeparator">
               </activity>
 
-        <activity android:name=".Calender.CalendarMain"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".Calender.CalenderEventHandler"></activity>
-        <activity android:name=".Calender.CalendarActivity"></activity>
+        <activity
+            android:name=".Calender.CalendarMain"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".Calender.CalenderEventHandler" />
+        <activity android:name=".Calender.CalendarActivity" />
 
-        <activity android:name=".BillsManager.BillListActivity"
-                  android:parentActivityName=".MainActivity"
-                  android:theme="@style/FlatAppBillTheme"></activity>
+        <activity
+            android:name=".BillsManager.BillListActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/FlatAppBillTheme" />
         <activity android:name=".BillsManager.BillPagerActivity"
                   android:theme="@style/FlatAppBillTheme"
                   android:parentActivityName=".BillsManager.BillListActivity">
         </activity>
 
     </application>
-
-
 </manifest>

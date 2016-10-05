@@ -20,16 +20,15 @@ public class CalendarMainUnitTest {
     private Context mContext;
     private Calendar calendar;
     private Calendar clone;
-    CalendarAdapter calendarAdapter;
+    CalendarAdapter calendarAdapter = new CalendarAdapter(mContext,calendar);
 
     @Before
     public void setUp(){
         calendar = Calendar.getInstance(Locale.getDefault());
         clone = (Calendar) calendar.clone();
-        calendarAdapter = new CalendarAdapter(mContext,calendar);
     }
     @Test
-    public void testgetMaxDaysInAMonth(){
+    public void getMaxDaysInAMonth(){
         int max= calendarAdapter.getMaxDaysInAMonth()-1;
         Assert.assertEquals(30,max);
     }
