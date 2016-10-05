@@ -37,6 +37,7 @@ public class BillFragment extends Fragment {
 
     private Bill mBill;
     private EditText mTitleField;
+    private EditText mDescriptionField;
     private Button mDateButton;
     private CheckBox mPaidCheckBox;
     private EditText mAmountField;
@@ -61,6 +62,13 @@ public class BillFragment extends Fragment {
         UUID billId = (UUID) getArguments().getSerializable(ARG_BILL_ID);
 
         mBill = BillLab.get(getActivity()).getBill(billId);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        BillLab.get(getActivity()).updateBill(mBill);
     }
 
     /**
@@ -94,6 +102,25 @@ public class BillFragment extends Fragment {
                 } else {
                     mBill.setTitle(s.toString());
                 }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        mDescriptionField = (EditText) v.findViewById(R.id.bill_description);
+        mDescriptionField.setText(mBill.getDescription());
+        mDescriptionField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mBill.setDescription(s.toString());
             }
 
             @Override

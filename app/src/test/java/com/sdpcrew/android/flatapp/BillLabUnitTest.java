@@ -20,7 +20,6 @@ public class BillLabUnitTest {
     @Before
     public void setUp() {
         lab = BillLab.get(null);
-        lab.refreshLab();
     }
 
 
