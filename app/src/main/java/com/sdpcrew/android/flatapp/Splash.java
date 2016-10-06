@@ -6,48 +6,44 @@ import android.os.Bundle;
 import android.os.Handler;
 
 /**
- * This class is responsible for the welcome screen ( splashScreen) or the initilization screen
- * It will show a picture while the app loads. We plan to implement a loading bar too
+ * The Splash class is responsible for the welcome screen (splashScreen) for the app.
+ * It will show a picture while the app loads. We also plan to implement a loading bar in the future.
  */
 public class Splash extends Activity {
 
-    private final int SPLASH_DISPLAY_LENGTH = 2000; //Sets time splash screen will be active
+    private static final int SPLASH_DISPLAY_LENGTH = 2000; // Duration that the splash screen will be active
     private static final String STARTED = "started"; // for saving purpose when app is destroyed
-    private boolean started = false; //holds info whether this screen was shown or not already
+    private boolean screenShown; //Whether or not the screen has been shown
 
-    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //retrieves value store in STARTED constant and updates started variable
+        // Updates screenShown based on the current state.
         if (savedInstanceState != null) {
-            started = savedInstanceState.getBoolean(STARTED);
+            screenShown = savedInstanceState.getBoolean(STARTED);
         }
-        //This is not working the way I intended at the moment
-        //If app has been initialzed creates an intent of main class and ends this activity.
-        // Otherwise, create an intent and only finish it when the SPLASH_DISPLAY_LENGTH ends.
-        if(started){
-            Intent mainIntent = new Intent(Splash.this,MainActivity.class);
+        // This is not working as intended at the moment.
+        // If the app has been initialised it creates an intent of the main class and ends this activity.
+        // Otherwise, it create an intent and only finishes when the SPLASH_DISPLAY_LENGTH ends.
+        if (screenShown) {
+            Intent mainIntent = new Intent(Splash.this, MainActivity.class);
             Splash.this.startActivity(mainIntent);
             Splash.this.finish();
-
-        }else{
-            new Handler().postDelayed(new Runnable(){
+        } else {
+            new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent mainIntent = new Intent(Splash.this,MainActivity.class);
+                    Intent mainIntent = new Intent(Splash.this, MainActivity.class);
                     Splash.this.startActivity(mainIntent);
-                    Splash.this.finish();//finishes this activity
-
+                    Splash.this.finish(); //finishes this activity.
                 }
             }, SPLASH_DISPLAY_LENGTH);
         }
-
-
     }
+
     @Override
     public void onSaveInstanceState(Bundle onSavedInstanceState) {
         super.onSaveInstanceState(onSavedInstanceState);
-        onSavedInstanceState.putBoolean(STARTED,started);
+        onSavedInstanceState.putBoolean(STARTED, screenShown);
     }
 }

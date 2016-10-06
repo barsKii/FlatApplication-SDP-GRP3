@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
@@ -16,24 +17,22 @@ import android.widget.Toast;
 
 import com.sdpcrew.android.flatapp.R;
 
-/**
- * This is a DialogFragment used as a pop dialog which holds for now
+/** TODO: Redo this header
+ * This is a DialogFragment used as a pop-up dialog which holds for now
  * a title field only. It holds a method newInstance were stores an argument. It also
  * send information back to the caller class when info is updated.
  * This fragment has two functions, either create a new Qualifier or alter a qualifier.
- * Qualifier is a list which holds several tasks
+ * Qualifier is a list which holds several tasks.
  */
 public class DialogQualifier extends DialogFragment {
 
-    //Variables
+    private static final String ARG_QUALIFIER = "QualifierName";
+    private static final String EXTRA_RETURN_DATA = "com.sdpcrew.android.flatapp.TasksManager.DialogQualifier";
     private EditText mTitle;
     private String mNewTitle;
     private Qualifier mNewQualifier;
-    //Constants
-    private static final String ARG_QUALIFIER = "QualifierName";
-    private static final String EXTRA_RETURN_DATA = "com.sdpcrew.android.flatapp.TasksManager.DialogQualifier";
 
-    //return this fragment at sametime stores an argument to this
+    //return this fragment at the same time stores an argument to this TODO: Reword this comment.
     public static DialogQualifier newInstance(String qualifier ) {
         Bundle args = new Bundle();
         args.putSerializable(ARG_QUALIFIER, qualifier);
@@ -48,7 +47,7 @@ public class DialogQualifier extends DialogFragment {
         mTitle = (EditText) v.findViewById(R.id.dialog_qualifier_settitle);
         mTitle.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { // TODO: Can these ints be better named
             }
 
             @Override
@@ -60,7 +59,7 @@ public class DialogQualifier extends DialogFragment {
             public void afterTextChanged(Editable editable) {
             }
         });
-        //Gets argument stored, it will check for a existent qulifier with same name as the argument
+        //Gets argument stored, it will check for a existent qualifier with same name as the argument
         if(getArguments() != null) {
             String qualifierTitle = (String) getArguments().getSerializable(ARG_QUALIFIER);
             if (QualifierLab.get(getContext()).getQualifier(qualifierTitle) != null) {
@@ -69,7 +68,7 @@ public class DialogQualifier extends DialogFragment {
             }
         }
 
-        //Return a Alert diaglog with an OK button which will determine if new list should be created or updated
+        //Return an Alert dialog with an OK button which will determine if new list should be created or updated
         return new AlertDialog.Builder(getActivity()).setView(v)
                 .setPositiveButton(android.R.string.ok,
                         new DialogInterface.OnClickListener() {
@@ -102,7 +101,7 @@ public class DialogQualifier extends DialogFragment {
      * This method put an extra which should be detected on the caller fragment.
      * this method manually calls the onActivityResult method of the caller fragment so it can detect
      * alteration and therefore update view.
-     * @param resultCode
+     * @param resultCode // TODO: fix warnings.
      */
     private void sendResult(int resultCode) {
         if (getTargetFragment() == null) {
@@ -112,7 +111,4 @@ public class DialogQualifier extends DialogFragment {
         intent.putExtra(EXTRA_RETURN_DATA, true);
         getTargetFragment().onActivityResult(getTargetRequestCode(), resultCode, intent);
     }
-
-
 }
-
