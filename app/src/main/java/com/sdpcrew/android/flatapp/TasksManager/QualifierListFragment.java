@@ -73,7 +73,7 @@ public class QualifierListFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.menu_item_new_qualifier:
                 FragmentManager manager = getFragmentManager();
-                DialogQualifier dialog = new DialogQualifier();
+                QualifierDialog dialog = new QualifierDialog();
                 dialog.setTargetFragment(QualifierListFragment.this, REQUEST_DATA);
                 dialog.show(manager, DIALOG_QUALIFIER);
                 return true;
@@ -168,7 +168,7 @@ public class QualifierListFragment extends Fragment {
         private TextView mTitleTextView;
         private Qualifier mQualifier;
 
-        public QualifierHolder(View itemView) {
+        QualifierHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
@@ -176,7 +176,7 @@ public class QualifierListFragment extends Fragment {
 
         }
 
-        public void bindCrime(Qualifier qualifier) {
+        void bindCrime(Qualifier qualifier) {
             mQualifier = qualifier;
             mTitleTextView.setText(mQualifier.getTitle());
 
@@ -200,7 +200,7 @@ public class QualifierListFragment extends Fragment {
         public boolean onLongClick(View view) {
 
             FragmentManager manager = getFragmentManager();
-            DialogQualifier dialog = DialogQualifier.newInstance(mQualifier.getTitle());
+            QualifierDialog dialog = QualifierDialog.newInstance(mQualifier.getTitle());
             dialog.setTargetFragment(QualifierListFragment.this, REQUEST_DATA);
             dialog.show(manager, DIALOG_QUALIFIER);
 
@@ -213,7 +213,7 @@ public class QualifierListFragment extends Fragment {
 
         private List<Qualifier> mQualifiers;
 
-        public QualifierAdapter(List<Qualifier> qualifiers) {
+        QualifierAdapter(List<Qualifier> qualifiers) {
             mQualifiers = qualifiers;
         }
 
