@@ -69,8 +69,6 @@ public class BillPagerActivity extends AppCompatActivity {
                 break;
             }
         }
-
-
     }
 
     @Override

@@ -82,13 +82,6 @@ public class BillListFragment extends Fragment{
 
         mSubtitleVisible = true;
         updateSubtitle();
-
-        /*MenuItem subtitleItem = menu.findItem(R.id.menu_item_show_subtitle);
-        if(mSubtitleVisible) {
-            subtitleItem.setTitle(R.string.hide_subtitle);
-        } else {
-            subtitleItem.setTitle(R.string.show_subtitle);
-        }*/
     }
 
     /**
@@ -143,9 +136,6 @@ public class BillListFragment extends Fragment{
             mAdapter.setBills(bills);
             mAdapter.notifyDataSetChanged();
         }
-
-        //Goes through the list and removes incomplete bills that don't fit criteria
-        billLab.rejectIncompleteBill();
 
         updateSubtitle();
     }
