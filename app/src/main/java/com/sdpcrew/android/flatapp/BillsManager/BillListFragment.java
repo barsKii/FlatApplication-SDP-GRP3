@@ -140,6 +140,7 @@ public class BillListFragment extends Fragment{
             mAdapter = new BillAdapter(bills);
             mBillRecyclerView.setAdapter(mAdapter);
         } else {
+            mAdapter.setBills(bills);
             mAdapter.notifyDataSetChanged();
         }
 
@@ -210,6 +211,11 @@ public class BillListFragment extends Fragment{
         @Override
         public int getItemCount() {
             return mBills.size();
+        }
+
+        //Refreshes the bills that it displays
+        public void setBills (List<Bill> bills) {
+            mBills = bills;
         }
     }
 

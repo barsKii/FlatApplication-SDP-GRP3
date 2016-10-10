@@ -5,10 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.NavUtils;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -59,17 +63,62 @@ public class BillFragment extends Fragment {
     @Override
     public void onCreate (Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
+        setHasOptionsMenu(true);    //Options menu to delete the bill
         UUID billId = (UUID) getArguments().getSerializable(ARG_BILL_ID);
 
         mBill = BillLab.get(getActivity()).getBill(billId);
     }
 
+    /**
+     * When the activity is changed, if the required fields are completed, will update bill,
+     * if not will delete the bill
+     */
     @Override
     public void onPause() {
         super.onPause();
-
-        BillLab.get(getActivity()).updateBill(mBill);
+        //Checks the status of title and amount and responds appropriately
+        if(mBill.getTitle() != null && !mBill.getTitle().isEmpty() && mBill.getAmount() != null &&
+                !mBill.getAmount().isEmpty()){
+            BillLab.get(getActivity()).updateBill(mBill);
+        }else{
+            BillLab.get(getActivity()).deleteBill(mBill);
+        }
     }
+
+    /**
+     * Inflates a menu with two icons, one to save the bill and the other to delete it
+     * @param menu
+     * @param inflater
+     */
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_bill, menu);
+    }
+
+    /**
+     * Records the responses to menu items selected.
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_add_bill:
+                //Navigates to the parent activity listed in manifest. In this case, BillListActivity
+                //Works the same as the up button, just a visual cue as users don't know back end
+                NavUtils.navigateUpFromSameTask(this.getActivity());
+                return true;
+            case R.id.menu_item_delete_bill:
+                //Deletes the bill from the database and then returns to the bill list
+                BillLab.get(getActivity()).deleteBill(mBill);
+                NavUtils.navigateUpFromSameTask(this.getActivity());
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
     /**
      * Initializes the elements that will be viewed in the fragment view. Creates listeners for each

@@ -3,7 +3,7 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menu_item_new_bill"
-        android:icon="@android:drawable/ic_menu_add"
+        android:icon="@drawable/ic_menu_themed_add"
         android:title="@string/new_bill"
         app:showAsAction="ifRoom|withText"/>
 

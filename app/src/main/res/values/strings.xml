@@ -43,6 +43,9 @@
     <string name="bill_due_date_label">Due Date</string>
     <string name="empty_title_warning">Title cannot be empty.</string>
     <string name="failed_bill_add">Bill failed to add. Title was empty.</string>
+    <string name="delete_bill">Delete Bill</string>
+    <string name="remove_bill">Bill Removed</string>
+    <string name="save_bill">Save Bill</string>
 
     <string name="calendar_event_name">EventName</string>
     <string name="calendar_event_Time">Time</string>

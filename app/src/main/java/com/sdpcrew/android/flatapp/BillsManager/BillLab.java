@@ -107,6 +107,13 @@ public class BillLab {
         mDatabase.update(BillTable.NAME, values, BillTable.Cols.UUID + " = ?", new String[] { uuidString });
     }
 
+    public void deleteBill(Bill bill) {
+        String[] whereArg = new String[] {bill.getId().toString()};
+        String whereClause = "uuid" + "=?";
+
+        mDatabase.delete(BillTable.NAME, whereClause, whereArg);
+    }
+
     private static ContentValues getContentValues(Bill bill) {
         ContentValues values = new ContentValues();
         values.put(BillTable.Cols.UUID, bill.getId().toString());

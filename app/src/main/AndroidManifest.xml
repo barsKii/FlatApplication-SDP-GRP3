@@ -50,9 +50,10 @@
             android:name=".BillsManager.BillListActivity"
             android:parentActivityName=".MainActivity"
             android:theme="@style/FlatAppBillTheme" />
-        <activity android:name=".BillsManager.BillPagerActivity"
-                  android:theme="@style/FlatAppBillTheme"
-                  android:parentActivityName=".BillsManager.BillListActivity">
+        <activity
+            android:name=".BillsManager.BillPagerActivity"
+            android:theme="@style/FlatAppBillTheme"
+            android:parentActivityName=".BillsManager.BillListActivity">
         </activity>
 
     </application>
