@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.sdpcrew.android.flatapp.database.BaseHelper;
 import com.sdpcrew.android.flatapp.database.AllCursorWrapper;
+import com.sdpcrew.android.flatapp.database.QueryMethods;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,17 +103,8 @@ public class QualifierLab {
     }
 
     private AllCursorWrapper queryQualifier(String whereClause, String[] whereArgs) {
-        Cursor cursor = mDatabase.query(
-                QualifierTable.NAME,
-                null,  // Columns (null selects all columns)
-                whereClause,
-                whereArgs,
-                null,  //groupBy
-                null,  //having
-                null   //orderBy
-        );
 
-        return new AllCursorWrapper(cursor);
+        return QueryMethods.queryDb(QualifierTable.NAME,whereClause,whereArgs);
     }
 
 }

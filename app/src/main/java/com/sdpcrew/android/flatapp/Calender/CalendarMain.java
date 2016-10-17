@@ -159,6 +159,7 @@ public class CalendarMain extends AppCompatActivity {
         mQoute.setText(qoutes[getCalendarMonth()]);
 
     }
+
     public int getCalendarMonth(){
         return mCalendar.get(Calendar.MONTH);
     }

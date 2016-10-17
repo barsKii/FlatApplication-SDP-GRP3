@@ -24,8 +24,8 @@ public class DbSchema {
         public static final String NAME = "qualifier";
 
         public static final class Cols {
-            public static final String ID = "id";
-            public static final String TITLE = "title";
+            public static final String ID = "qualifier_id";
+            public static final String TITLE = "qualifier_title";
 
         }
 
@@ -35,21 +35,32 @@ public class DbSchema {
         public static final String NAME = "task";
 
         public static final class Cols {
-            public static final String QUALIFIER_TITLE = "qualifier_title";
-            public static final String ID = "id";
-            public static final String TITLE = "title";
-            public static final String COMPLETED = "completed";
+            public static final String QUALIFIER_ID = "qualifier_title";
+            public static final String ID = "task_id";
+            public static final String TITLE = "task_title";
+            public static final String COMPLETED = "task_completed";
 
         }
 
     }
 
-    public static final class TaskManager {
-        public static final String NAME = "taskmanager";
+    public static final class ShoppingListsTable {
+        public static final String NAME = "shopping_lists";
 
         public static final class Cols {
-            public static final String QUALIFIER_TITLE = "qualifier_title";
-            public static final String TASK_ID = "taskid";
+            public static final String ID = "list_id";
+            public static final String TITLE = "list_title";
+        }
+
+    }
+
+    public static final class ShoppingItemsTable {
+        public static final String NAME = "shopping_items";
+
+        public static final class Cols {
+            public static final String SHOPPING_LIST_ID = "list_id";
+            public static final String ID = "item_id";
+            public static final String TITLE = "item_title";
         }
 
     }

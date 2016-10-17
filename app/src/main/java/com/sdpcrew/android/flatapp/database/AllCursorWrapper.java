@@ -4,6 +4,8 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 
 import com.sdpcrew.android.flatapp.BillsManager.Bill;
+import com.sdpcrew.android.flatapp.ShoppingList.Item;
+import com.sdpcrew.android.flatapp.ShoppingList.ShoppingList;
 import com.sdpcrew.android.flatapp.TasksManager.Qualifier;
 import com.sdpcrew.android.flatapp.TasksManager.Task;
 import com.sdpcrew.android.flatapp.database.DbSchema.BillTable;
@@ -37,8 +39,8 @@ public class AllCursorWrapper extends android.database.CursorWrapper {
     }
 
     public Qualifier getQualifier() {
-        String uuidString = getString(getColumnIndex(TaskTable.Cols.ID));
-        String title = getString(getColumnIndex(BillTable.Cols.TITLE));
+        String uuidString = getString(getColumnIndex(QualifierTable.Cols.ID));
+        String title = getString(getColumnIndex(QualifierTable.Cols.TITLE));
 
         Qualifier qualifier = new Qualifier(UUID.fromString(uuidString));
         qualifier.setTitle(title);
@@ -59,4 +61,21 @@ public class AllCursorWrapper extends android.database.CursorWrapper {
 
         return task;
     }
+
+    public ShoppingList getList() {
+        String uuidString = getString(getColumnIndex(ShoppingListsTable.Cols.ID));
+        String title = getString(getColumnIndex(ShoppingListsTable.Cols.TITLE));
+        ShoppingList shoppingList = new ShoppingList(UUID.fromString(uuidString),title);
+        return shoppingList;
+    }
+
+    public Item getItem() {
+//        String uuidList = getString(getColumnIndex(ShoppingItemsTable.Cols.SHOPPING_LIST_ID));
+        String uuidItem = getString(getColumnIndex(ShoppingItemsTable.Cols.ID));
+        String title = getString(getColumnIndex(ShoppingItemsTable.Cols.TITLE));
+        Item shoppingItem = new Item(UUID.fromString(uuidItem),title);
+        return shoppingItem;
+    }
+
+
 }

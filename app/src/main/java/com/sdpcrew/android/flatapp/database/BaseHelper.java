@@ -36,14 +36,22 @@ public class BaseHelper extends SQLiteOpenHelper {
 
         db.execSQL("create table " + QualifierTable.NAME + "( " +
                 QualifierTable.Cols.ID+" primary key, "+
-                QualifierTable.Cols.TITLE+ ")");
+                QualifierTable.Cols.TITLE+ " )");
 
         db.execSQL("create table " + TaskTable.NAME + "( " +
-                TaskTable.Cols.QUALIFIER_TITLE+" text primary key, "+
+                TaskTable.Cols.QUALIFIER_ID +" text primary key, "+
                 TaskTable.Cols.ID+", "+
                 TaskTable.Cols.TITLE+", "+
                 TaskTable.Cols.COMPLETED+" INTEGER )");
 
+        db.execSQL("create table " + ShoppingListsTable.NAME + "( " +
+                ShoppingListsTable.Cols.ID+" primary key , "+
+                ShoppingListsTable.Cols.TITLE+" )");
+
+        db.execSQL("create table " + ShoppingItemsTable.NAME + "( " +
+                ShoppingItemsTable.Cols.SHOPPING_LIST_ID+" , "+
+                ShoppingItemsTable.Cols.ID+" primary key, "+
+                ShoppingItemsTable.Cols.TITLE+" )");
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.database.Cursor;
 
 import com.sdpcrew.android.flatapp.database.AllCursorWrapper;
 import com.sdpcrew.android.flatapp.database.DbSchema.TaskTable;
+import com.sdpcrew.android.flatapp.database.QueryMethods;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +16,7 @@ import static com.sdpcrew.android.flatapp.MainActivity.mDatabase;
 public class TaskLab {
 
     private String mQualifierTitle;
-    private static final String whereClause = TaskTable.Cols.QUALIFIER_TITLE + "=? AND " + TaskTable.Cols.ID + " = ?";
-
+    private static final String whereClause = TaskTable.Cols.QUALIFIER_ID + "=? AND " + TaskTable.Cols.ID + " = ?";
 
     public TaskLab(String title) {
         mQualifierTitle = title;
@@ -43,7 +43,7 @@ public class TaskLab {
 
     public List<Task> getTasks() {
         List<Task> tasks = new ArrayList<>();
-        AllCursorWrapper cursor = this.queryTask(TaskTable.Cols.QUALIFIER_TITLE + "= ?",
+        AllCursorWrapper cursor = this.queryTask(TaskTable.Cols.QUALIFIER_ID + "= ?",
                 new String[]{mQualifierTitle});
         try {
             cursor.moveToFirst();
@@ -76,7 +76,7 @@ public class TaskLab {
 
     private ContentValues getContentValues(Task task) {
         ContentValues values = new ContentValues();
-        values.put(TaskTable.Cols.QUALIFIER_TITLE, mQualifierTitle);
+        values.put(TaskTable.Cols.QUALIFIER_ID, mQualifierTitle);
         values.put(TaskTable.Cols.ID, task.getId().toString());
         values.put(TaskTable.Cols.TITLE, task.getTitle());
         values.put(TaskTable.Cols.COMPLETED, task.isCompleted());
@@ -84,16 +84,7 @@ public class TaskLab {
     }
 
     private AllCursorWrapper queryTask(String whereClause, String[] whereArgs) {
-        Cursor cursor = mDatabase.query(
-                TaskTable.NAME,
-                null,  // Columns (null selects all columns)
-                whereClause,
-                whereArgs,
-                null,  //groupBy
-                null,  //having
-                null   //orderBy
-        );
 
-        return new AllCursorWrapper(cursor);
+        return QueryMethods.queryDb(TaskTable.NAME, whereClause, whereArgs);
     }
 }

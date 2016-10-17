@@ -16,9 +16,11 @@ import android.widget.ListView;
 import com.sdpcrew.android.flatapp.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ShoppingListsActivity extends AppCompatActivity {
-    final static ArrayList<ShoppingList> lists = new ArrayList<>();
+    //    final static ArrayList lists = (ArrayList) ShoppingListLab.get().getShoppingLists();
+    public static final String EXTRA_SINGLE_LIST = "openlist";
     private ListView mListView;
 
     @Override
@@ -34,7 +36,8 @@ public class ShoppingListsActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> adapter, View v, int i, long l) {
                     Intent in = new Intent(v.getContext(), SingleListActivity.class);
-                    in.putExtra("list", i);
+                    in.putExtra(EXTRA_SINGLE_LIST,
+                            ShoppingListLab.get(getBaseContext()).getShoppingLists().get(i).getId().toString());
                     startActivity(in);
                 }
             });
@@ -52,7 +55,7 @@ public class ShoppingListsActivity extends AppCompatActivity {
         alertDialogBuilder.setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        lists.add(new ShoppingList("" +editText.getText()));
+                        ShoppingListLab.get(getBaseContext()).addShoppingList(new ShoppingList("" + editText.getText()));
                         updateListView();
                     }
                 })
@@ -68,7 +71,10 @@ public class ShoppingListsActivity extends AppCompatActivity {
     }
 
     public void updateListView() {
-        mListView.setAdapter(new ArrayAdapter<>(this, R.layout.text_view, lists));
+        List<String> list = ShoppingListLab.get(getBaseContext()).getShoppingListsNames();
+        if (list != null) {
+            mListView.setAdapter(new ArrayAdapter<>(this, R.layout.text_view, list));
+        }
     }
 
 }
