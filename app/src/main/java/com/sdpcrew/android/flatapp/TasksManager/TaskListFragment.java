@@ -21,36 +21,38 @@ import android.widget.Toast;
 import com.sdpcrew.android.flatapp.R;
 
 import java.util.List;
+import java.util.UUID;
 
 public class TaskListFragment extends Fragment {
 
-    private static final String ARG_QUALIFIER_NAME = "qualifierTitle";
+    private static final String ARG_QUALIFIER_ID = "qualifierTitle";
     public static final String DIALOG_NEW_TASK = "NewTask";
-    public static final int REQUEST_DATA = 0 ;
+    public static final int REQUEST_DATA = 0;
     private Qualifier mQualifier;
     private RecyclerView mTaskRecyclerView;
     private TaskAdapter mAdapter;
     private FloatingActionButton mAddButton;
 
-    public static TaskListFragment newInstance(String title) {
+    public static TaskListFragment newInstance(UUID qualifierId) {
         Bundle args = new Bundle();
-        args.putSerializable(ARG_QUALIFIER_NAME, title);
+        args.putSerializable(ARG_QUALIFIER_ID, qualifierId);
         TaskListFragment fragment = new TaskListFragment();
         fragment.setArguments(args);//attach the arguments bundle to a fragment,
         return fragment;
     }
 
     @Override
-    public void onCreate(Bundle saveInstanceState){
+    public void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
-        String title = (String) getArguments().getSerializable(ARG_QUALIFIER_NAME);
-        mQualifier = QualifierLab.get(getActivity()).getQualifier(title);
+        UUID qualifierId = (UUID) getArguments().getSerializable(ARG_QUALIFIER_ID);
+        mQualifier = QualifierLab.get(getActivity()).getQualifier(qualifierId);
         setHasOptionsMenu(true);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        if(mQualifier == null){
+        if (mQualifier == null) {
             container.removeAllViews();
             return null;
         }
@@ -64,13 +66,13 @@ public class TaskListFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-                if(mQualifier != null) {
+                if (mQualifier != null) {
                     FragmentManager manager = getFragmentManager();
-                    DialogTask dialog = DialogTask.newInstance(mQualifier.getTitle());
+                    TaskDialog dialog = TaskDialog.newInstance(mQualifier.getId());
                     dialog.setTargetFragment(TaskListFragment.this, REQUEST_DATA);
                     dialog.show(manager, DIALOG_NEW_TASK);
                     updateUI();
-                }else{
+                } else {
                     Toast.makeText(getActivity(),
                             "Qualifier must be selected!", Toast.LENGTH_SHORT)
                             .show();
@@ -84,6 +86,7 @@ public class TaskListFragment extends Fragment {
 
         return view;
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != Activity.RESULT_OK) {
@@ -95,12 +98,12 @@ public class TaskListFragment extends Fragment {
     }
 
     private void updateUI() {
-       List<Task> tasks = mQualifier.getTaskLab().getTaks();
+        List<Task> tasks = mQualifier.getTaskLab().getTasks();
         mAdapter = new TaskAdapter(tasks);
         mTaskRecyclerView.setAdapter(mAdapter);
     }
 
-    private class TaksHolder extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener{
+    private class TaksHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
         private TextView mTitleTextView;
         private CheckBox mCompleted;
@@ -117,6 +120,7 @@ public class TaskListFragment extends Fragment {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                     mTask.setCompleted(isChecked);
+                    mQualifier.getTaskLab().updateTask(mTask);
                 }
             });
 
@@ -136,7 +140,7 @@ public class TaskListFragment extends Fragment {
                     .show();
 
             FragmentManager manager = getFragmentManager();
-            DialogTask dialog = DialogTask.newInstance(mQualifier.getTitle(),mTask.getTitle());
+            TaskDialog dialog = TaskDialog.newInstance(mQualifier.getId(), mTask.getId());
             dialog.setTargetFragment(TaskListFragment.this, REQUEST_DATA);
             dialog.show(manager, DIALOG_NEW_TASK);
         }

@@ -18,9 +18,11 @@ import android.widget.Toast;
 
 import com.sdpcrew.android.flatapp.R;
 
-public class DialogTask extends DialogFragment {
+import java.util.UUID;
 
-    private static final String ARG_QUALIFIER = "Qualifier" ;
+public class TaskDialog extends DialogFragment {
+
+    private static final String ARG_QUALIFIER = "Qualifier";
     private static final String ARG_TASK = "Task";
     private static final String EXTRA_Return_data = "new data";
 
@@ -31,19 +33,19 @@ public class DialogTask extends DialogFragment {
     private TaskLab mTaskLab;
     private Task mNewTask;
 
-    public static DialogTask newInstance(String qualifier) {
+    public static TaskDialog newInstance(UUID qualifierId) {
         Bundle args = new Bundle();
-        args.putSerializable(ARG_QUALIFIER, qualifier);
-        DialogTask fragment = new DialogTask();
+        args.putSerializable(ARG_QUALIFIER, qualifierId);
+        TaskDialog fragment = new TaskDialog();
         fragment.setArguments(args);
         return fragment;
     }
 
-    public static DialogTask newInstance(String qualifier,String task) {
+    public static TaskDialog newInstance(UUID qualifierId, UUID TaskId) {
         Bundle args = new Bundle();
-        args.putSerializable(ARG_QUALIFIER, qualifier);
-        args.putSerializable(ARG_TASK, task);
-        DialogTask fragment = new DialogTask();
+        args.putSerializable(ARG_QUALIFIER, qualifierId);
+        args.putSerializable(ARG_TASK, TaskId);
+        TaskDialog fragment = new TaskDialog();
         fragment.setArguments(args);
         return fragment;
     }
@@ -53,17 +55,17 @@ public class DialogTask extends DialogFragment {
         mTitle = (EditText) v.findViewById(R.id.dialog_task_settitle);
         mCompleted = (CheckBox) v.findViewById(R.id.fragment_dialog_task_completed);
 
-        String qualifierName = (String)getArguments().getSerializable(ARG_QUALIFIER);
-        mTaskLab = (TaskLab) QualifierLab.get(getContext()).getQualifier(qualifierName).getTaskLab();
+        UUID qualifierName = (UUID) getArguments().getSerializable(ARG_QUALIFIER);
+        mTaskLab = QualifierLab.get(getContext()).getQualifier(qualifierName).getTaskLab();
         mNoTaskPassed = getArguments().getSerializable(ARG_TASK) != null;
         if (mNoTaskPassed) {
-            String taskId = (String)getArguments().getSerializable(ARG_TASK);
+            UUID taskId = (UUID) getArguments().getSerializable(ARG_TASK);
 
-                mNewTask = mTaskLab.getTask(taskId);
-                mTitle.setText(mNewTask.getTitle());
-                mCompleted.setChecked(mNewTask.isCompleted());
+            mNewTask = mTaskLab.getTask(taskId);
+            mTitle.setText(mNewTask.getTitle());
+            mCompleted.setChecked(mNewTask.isCompleted());
 
-        }else{
+        } else {
             mNewTask = new Task();
         }
 
@@ -76,6 +78,7 @@ public class DialogTask extends DialogFragment {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 mNewTask.setTitle(charSequence.toString());
+
             }
 
             @Override
@@ -96,16 +99,18 @@ public class DialogTask extends DialogFragment {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                               if (mTitle == null || mTitle.length() <= 2) {
-                                        Toast.makeText(getActivity(),
-                                                R.string.no_title_qualifier_enter, Toast.LENGTH_SHORT)
-                                                .show();
+                                if (mTitle == null || mTitle.length() <= 2) {
+                                    Toast.makeText(getActivity(),
+                                            R.string.no_title_qualifier_enter, Toast.LENGTH_SHORT)
+                                            .show();
+                                } else {
+                                    if (!mNoTaskPassed) {
+                                        mTaskLab.addTask(mNewTask);
                                     } else {
-                                        if(!mNoTaskPassed) {
-                                            mTaskLab.addTask(mNewTask);
-                                        }
-                                            sendResult(Activity.RESULT_OK);
+                                        mTaskLab.updateTask(mNewTask);
                                     }
+                                    sendResult(Activity.RESULT_OK);
+                                }
 
                             }
                         })

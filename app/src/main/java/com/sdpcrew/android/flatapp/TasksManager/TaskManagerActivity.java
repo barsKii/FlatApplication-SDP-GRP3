@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 
 import com.sdpcrew.android.flatapp.R;
 
-public class TaskManagerActivity extends SingleFragmentActivity implements QualifierListFragment.Callbacks{
+public class TaskManagerActivity extends SingleFragmentActivity implements QualifierListFragment.Callbacks {
 
     @Override
     protected Fragment createFragment() {
@@ -14,7 +14,7 @@ public class TaskManagerActivity extends SingleFragmentActivity implements Quali
 
     @Override
     public void onQualifierSelected(Qualifier qualifier) {
-        Fragment newDetail = TaskListFragment.newInstance(qualifier.getTitle());
+        Fragment newDetail = TaskListFragment.newInstance(qualifier.getId());
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container_tasks, newDetail)
                 .commit();

@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.sdpcrew.android.flatapp.R;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * This is a fragment which controls and maintain the list of qualifiers(Cleaning roaster, lists and or etc)
@@ -29,9 +30,9 @@ import java.util.List;
  */
 public class QualifierListFragment extends Fragment {
 
-    private static final String SAVED_QUALIFIER_SELECTED ="GetQualiifier" ;
+    private static final String SAVED_QUALIFIER_SELECTED = "GetQualiifier";
     private static final String SAVED_mAddButton = "SAVED_button_condition";
-    private static final String DIALOG_QUALIFIER ="NewQualifier";
+    private static final String DIALOG_QUALIFIER = "NewQualifier";
     private static final int REQUEST_DATA = 0;//Be aware same Tag is being used by both Dialogs
 
 
@@ -42,8 +43,10 @@ public class QualifierListFragment extends Fragment {
 
 
     private Callbacks mCallbacks;
+
     public interface Callbacks {
         void onQualifierSelected(Qualifier crime);
+
         void onQualifierDelete();
     }
 
@@ -52,6 +55,7 @@ public class QualifierListFragment extends Fragment {
         super.onAttach(activity);
         mCallbacks = (Callbacks) activity;
     }
+
     @Override
     public void onDetach() {
         super.onDetach();
@@ -63,11 +67,13 @@ public class QualifierListFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_fragment_qualifier_view, menu);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -101,7 +107,7 @@ public class QualifierListFragment extends Fragment {
                             .setNegativeButton(android.R.string.no, null).show();
                 }
                 return true;
-                default:
+            default:
                 return super.onOptionsItemSelected(item);
         }
     }
@@ -119,12 +125,13 @@ public class QualifierListFragment extends Fragment {
         mAddButton.setVisibility(View.GONE);
 
         if (savedInstanceState != null) {
-           if(savedInstanceState.getBoolean(SAVED_mAddButton)){
-                    mAddButton.setVisibility(View.VISIBLE);
+            if (savedInstanceState.getBoolean(SAVED_mAddButton)) {
+                mAddButton.setVisibility(View.VISIBLE);
             }
-            if(savedInstanceState.get(SAVED_QUALIFIER_SELECTED) != null){
-                    mQualifierSelected = QualifierLab.get(getContext()).
-                            getQualifier((String) savedInstanceState.get(SAVED_QUALIFIER_SELECTED));
+            if (savedInstanceState.get(SAVED_QUALIFIER_SELECTED) != null) {
+                String qualifierName = (String) savedInstanceState.get(SAVED_QUALIFIER_SELECTED);
+                mQualifierSelected = QualifierLab.get(getContext()).
+                        getQualifier(UUID.fromString(qualifierName));
             }
         }
 
@@ -132,15 +139,16 @@ public class QualifierListFragment extends Fragment {
 
         return view;
     }
+
     @Override
     public void onSaveInstanceState(Bundle onSavedInstanceState) {
         super.onSaveInstanceState(onSavedInstanceState);
-        if(mAddButton.getVisibility() == View.VISIBLE){
-            onSavedInstanceState.putBoolean(SAVED_mAddButton,true);
+        if (mAddButton.getVisibility() == View.VISIBLE) {
+            onSavedInstanceState.putBoolean(SAVED_mAddButton, true);
             updateUI();
         }
-        if(mQualifierSelected != null) {
-            onSavedInstanceState.putString(SAVED_QUALIFIER_SELECTED, mQualifierSelected.getTitle());
+        if (mQualifierSelected != null) {
+            onSavedInstanceState.putString(SAVED_QUALIFIER_SELECTED, mQualifierSelected.getId().toString());
         }
     }
 
@@ -187,20 +195,20 @@ public class QualifierListFragment extends Fragment {
             Toast.makeText(getActivity(),
                     mQualifier.getTitle() + " clicked!", Toast.LENGTH_SHORT)
                     .show();
-            if(mAddButton != null){
-                if(mAddButton.getVisibility() == View.GONE) {
+            if (mAddButton != null) {
+                if (mAddButton.getVisibility() == View.GONE) {
                     mAddButton.setVisibility(View.VISIBLE);
                 }
             }
-           mCallbacks.onQualifierSelected(mQualifier);
-           mQualifierSelected = mQualifier;
+            mCallbacks.onQualifierSelected(mQualifier);
+            mQualifierSelected = mQualifier;
         }
 
         @Override
         public boolean onLongClick(View view) {
 
             FragmentManager manager = getFragmentManager();
-            QualifierDialog dialog = QualifierDialog.newInstance(mQualifier.getTitle());
+            QualifierDialog dialog = QualifierDialog.newInstance(mQualifier.getId());
             dialog.setTargetFragment(QualifierListFragment.this, REQUEST_DATA);
             dialog.show(manager, DIALOG_QUALIFIER);
 

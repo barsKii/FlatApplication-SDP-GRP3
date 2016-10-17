@@ -1,13 +1,25 @@
 package com.sdpcrew.android.flatapp.TasksManager;
 
-public class Task {
+import java.util.Date;
+import java.util.UUID;
 
+public class Task {
+    private UUID mId;
     private String mTitle;
     private boolean mCompleted;
 
-    public Task() {
+    public Task(UUID id) {
+        mId = id;
         mTitle ="No Title";
         mCompleted = false;
+    }
+
+    public Task() {
+        this(UUID.randomUUID());
+    }
+
+    public UUID getId() {
+        return mId;
     }
 
     public String getTitle() {

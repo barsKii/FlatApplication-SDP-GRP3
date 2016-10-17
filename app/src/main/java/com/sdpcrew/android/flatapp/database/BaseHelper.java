@@ -4,7 +4,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.sdpcrew.android.flatapp.database.BillDbSchema.BillTable;
+import com.sdpcrew.android.flatapp.database.DbSchema.BillTable;
+
+import static com.sdpcrew.android.flatapp.database.DbSchema.*;
 
 /**
  * Created by David on 4/10/2016.
@@ -13,11 +15,11 @@ import com.sdpcrew.android.flatapp.database.BillDbSchema.BillTable;
  * to newer version.
  */
 
-public class BillBaseHelper extends SQLiteOpenHelper {
+public class BaseHelper extends SQLiteOpenHelper {
     private static final int VERSION = 1;
     private static final String DATABASE_NAME = "billBase.db";
 
-    public BillBaseHelper(Context context) {
+    public BaseHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
     }
 
@@ -31,6 +33,17 @@ public class BillBaseHelper extends SQLiteOpenHelper {
                 BillTable.Cols.AMOUNT + ", " +
                 BillTable.Cols.PAID +
                 ")");
+
+        db.execSQL("create table " + QualifierTable.NAME + "( " +
+                QualifierTable.Cols.ID+" primary key, "+
+                QualifierTable.Cols.TITLE+ ")");
+
+        db.execSQL("create table " + TaskTable.NAME + "( " +
+                TaskTable.Cols.QUALIFIER_TITLE+" text primary key, "+
+                TaskTable.Cols.ID+", "+
+                TaskTable.Cols.TITLE+", "+
+                TaskTable.Cols.COMPLETED+" INTEGER )");
+
     }
 
     @Override

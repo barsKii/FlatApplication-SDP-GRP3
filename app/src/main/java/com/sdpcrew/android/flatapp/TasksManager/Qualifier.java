@@ -1,18 +1,23 @@
 package com.sdpcrew.android.flatapp.TasksManager;
 
+import java.util.UUID;
+
 public class Qualifier {
 
-    private TaskLab tasks;
-
+    private UUID mId;
     private String mTitle;
 
     public Qualifier() {
-        mTitle ="No name";
-        tasks=new TaskLab();
+        this(UUID.randomUUID());
     }
 
-    public Qualifier(String title) {
-        mTitle = title;
+    public Qualifier(UUID id) {
+        mId = id;
+        mTitle = "No Title";
+    }
+
+    public UUID getId() {
+        return mId;
     }
 
     public String getTitle() {
@@ -23,8 +28,9 @@ public class Qualifier {
         mTitle = title;
     }
 
-    public TaskLab getTaskLab(){
-        return tasks;
+    public TaskLab getTaskLab() {
+
+        return new TaskLab(mTitle);
     }
 
 }

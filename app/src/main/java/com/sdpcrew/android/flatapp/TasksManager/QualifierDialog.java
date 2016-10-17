@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.sdpcrew.android.flatapp.R;
 
+import java.util.UUID;
+
 /**
  * The QualifierDialog class is a DialogFragment used for creating and editing 'Qualifiers'.
  * Qualifiers store a roster (list of tasks), and the name of the roster.
@@ -29,9 +31,9 @@ public class QualifierDialog extends DialogFragment {
     private String mNewTitle; // Stores the name of the Qualifier once it is set/changed.
     private Qualifier mNewQualifier;
 
-    public static QualifierDialog newInstance(String qualifierName) {
+    public static QualifierDialog newInstance(UUID qualifierId) {
         Bundle args = new Bundle();
-        args.putSerializable(ARG_QUALIFIER, qualifierName);
+        args.putSerializable(ARG_QUALIFIER, qualifierId);
 
         // Create a new QualifierFragment and set the Qualifier Name based on 'qualifierName'.
         QualifierDialog fragment = new QualifierDialog();
@@ -65,7 +67,7 @@ public class QualifierDialog extends DialogFragment {
         /* If the stored argument is not null, then check for an existing Qualifier whose name
             matches the argument. */
         if (getArguments() != null) {
-            String qualifierTitle = (String) getArguments().getSerializable(ARG_QUALIFIER);
+            UUID qualifierTitle = (UUID) getArguments().getSerializable(ARG_QUALIFIER);
             mNewQualifier = QualifierLab.get(getContext()).getQualifier(qualifierTitle);
 
             /*
@@ -102,12 +104,20 @@ public class QualifierDialog extends DialogFragment {
                                         // Create the Qualifier and add it to the list of Qualifiers.
                                         mNewQualifier = new Qualifier();
                                         mNewQualifier.setTitle(mNewTitle);
-                                        QualifierLab.get(getContext()).addQualifier(mNewQualifier);
+                                        if( QualifierLab.get(getContext()).containQualifier(mNewTitle)){
+                                            Toast.makeText(getActivity(),
+                                                    "This Roaster already exisits", Toast.LENGTH_LONG)
+                                                    .show();
+                                        }else{
+                                            QualifierLab.get(getContext()).addQualifier(mNewQualifier);
+                                        }
                                         sendResult(Activity.RESULT_OK); // Update View.
                                     }
                                 } else { // The Qualifier already exists, so update it accordingly.
                                     mNewQualifier.setTitle(mNewTitle);
+                                    QualifierLab.get(getContext()).updateQualifier(mNewQualifier);
                                     sendResult(Activity.RESULT_OK); // Update View.
+
                                 }
                             }
                         })

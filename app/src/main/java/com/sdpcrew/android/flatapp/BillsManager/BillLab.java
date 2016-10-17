@@ -4,17 +4,16 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.text.TextUtils;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.sdpcrew.android.flatapp.*;
-import com.sdpcrew.android.flatapp.database.BillBaseHelper;
-import com.sdpcrew.android.flatapp.database.BillCursorWrapper;
-import com.sdpcrew.android.flatapp.database.BillDbSchema.BillTable;
+import com.sdpcrew.android.flatapp.database.BaseHelper;
+import com.sdpcrew.android.flatapp.database.AllCursorWrapper;
+import com.sdpcrew.android.flatapp.database.DbSchema.BillTable;
+
+import static com.sdpcrew.android.flatapp.MainActivity.mDatabase;
 
 /**
  * Created by David on 20/09/2016.
@@ -26,7 +25,7 @@ public class BillLab {
     private static BillLab sBillLab;
 
     private Context mContext;
-    private SQLiteDatabase mDatabase;
+//    private SQLiteDatabase mDatabase;
 
     public static BillLab get(Context context) {
         if (sBillLab == null) {
@@ -41,7 +40,7 @@ public class BillLab {
      */
     private BillLab(Context context) {
         mContext = context.getApplicationContext();
-        mDatabase = new BillBaseHelper(mContext).getWritableDatabase();
+//        mDatabase = new BaseHelper(mContext).getWritableDatabase();
     }
 
     public void addBill(Bill b) {
@@ -53,7 +52,7 @@ public class BillLab {
     public List<Bill> getBills() {
         List<Bill> bills = new ArrayList<>();
 
-        BillCursorWrapper cursor = queryBills(null, null);
+        AllCursorWrapper cursor = queryBills(null, null);
 
         try {
             cursor.moveToFirst();
@@ -69,7 +68,7 @@ public class BillLab {
     }
 
     public Bill getBill(UUID id) {
-        BillCursorWrapper cursor = queryBills(
+        AllCursorWrapper cursor = queryBills(
                 BillTable.Cols.UUID + " = ?", new String[] { id.toString()}
         );
 
@@ -111,7 +110,7 @@ public class BillLab {
         return values;
     }
 
-    private BillCursorWrapper queryBills(String whereClause, String[] whereArgs) {
+    private AllCursorWrapper queryBills(String whereClause, String[] whereArgs) {
         Cursor cursor = mDatabase.query(
              BillTable.NAME,
                 null,  // Columns (null selects all columns)
@@ -122,7 +121,7 @@ public class BillLab {
                 null   //orderBy
         );
 
-        return new BillCursorWrapper(cursor);
+        return new AllCursorWrapper(cursor);
     }
 
 
