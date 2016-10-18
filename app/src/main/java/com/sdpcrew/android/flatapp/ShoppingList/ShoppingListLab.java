@@ -2,9 +2,7 @@ package com.sdpcrew.android.flatapp.ShoppingList;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 
-import com.sdpcrew.android.flatapp.TasksManager.QualifierLab;
 import com.sdpcrew.android.flatapp.database.AllCursorWrapper;
 import com.sdpcrew.android.flatapp.database.DbSchema.ShoppingListsTable;
 import com.sdpcrew.android.flatapp.database.QueryMethods;
@@ -13,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static com.sdpcrew.android.flatapp.MainActivity.mDatabase;
+import static com.sdpcrew.android.flatapp.Splash.mDatabase;
 
 /**
  * Created by vini on 18/10/16.

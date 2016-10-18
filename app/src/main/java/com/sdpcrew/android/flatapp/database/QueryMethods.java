@@ -2,7 +2,7 @@ package com.sdpcrew.android.flatapp.database;
 
 import android.database.Cursor;
 
-import static com.sdpcrew.android.flatapp.MainActivity.mDatabase;
+import static com.sdpcrew.android.flatapp.Splash.mDatabase;
 
 /**
  * Created by vini on 18/10/16.

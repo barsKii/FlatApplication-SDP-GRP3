@@ -3,7 +3,6 @@ package com.sdpcrew.android.flatapp.BillsManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
 
 import java.io.File;
@@ -11,11 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.sdpcrew.android.flatapp.database.BaseHelper;
 import com.sdpcrew.android.flatapp.database.AllCursorWrapper;
 import com.sdpcrew.android.flatapp.database.DbSchema.BillTable;
 
-import static com.sdpcrew.android.flatapp.MainActivity.mDatabase;
+import static com.sdpcrew.android.flatapp.Splash.mDatabase;
 
 /**
  * Created by David on 20/09/2016.

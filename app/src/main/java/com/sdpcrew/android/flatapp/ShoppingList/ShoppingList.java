@@ -3,17 +3,14 @@ package com.sdpcrew.android.flatapp.ShoppingList;
 import android.content.ContentValues;
 
 import com.sdpcrew.android.flatapp.database.AllCursorWrapper;
-import com.sdpcrew.android.flatapp.database.DbSchema;
 import com.sdpcrew.android.flatapp.database.DbSchema.ShoppingItemsTable;
-import com.sdpcrew.android.flatapp.database.DbSchema.ShoppingListsTable;
 import com.sdpcrew.android.flatapp.database.QueryMethods;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static android.R.attr.id;
-import static com.sdpcrew.android.flatapp.MainActivity.mDatabase;
+import static com.sdpcrew.android.flatapp.Splash.mDatabase;
 
 /**
  * Created by Shane Birdsall on 1/09/2016.
