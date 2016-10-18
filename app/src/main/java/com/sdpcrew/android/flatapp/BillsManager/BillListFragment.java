@@ -1,9 +1,11 @@
 package com.sdpcrew.android.flatapp.BillsManager;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,6 +33,7 @@ public class BillListFragment extends Fragment{
     private RecyclerView mBillRecyclerView;
     private BillAdapter mAdapter;
     private boolean mSubtitleVisible;
+    private BillLab mBillLab;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -144,7 +147,7 @@ public class BillListFragment extends Fragment{
      * Provides the functionality to show each individual bill in a small fragment to fit multiple
      * ones on a single screen and make them clickable
      */
-    private class BillHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    private class BillHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         private TextView mTitleTextView;
         private TextView mDateTextView;
         private CheckBox mPaidCheckBox;
@@ -175,6 +178,23 @@ public class BillListFragment extends Fragment{
         public void onClick (View v) {
             Intent intent = BillPagerActivity.newIntent(getActivity(), mBill.getId());
             startActivity(intent);
+        }
+
+        //Added but not working as of yet
+        @Override
+        public boolean onLongClick(View view) {
+            new AlertDialog.Builder(getContext())
+                    .setTitle("Sure?")
+                    .setMessage("Do you really want to delete ")
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            mBillLab.deleteBill(mBill);
+                            updateUI();
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, null).show();
+            return false;
         }
     }
 

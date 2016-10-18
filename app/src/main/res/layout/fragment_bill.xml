@@ -3,6 +3,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -69,6 +70,23 @@
             android:hint="@string/bill_amount_hint"
             android:inputType="numberDecimal"
             />
+
+        <ImageView
+            android:id="@+id/bill_photo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="50"
+            android:scaleType="centerInside"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:color/darker_gray"
+            android:cropToPadding="true"/>
+
+        <ImageButton
+            android:id="@+id/bill_camera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:src="@android:drawable/ic_menu_camera"/>
 
         <CheckBox
             android:id="@+id/bill_paid"
