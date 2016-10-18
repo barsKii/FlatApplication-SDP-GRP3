@@ -1,12 +1,12 @@
-package com.sdpcrew.android.flatapp.database;
+package com.sdpcrew.android.flatapp.Database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.sdpcrew.android.flatapp.database.DbSchema.BillTable;
+import com.sdpcrew.android.flatapp.Database.DbSchema.BillTable;
 
-import static com.sdpcrew.android.flatapp.database.DbSchema.*;
+import static com.sdpcrew.android.flatapp.Database.DbSchema.*;
 
 /**
  * Created by David on 4/10/2016.

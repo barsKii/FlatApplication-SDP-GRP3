@@ -1,19 +1,18 @@
-package com.sdpcrew.android.flatapp.database;
+package com.sdpcrew.android.flatapp.Database;
 
 import android.database.Cursor;
-import android.database.CursorWrapper;
 
 import com.sdpcrew.android.flatapp.BillsManager.Bill;
 import com.sdpcrew.android.flatapp.ShoppingList.Item;
 import com.sdpcrew.android.flatapp.ShoppingList.ShoppingList;
 import com.sdpcrew.android.flatapp.TasksManager.Qualifier;
 import com.sdpcrew.android.flatapp.TasksManager.Task;
-import com.sdpcrew.android.flatapp.database.DbSchema.BillTable;
+import com.sdpcrew.android.flatapp.Database.DbSchema.BillTable;
 
 import java.util.Date;
 import java.util.UUID;
 
-import static com.sdpcrew.android.flatapp.database.DbSchema.*;
+import static com.sdpcrew.android.flatapp.Database.DbSchema.*;
 
 public class AllCursorWrapper extends android.database.CursorWrapper {
     public AllCursorWrapper(Cursor cursor) {

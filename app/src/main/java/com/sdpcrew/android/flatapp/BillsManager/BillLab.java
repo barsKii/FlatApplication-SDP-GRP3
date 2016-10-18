@@ -4,9 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.os.Environment;
 
-import com.sdpcrew.android.flatapp.database.AllCursorWrapper;
-import com.sdpcrew.android.flatapp.database.DbSchema.BillTable;
-import com.sdpcrew.android.flatapp.database.QueryMethods;
+import com.sdpcrew.android.flatapp.Database.AllCursorWrapper;
+import com.sdpcrew.android.flatapp.Database.DbSchema.BillTable;
+import com.sdpcrew.android.flatapp.Database.QueryMethods;
 
 import java.io.File;
 import java.util.ArrayList;

@@ -3,9 +3,9 @@ package com.sdpcrew.android.flatapp.ShoppingList;
 import android.content.ContentValues;
 import android.content.Context;
 
-import com.sdpcrew.android.flatapp.database.AllCursorWrapper;
-import com.sdpcrew.android.flatapp.database.DbSchema.ShoppingListsTable;
-import com.sdpcrew.android.flatapp.database.QueryMethods;
+import com.sdpcrew.android.flatapp.Database.AllCursorWrapper;
+import com.sdpcrew.android.flatapp.Database.DbSchema.ShoppingListsTable;
+import com.sdpcrew.android.flatapp.Database.QueryMethods;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
-import com.sdpcrew.android.flatapp.database.BaseHelper;
+import com.sdpcrew.android.flatapp.Database.BaseHelper;
 
 /**
  * The Splash class is responsible for the welcome screen (splashScreen) for the app.
