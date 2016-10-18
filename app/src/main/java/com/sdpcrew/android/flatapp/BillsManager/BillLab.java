@@ -2,16 +2,16 @@ package com.sdpcrew.android.flatapp.BillsManager;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.os.Environment;
+
+import com.sdpcrew.android.flatapp.database.AllCursorWrapper;
+import com.sdpcrew.android.flatapp.database.DbSchema.BillTable;
+import com.sdpcrew.android.flatapp.database.QueryMethods;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import com.sdpcrew.android.flatapp.database.AllCursorWrapper;
-import com.sdpcrew.android.flatapp.database.DbSchema.BillTable;
 
 import static com.sdpcrew.android.flatapp.Splash.mDatabase;
 
@@ -121,17 +121,7 @@ public class BillLab {
     }
 
     private AllCursorWrapper queryBills(String whereClause, String[] whereArgs) {
-        Cursor cursor = mDatabase.query(
-             BillTable.NAME,
-                null,  // Columns (null selects all columns)
-                whereClause,
-                whereArgs,
-                null,  //groupBy
-                null,  //having
-                null   //orderBy
-        );
-
-        return new AllCursorWrapper(cursor);
+        return QueryMethods.queryDb(BillTable.NAME,whereClause,whereArgs);
     }
 
 
