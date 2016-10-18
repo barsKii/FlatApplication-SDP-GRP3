@@ -2,7 +2,11 @@ package com.sdpcrew.android.flatapp.BillsManager;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NavUtils;
@@ -19,10 +23,13 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 
 import com.sdpcrew.android.flatapp.*;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Date;
@@ -38,13 +45,17 @@ public class BillFragment extends Fragment {
     private static final String DIALOG_DATE = "DialogDate";
 
     private static final int REQUEST_DATE = 0;
+    private static final int REQUEST_PHOTO = 1;
 
     private Bill mBill;
+    private File mPhotoFile;
     private EditText mTitleField;
     private EditText mDescriptionField;
     private Button mDateButton;
     private CheckBox mPaidCheckBox;
     private EditText mAmountField;
+    private ImageButton mPhotoButton;
+    private ImageView mPhotoView;
 
     public static BillFragment newInstance (UUID billId) {
         Bundle args = new Bundle();
@@ -65,8 +76,8 @@ public class BillFragment extends Fragment {
         super.onCreate (savedInstanceState);
         setHasOptionsMenu(true);    //Options menu to delete the bill
         UUID billId = (UUID) getArguments().getSerializable(ARG_BILL_ID);
-
         mBill = BillLab.get(getActivity()).getBill(billId);
+        mPhotoFile = BillLab.get(getActivity()).getPhotoFile(mBill);
     }
 
     /**
@@ -238,6 +249,28 @@ public class BillFragment extends Fragment {
             }
         });
 
+        PackageManager packageManager = getActivity().getPackageManager();
+
+        mPhotoButton = (ImageButton) v.findViewById(R.id.bill_camera);
+        final Intent captureImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        boolean canTakePhoto = mPhotoFile != null && captureImage.resolveActivity(packageManager) != null;
+        mPhotoButton.setEnabled(canTakePhoto);
+
+        if(canTakePhoto) {
+            Uri uri = Uri.fromFile(mPhotoFile);
+            captureImage.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        }
+
+        mPhotoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(captureImage, REQUEST_PHOTO);
+            }
+        });
+
+        mPhotoView = (ImageView) v.findViewById(R.id.bill_photo);
+        updatePhotoView();
 
 
         return v;
@@ -258,11 +291,22 @@ public class BillFragment extends Fragment {
             Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
             mBill.setDate(date);
             updateDate();
+        }else if (requestCode == REQUEST_PHOTO) {
+            updatePhotoView();
         }
     }
 
     private void updateDate() {
         mDateButton.setText(android.text.format.DateFormat.format("dd-MM-yyyy", mBill.getDate()));
+    }
+
+    private void updatePhotoView() {
+        if (mPhotoFile == null || !mPhotoFile.exists()) {
+            mPhotoView.setImageDrawable(null);
+        } else {
+            Bitmap bitmap = PictureUtils.getScaledBitmap(mPhotoFile.getPath(), getActivity());
+            mPhotoView.setImageBitmap(bitmap);
+        }
     }
 
 }
