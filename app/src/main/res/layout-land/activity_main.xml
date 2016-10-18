@@ -61,17 +61,17 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:layout_weight="1">
-        <ImageButton
-            android:id="@+id/imageButton10"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#fff"
-            app:srcCompat="@drawable/avat" />
-    </LinearLayout>
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_weight="1">-->
+        <!--<ImageButton-->
+            <!--android:id="@+id/imageButton10"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="#fff"-->
+            <!--app:srcCompat="@drawable/avat" />-->
+    <!--</LinearLayout>-->
 
 </LinearLayout>
