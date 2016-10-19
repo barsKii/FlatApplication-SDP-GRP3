@@ -25,6 +25,7 @@
     <string name="no_title_qualifier_enter">No title entered. No Qualifier created</string>
 
     <string name="bill_title_hint">Enter a title for the bill.  (Required)</string>
+    <string name="bill_due_fragement">Due: </string>
     <string name="bill_title_label">Title</string>
     <string name="bill_details_label">Details</string>
     <string name="bill_amount_label">Amount</string>

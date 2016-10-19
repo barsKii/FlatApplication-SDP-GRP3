@@ -17,6 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.sdpcrew.android.flatapp.*;
 
 import java.util.List;
@@ -170,7 +172,7 @@ public class BillListFragment extends Fragment{
         public void bindBill (Bill bill) {
             mBill = bill;
             mTitleTextView.setText(mBill.getTitle());
-            mDateTextView.setText("Due: " + android.text.format.DateFormat.format("dd-MM-yyyy", mBill.getDate()));
+            mDateTextView.setText(getString(R.string.bill_due_fragement) + " " + android.text.format.DateFormat.format("dd-MM-yyyy", mBill.getDate()));
             mPaidCheckBox.setChecked(mBill.isPaid());
             mAmountTextView.setText(mBill.getAmount());
         }
@@ -183,6 +185,7 @@ public class BillListFragment extends Fragment{
         //Added but not working as of yet
         @Override
         public boolean onLongClick(View view) {
+            Toast.makeText(getActivity(), "Whatever", Toast.LENGTH_SHORT);
             new AlertDialog.Builder(getContext())
                     .setTitle("Sure?")
                     .setMessage("Do you really want to delete ")

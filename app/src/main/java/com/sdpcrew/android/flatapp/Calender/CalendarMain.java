@@ -47,7 +47,7 @@ public class CalendarMain extends AppCompatActivity {
     String[] separatedTime;
     String selectedGridDate;
 
-    public String [] qoutes = {"Let go of that ,which does not serve you",
+    public String [] qoutes = {"Let go of that, which does not serve you",
             "It does not matter how slowly you go as long as you do not stop",
             "You have to learn the rules of the game and then have to play better than anyone else",
             "Problems are not signs they are guidelines",
