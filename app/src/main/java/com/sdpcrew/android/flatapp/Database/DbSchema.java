@@ -1,4 +1,4 @@
-package com.sdpcrew.android.flatapp.database;
+package com.sdpcrew.android.flatapp.Database;
 
 /**
  * Created by David on 4/10/2016.

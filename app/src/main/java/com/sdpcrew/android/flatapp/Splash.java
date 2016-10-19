@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
-import com.sdpcrew.android.flatapp.database.BaseHelper;
+import com.sdpcrew.android.flatapp.Database.BaseHelper;
 
 /**
  * The Splash class is responsible for the welcome screen (splashScreen) for the app.
@@ -13,9 +13,10 @@ import com.sdpcrew.android.flatapp.database.BaseHelper;
  */
 public class Splash extends Activity {
 
-    private static final int SPLASH_DISPLAY_LENGTH = 2000; // Duration that the splash screen will be active
-    private static final String STARTED = "started"; // for saving purpose when app is destroyed
-    private boolean screenShown; //Whether or not the screen has been shown
+//    private static final int SPLASH_DISPLAY_LENGTH = 2000; // Duration that the splash screen will be active
+//    private static final String STARTED = "started"; // for saving purpose when app is destroyed
+//    private boolean screenShown; //Whether or not the screen has been shown
+
     public static SQLiteDatabase mDatabase;
 
     @Override
@@ -29,13 +30,19 @@ public class Splash extends Activity {
         Splash.this.startActivity(mainIntent);
         Splash.this.finish();
 
-        // Updates screenShown based on the current state.
-        if (savedInstanceState != null) {
-            screenShown = savedInstanceState.getBoolean(STARTED);
-        }
-        // This is not working as intended at the moment.
-        // If the app has been initialised it creates an intent of the main class and ends this activity.
-        // Otherwise, it create an intent and only finishes when the SPLASH_DISPLAY_LENGTH ends.
+    }
+
+    // Code commented out in case as an option to the current implementation. It may allow
+    // some different features to be implemented like loading bar.
+
+//        // Updates screenShown based on the current state.
+//        if (savedInstanceState != null) {
+//            screenShown = savedInstanceState.getBoolean(STARTED);
+//        }
+
+    // This is not working as intended at the moment. Above code tested as I wanted to the specifications
+    // If the app has been initialised it creates an intent of the main class and ends this activity.
+    // Otherwise, it create an intent and only finishes when the SPLASH_DISPLAY_LENGTH ends.
 //        if (screenShown) {
 //            Intent mainIntent = new Intent(Splash.this, MainActivity.class);
 //            Splash.this.startActivity(mainIntent);
@@ -50,11 +57,10 @@ public class Splash extends Activity {
 //                }
 //            }, SPLASH_DISPLAY_LENGTH);
 //        }
-    }
 
-    @Override
-    public void onSaveInstanceState(Bundle onSavedInstanceState) {
-        super.onSaveInstanceState(onSavedInstanceState);
-        onSavedInstanceState.putBoolean(STARTED, screenShown);
-    }
+//    @Override
+//    public void onSaveInstanceState(Bundle onSavedInstanceState) {
+//        super.onSaveInstanceState(onSavedInstanceState);
+//        onSavedInstanceState.putBoolean(STARTED, screenShown);
+//    }
 }

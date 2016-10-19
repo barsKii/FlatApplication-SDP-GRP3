@@ -3,15 +3,15 @@ package com.sdpcrew.android.flatapp.TasksManager;
 import android.content.ContentValues;
 import android.content.Context;
 
-import com.sdpcrew.android.flatapp.database.AllCursorWrapper;
-import com.sdpcrew.android.flatapp.database.QueryMethods;
+import com.sdpcrew.android.flatapp.Database.AllCursorWrapper;
+import com.sdpcrew.android.flatapp.Database.QueryMethods;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import static com.sdpcrew.android.flatapp.Splash.mDatabase;
-import static com.sdpcrew.android.flatapp.database.DbSchema.*;
+import static com.sdpcrew.android.flatapp.Database.DbSchema.*;
 
 public class QualifierLab {
     private static final String whereClause = QualifierTable.Cols.ID + "=?";
