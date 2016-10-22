@@ -1,10 +1,12 @@
 package com.sdpcrew.android.flatapp.ShoppingList;
 
 import android.content.ContentValues;
+import android.content.res.Resources;
 
 import com.sdpcrew.android.flatapp.Database.AllCursorWrapper;
 import com.sdpcrew.android.flatapp.Database.DbSchema.ShoppingItemsTable;
 import com.sdpcrew.android.flatapp.Database.QueryMethods;
+import com.sdpcrew.android.flatapp.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,7 @@ import static com.sdpcrew.android.flatapp.Splash.mDatabase;
 
 /**
  * Created by Shane Birdsall on 1/09/2016.
+ *
  */
 public class ShoppingList {
 
@@ -41,10 +44,10 @@ public class ShoppingList {
     public void setListName(String name) {
         if (name != null && !(name.trim().equals(""))) {
             listName = name;
-        } else listName = "UNKNOWN";
+        } else listName = Resources.getSystem().getString(R.string.cap_unknown);
     }
 
-    public String getListName() {
+    String getListName() {
         return listName;
     }
 
@@ -65,7 +68,7 @@ public class ShoppingList {
         return list;
     }
 
-    public List<String> getListOfItemsByName() {
+    List<String> getListOfItemsByName() {
         List<String> items = new ArrayList<>();
         list.clear();
         AllCursorWrapper cursor = QueryMethods.queryDb(ShoppingItemsTable.NAME,
@@ -85,7 +88,7 @@ public class ShoppingList {
         return items;
     }
 
-    public Item getItemByIndex(int index) {
+    Item getItemByIndex(int index) {
         return list.get(index);
     }
 

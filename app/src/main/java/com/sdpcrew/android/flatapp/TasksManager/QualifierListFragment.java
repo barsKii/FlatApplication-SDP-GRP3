@@ -91,8 +91,8 @@ public class QualifierListFragment extends Fragment {
                             .show();
                 } else {
                     new AlertDialog.Builder(getContext())
-                            .setTitle("Sure?")
-                            .setMessage("Do you really want to delete ")
+                            .setTitle(getString(R.string.sure_question))
+                            .setMessage(getString(R.string.del_conformation))
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
@@ -193,7 +193,7 @@ public class QualifierListFragment extends Fragment {
         @Override
         public void onClick(View v) {
             Toast.makeText(getActivity(),
-                    mQualifier.getTitle() + " clicked!", Toast.LENGTH_SHORT)
+                    mQualifier.getTitle() + " " + getString(R.string.clicked), Toast.LENGTH_SHORT)
                     .show();
             if (mAddButton != null) {
                 if (mAddButton.getVisibility() == View.GONE) {

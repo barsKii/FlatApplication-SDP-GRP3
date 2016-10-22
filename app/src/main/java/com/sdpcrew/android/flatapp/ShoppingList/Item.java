@@ -1,9 +1,14 @@
 package com.sdpcrew.android.flatapp.ShoppingList;
 
+import android.content.Context;
+
+import com.sdpcrew.android.flatapp.R;
+
 import java.util.UUID;
 
 /**
  * Created by vini on 18/10/16.
+ *
  */
 
 public class Item {
@@ -11,7 +16,7 @@ public class Item {
     private UUID mId;
     private String ItemName;
 
-    public Item(String name) {
+    Item(String name) {
         this(UUID.randomUUID(), name);
     }
 
@@ -24,13 +29,13 @@ public class Item {
         return mId;
     }
 
-    public void setItemName(String name) {
+    void setItemName(String name) {
         if (name != null && !(name.trim().equals(""))) {
             ItemName = name;
-        } else ItemName = "UNKNOWN";
+        } else ItemName = "" + R.string.cap_unknown;
     }
 
-    public String getItemName() {
+    String getItemName() {
         return ItemName;
     }
 

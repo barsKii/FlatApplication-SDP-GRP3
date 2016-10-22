@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
@@ -41,6 +42,7 @@ public class QualifierDialog extends DialogFragment {
         return fragment;
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_dialog_qualifier, null);
@@ -106,7 +108,7 @@ public class QualifierDialog extends DialogFragment {
                                         mNewQualifier.setTitle(mNewTitle);
                                         if( QualifierLab.get(getContext()).containQualifier(mNewTitle)){
                                             Toast.makeText(getActivity(),
-                                                    "This Roaster already exisits", Toast.LENGTH_LONG)
+                                                    getString(R.string.rosrer_exists), Toast.LENGTH_LONG)
                                                     .show();
                                         }else{
                                             QualifierLab.get(getContext()).addQualifier(mNewQualifier);

@@ -1,5 +1,6 @@
 package com.sdpcrew.android.flatapp.BillsManager;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,8 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.sdpcrew.android.flatapp.*;
 
 import java.util.List;
@@ -77,8 +76,8 @@ public class BillListFragment extends Fragment{
 
     /**
      * Provides the bill count and the back arrow
-     * @param menu
-     * @param inflater
+     * @param menu:
+     * @param inflater:
      */
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -92,8 +91,8 @@ public class BillListFragment extends Fragment{
     /**
      * Relates to the selecting of a fragment and starting that BillFragment as a new activity
      * through the BillPagerActivity
-     * @param item
-     * @return
+     * @param item:
+     * @return boolean
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -158,7 +157,7 @@ public class BillListFragment extends Fragment{
 
         private Bill mBill;
 
-        public BillHolder(View itemView){
+        BillHolder(View itemView){
             super(itemView);
             itemView.setOnClickListener(this);
 
@@ -169,10 +168,10 @@ public class BillListFragment extends Fragment{
             //mNewBillButton = (FloatingActionButton) itemView.findViewById(R.id.fragment_bill_add);
         }
 
-        public void bindBill (Bill bill) {
+        void bindBill(Bill bill) {
             mBill = bill;
             mTitleTextView.setText(mBill.getTitle());
-            mDateTextView.setText(getString(R.string.bill_due_fragement) + " " + android.text.format.DateFormat.format("dd-MM-yyyy", mBill.getDate()));
+            mDateTextView.setText(getString(R.string.due) + android.text.format.DateFormat.format("dd-MM-yyyy", mBill.getDate()));
             mPaidCheckBox.setChecked(mBill.isPaid());
             mAmountTextView.setText(mBill.getAmount());
         }
@@ -185,10 +184,9 @@ public class BillListFragment extends Fragment{
         //Added but not working as of yet
         @Override
         public boolean onLongClick(View view) {
-            Toast.makeText(getActivity(), "Whatever", Toast.LENGTH_SHORT);
             new AlertDialog.Builder(getContext())
-                    .setTitle("Sure?")
-                    .setMessage("Do you really want to delete ")
+                    .setTitle(getString(R.string.sure_question))
+                    .setMessage(getString(R.string.del_conformation))
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
@@ -204,7 +202,7 @@ public class BillListFragment extends Fragment{
     private class BillAdapter extends RecyclerView.Adapter<BillHolder> {
         private List<Bill> mBills;
 
-        public BillAdapter(List<Bill> bills) {
+        BillAdapter(List<Bill> bills) {
             mBills = bills;
         }
 
@@ -227,7 +225,7 @@ public class BillListFragment extends Fragment{
         }
 
         //Refreshes the bills that it displays
-        public void setBills (List<Bill> bills) {
+        void setBills(List<Bill> bills) {
             mBills = bills;
         }
     }

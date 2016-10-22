@@ -1,5 +1,10 @@
 package com.sdpcrew.android.flatapp.TasksManager;
 
+import android.content.Context;
+import android.content.res.Resources;
+
+import com.sdpcrew.android.flatapp.R;
+
 import java.util.Date;
 import java.util.UUID;
 
@@ -10,11 +15,11 @@ public class Task {
 
     public Task(UUID id) {
         mId = id;
-        mTitle ="No Title";
+        mTitle = Resources.getSystem().getString(R.string.no_title);
         mCompleted = false;
     }
 
-    public Task() {
+    Task() {
         this(UUID.randomUUID());
     }
 
@@ -30,7 +35,7 @@ public class Task {
         mTitle = title;
     }
 
-    public boolean isCompleted() {
+    boolean isCompleted() {
         return mCompleted;
     }
 

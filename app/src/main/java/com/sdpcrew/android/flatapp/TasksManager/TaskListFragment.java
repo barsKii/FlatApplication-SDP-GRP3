@@ -74,7 +74,7 @@ public class TaskListFragment extends Fragment {
                     updateUI();
                 } else {
                     Toast.makeText(getActivity(),
-                            "Qualifier must be selected!", Toast.LENGTH_SHORT)
+                            getString(R.string.qualifier_must_select), Toast.LENGTH_SHORT)
                             .show();
                 }
 
@@ -110,7 +110,7 @@ public class TaskListFragment extends Fragment {
 
         private Task mTask;
 
-        public TaksHolder(View itemView) {
+        TaksHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
@@ -126,7 +126,7 @@ public class TaskListFragment extends Fragment {
 
         }
 
-        public void bindCrime(Task qualifier) {
+        void bindCrime(Task qualifier) {
             mTask = qualifier;
             mTitleTextView.setText(mTask.getTitle());
             mCompleted.setChecked(mTask.isCompleted());
@@ -136,7 +136,7 @@ public class TaskListFragment extends Fragment {
         @Override
         public void onClick(View v) {
             Toast.makeText(getActivity(),
-                    mTask.getTitle() + " clicked!", Toast.LENGTH_SHORT)
+                    mTask.getTitle() + " " + getString(R.string.clicked), Toast.LENGTH_SHORT)
                     .show();
 
             FragmentManager manager = getFragmentManager();
@@ -149,8 +149,8 @@ public class TaskListFragment extends Fragment {
         @Override
         public boolean onLongClick(View view) {
             new AlertDialog.Builder(getContext())
-                    .setTitle("Sure?")
-                    .setMessage("Do you really want to delete ")
+                    .setTitle(getString(R.string.sure_question))
+                    .setMessage(getString(R.string.del_conformation))
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
@@ -167,7 +167,7 @@ public class TaskListFragment extends Fragment {
 
         private List<Task> mTasks;
 
-        public TaskAdapter(List<Task> qualifiers) {
+        TaskAdapter(List<Task> qualifiers) {
             mTasks = qualifiers;
         }
 

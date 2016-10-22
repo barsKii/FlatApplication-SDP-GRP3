@@ -53,13 +53,13 @@ public class ShoppingListsActivity extends AppCompatActivity {
         final EditText editText = (EditText) promptView.findViewById(R.id.editText);
         // setup a dialog window
         alertDialogBuilder.setCancelable(false)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.cap_ok), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         ShoppingListLab.get(getBaseContext()).addShoppingList(new ShoppingList("" + editText.getText()));
                         updateListView();
                     }
                 })
-                .setNegativeButton("Cancel",
+                .setNegativeButton(getString(R.string.cancel),
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
