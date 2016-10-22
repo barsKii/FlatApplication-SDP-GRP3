@@ -32,7 +32,7 @@ public class Item {
     void setItemName(String name) {
         if (name != null && !(name.trim().equals(""))) {
             ItemName = name;
-        } else ItemName = "" + R.string.cap_unknown;
+        } else ItemName = "???";
     }
 
     String getItemName() {
