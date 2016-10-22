@@ -19,7 +19,7 @@
     <string name="from">Von</string>
     <string name="to">Nach</string>
 
-    <string name="empty_screen">Keine Aufgabe erstellt</string>
+    <string name="empty_screen">Keine Aufgabe Erstellt</string>
     <string name="task_add_button">Neue Aufgabe</string>
     <string name="menu_add_button">Neue Roster</string>
     <string name="activity_twopane_qualifier">Roster</string>
