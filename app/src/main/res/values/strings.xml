@@ -2,6 +2,8 @@
     <string name="app_name" translatable="false">FlatApp</string>
     <string name="title_activity_shopping_list" translatable="false">ShoppingListActivity</string>
     <string name="new_list_heading">Create New List</string>
+    <string name="add_new_list">Add New List</string>
+    <string name="add_new_item">Add New Item</string>
     <string name="new_list_hint">Enter list name here…</string>
     <string name="new_list_item_heading">Add item</string>
     <string name="new_list_item_hint">Enter item name here…</string>

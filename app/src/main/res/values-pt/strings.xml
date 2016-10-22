@@ -1,5 +1,7 @@
 <resources>
     <string name="new_list_heading">Criar Nova Lista</string>
+    <string name="add_new_list">Adicionar Nova Lista</string>
+    <string name="add_new_item">Adicionar Novo Item</string>
     <string name="new_list_hint">Entre Nome Da Lista Aqui…</string>
     <string name="new_list_item_heading">Adicionar Item</string>
     <string name="new_list_item_hint">Entre Nome Do Item Aqui…</string>
