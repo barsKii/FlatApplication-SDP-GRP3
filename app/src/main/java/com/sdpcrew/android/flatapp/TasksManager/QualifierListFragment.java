@@ -192,9 +192,7 @@ public class QualifierListFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            Toast.makeText(getActivity(),
-                    mQualifier.getTitle() + " " + getString(R.string.clicked), Toast.LENGTH_SHORT)
-                    .show();
+
             if (mAddButton != null) {
                 if (mAddButton.getVisibility() == View.GONE) {
                     mAddButton.setVisibility(View.VISIBLE);

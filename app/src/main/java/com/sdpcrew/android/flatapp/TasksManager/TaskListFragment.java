@@ -139,10 +139,6 @@ public class TaskListFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            Toast.makeText(getActivity(),
-                    mTask.getTitle() + " " + getString(R.string.clicked), Toast.LENGTH_SHORT)
-                    .show();
-
             FragmentManager manager = getFragmentManager();
             TaskDialog dialog = TaskDialog.newInstance(mQualifier.getId(), mTask.getId());
             dialog.setTargetFragment(TaskListFragment.this, REQUEST_DATA);
