@@ -40,7 +40,7 @@ public class BaseHelper extends SQLiteOpenHelper {
                 QualifierTable.Cols.TITLE+ " )");
 
         db.execSQL("create table " + TaskTable.NAME + "( " +
-                TaskTable.Cols.QUALIFIER_ID +" text primary key, "+
+                TaskTable.Cols.QUALIFIER_ID +" , "+
                 TaskTable.Cols.ID+", "+
                 TaskTable.Cols.TITLE+", "+
                 TaskTable.Cols.COMPLETED+" INTEGER )");
