@@ -14,7 +14,7 @@ public class Qualifier {
     private UUID mId;
     private String mTitle;
 
-    public Qualifier() {
+    Qualifier() {
         this(UUID.randomUUID());
     }
 
