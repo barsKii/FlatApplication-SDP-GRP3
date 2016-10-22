@@ -33,7 +33,7 @@ public class SingleListActivity extends AppCompatActivity {
         UUID id;
         if (intent != null) {
             id = UUID.fromString(intent.getStringExtra(EXTRA_SINGLE_LIST));
-            shoppingList = ShoppingListLab.get(this).getShoppingList(id);
+            shoppingList = ShoppingListLab.get(getApplicationContext()).getShoppingList(id);
         }
         mListView = (ListView) findViewById(R.id.shoppingListView);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

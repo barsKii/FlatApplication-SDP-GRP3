@@ -35,7 +35,7 @@ public class ShoppingListsActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> adapter, View v, int i, long l) {
                     Intent in = new Intent(v.getContext(), SingleListActivity.class);
                     in.putExtra(EXTRA_SINGLE_LIST,
-                            ShoppingListLab.get(getBaseContext()).getShoppingLists().get(i).getId().toString());
+                            ShoppingListLab.get(getApplicationContext()).getShoppingLists().get(i).getId().toString());
                     startActivity(in);
                 }
             });
@@ -53,7 +53,7 @@ public class ShoppingListsActivity extends AppCompatActivity {
         alertDialogBuilder.setCancelable(false)
                 .setPositiveButton(getString(R.string.cap_ok), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        ShoppingListLab.get(getBaseContext()).addShoppingList(new ShoppingList("" + editText.getText()));
+                        ShoppingListLab.get(getApplicationContext()).addShoppingList(new ShoppingList("" + editText.getText()));
                         updateListView();
                     }
                 })
@@ -69,7 +69,7 @@ public class ShoppingListsActivity extends AppCompatActivity {
     }
 
     public void updateListView() {
-        List<String> list = ShoppingListLab.get(this).getShoppingListsNames();
+        List<String> list = ShoppingListLab.get(getApplicationContext()).getShoppingListsNames();
         if (list != null) {
             mListView.setAdapter(new ArrayAdapter<>(this, R.layout.text_view, list));
         }
