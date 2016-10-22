@@ -1,9 +1,9 @@
 <resources>
     <string name="new_list_heading">Neue Liste Erstellen</string>
-    <string name="new_list_hint">Enter list name here…</string>
-    <string name="new_list_item_heading">Add item</string>
-    <string name="new_list_item_hint">Enter item name here…</string>
-    <string name="edit_list_item_heading">Edit item</string>
+    <string name="new_list_hint">Geben Sie Listennamen Hier…</string>
+    <string name="new_list_item_heading">Artikel Hinzufügen</string>
+    <string name="new_list_item_hint">Geben Sie Artikel-Name…</string>
+    <string name="edit_list_item_heading">Element Bearbeiten</string>
     <string name="edit_list_item_hint">Enter new name here…</string>
 
     <string name="cap_unknown">UNKNOWN</string>

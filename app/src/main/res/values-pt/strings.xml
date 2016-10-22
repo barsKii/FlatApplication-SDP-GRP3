@@ -17,7 +17,7 @@
     <string name="del_conformation">Voce Realmente Deseja Deletar?</string>
     <string name="due">Devido: </string>
     <string name="from">De</string>
-    <string name="to">Para</string>
+    <string name="to">Ate</string>
 
     <string name="empty_screen">Nenhuma Tarefa Criada</string>
     <string name="task_add_button">Nova Tarefa</string>
