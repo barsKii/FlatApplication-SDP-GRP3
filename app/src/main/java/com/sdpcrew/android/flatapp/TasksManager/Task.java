@@ -1,13 +1,14 @@
 package com.sdpcrew.android.flatapp.TasksManager;
 
-import android.content.Context;
 import android.content.res.Resources;
 
 import com.sdpcrew.android.flatapp.R;
 
-import java.util.Date;
 import java.util.UUID;
 
+/**
+ * Task is responsible to store all data related to a task
+ */
 public class Task {
     private UUID mId;
     private String mTitle;

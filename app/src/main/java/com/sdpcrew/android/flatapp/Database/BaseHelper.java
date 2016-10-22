@@ -25,6 +25,7 @@ public class BaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         db.execSQL("create table " + BillTable.NAME + "( _id integer primary key autoincrement, " +
                 BillTable.Cols.UUID + ", " +
                 BillTable.Cols.TITLE + ", " +

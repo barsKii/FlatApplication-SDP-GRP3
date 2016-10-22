@@ -4,6 +4,10 @@ import android.support.v4.app.Fragment;
 
 import com.sdpcrew.android.flatapp.R;
 
+/**
+ * TaskManagerActivity is the main activity of task Manager, each controls and manipulate different fragments
+ * It implements QualifierListFragment.Callbacks ensure updates.
+ */
 public class TaskManagerActivity extends SingleFragmentActivity implements QualifierListFragment.Callbacks {
 
     @Override
