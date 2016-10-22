@@ -19,20 +19,27 @@ import android.widget.Toast;
 import com.sdpcrew.android.flatapp.R;
 
 import java.util.UUID;
-
+/**
+ * The TaskDialog class is a DialogFragment used for creating and editing 'Tasks'.
+ * TaskDialog allows users to input or change data stored in a ask object when selected.
+ * it works similarly to qualifierDialog
+ */
 public class TaskDialog extends DialogFragment {
 
     private static final String ARG_QUALIFIER = "Qualifier";
     private static final String ARG_TASK = "Task";
     private static final String EXTRA_Return_data = "new data";
 
-    private EditText mTitle;
-    private CheckBox mCompleted;
-    private boolean mNoTaskPassed;
+    private EditText mTitle;// holds task's title
+    private CheckBox mCompleted;// display if task has been completed
+    private boolean mNoTaskPassed;// ensure dialog works when phone rotates
 
-    private TaskLab mTaskLab;
-    private Task mNewTask;
+    private TaskLab mTaskLab;// store a reference for the Task lab class
+    private Task mNewTask;// holds a new task or reference to an existing tasks(passed as argument)
 
+    /**
+     * used to return instance of this dialog and also stores an argument (id of the qualifier)
+     */
     public static TaskDialog newInstance(UUID qualifierId) {
         Bundle args = new Bundle();
         args.putSerializable(ARG_QUALIFIER, qualifierId);
@@ -41,6 +48,9 @@ public class TaskDialog extends DialogFragment {
         return fragment;
     }
 
+    /**used to return instance of this dialog and also stores arguments (id of the qualifier and existent task id)
+     * this is used when a task is selected
+     */
     public static TaskDialog newInstance(UUID qualifierId, UUID TaskId) {
         Bundle args = new Bundle();
         args.putSerializable(ARG_QUALIFIER, qualifierId);
@@ -118,6 +128,12 @@ public class TaskDialog extends DialogFragment {
         return dialog;
     }
 
+    /**
+     * This method is used when a Qualifier is created or edited due to the View needing to be
+     * updated.
+     * Androids onActivityResult method is called manually to detect a forced alteration and
+     * therefore trigger an update.
+     */
     private void sendResult(int resultCode) {
         if (getTargetFragment() == null) {
             return;

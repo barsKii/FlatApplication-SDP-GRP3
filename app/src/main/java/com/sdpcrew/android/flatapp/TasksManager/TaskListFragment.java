@@ -23,6 +23,10 @@ import com.sdpcrew.android.flatapp.R;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * This is a fragment which controls and maintain the list of Tasks of a qualifier
+ * This fragment will call other fragments and it should be initialized by an activity.
+ */
 public class TaskListFragment extends Fragment {
 
     private static final String ARG_QUALIFIER_ID = "qualifierTitle";
@@ -135,10 +139,6 @@ public class TaskListFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            Toast.makeText(getActivity(),
-                    mTask.getTitle() + " " + getString(R.string.clicked), Toast.LENGTH_SHORT)
-                    .show();
-
             FragmentManager manager = getFragmentManager();
             TaskDialog dialog = TaskDialog.newInstance(mQualifier.getId(), mTask.getId());
             dialog.setTargetFragment(TaskListFragment.this, REQUEST_DATA);

@@ -28,7 +28,7 @@ public class CalenderEventHandler extends FragmentActivity {
         setContentView(R.layout.calendar_day_list);
 
         Bundle getDateSelected =getIntent().getExtras();
-        String dateSelect =getDateSelected.getString("DateSelected");
+        String dateSelect = getDateSelected.getString("DateSelected");
 
         TextView dateSet = (TextView) findViewById(R.id.calendar_date_selected);
         dateSet.setText(dateSelect);

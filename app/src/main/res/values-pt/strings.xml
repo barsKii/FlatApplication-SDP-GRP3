@@ -1,0 +1,65 @@
+<resources>
+    <string name="new_list_heading">Criar Nova Lista</string>
+    <string name="new_list_hint">Entre Nome Da Lista Aqui…</string>
+    <string name="new_list_item_heading">Adicionar Item</string>
+    <string name="new_list_item_hint">Entre Nome Do Item Aqui…</string>
+    <string name="edit_list_item_heading">Editar Item</string>
+    <string name="edit_list_item_hint">Entre Novo Nome Aqui…</string>
+
+    <string name="cap_unknown">Desconhecido</string>
+    <string name="cap_ok">OK</string>
+    <string name="cancel">Cancelar</string>
+    <string name="change">Alterar</string>
+    <string name="del_item">Deletar Item</string>
+    <string name="no_title">Nenhum Titulo</string>
+    <string name="clicked">Pressionado!</string>
+    <string name="sure_question">Voce Tem Certeza?</string>
+    <string name="del_conformation">Voce Realmente Deseja Deletar?</string>
+    <string name="due">Devido:</string>
+
+    <string name="empty_screen">Nenhuma Tarefa Criada</string>
+    <string name="task_add_button">Nova Tarefa</string>
+    <string name="menu_add_button">Nova Lista</string>
+    <string name="activity_twopane_qualifier">Listas</string>
+    <string name="activity_twopane_tasks">Tarefas</string>
+    <string name="hint_enter_title">Entre Titulo Aqui</string>
+    <string name="title_only">Titulo:</string>
+    <string name="dialog_title_task">Tarefa:</string>
+    <string name="dialog_title_qualifier">Listas:</string>
+    <string name="menu_delete_button">Deletar</string>
+    <string name="menu_no_qualifier_selected">Nenhuma Lista Selecionada</string>
+    <string name="dialog_task_done">Pronto</string>
+    <string name="no_title_task_enter">Nenhum Titulo Criado. Nenhuma Tarefa Criada</string>
+    <string name="no_title_qualifier_enter">Nenhum Titulo Criado. Nenhuma Lista Criada</string>
+    <string name="qualifier_must_select">List Deve Ser Selecionada!</string>
+    <string name="rosrer_exists">Essa Lista Já Existe</string>
+
+    <string name="bill_title_hint">Entre Nome Da Conta Aqui. </string>
+    <string name="bill_title_label">Titulo</string>
+    <string name="bill_details_label">Detalhes</string>
+    <string name="bill_amount_label">Quantidade</string>
+    <string name="bill_details_hint">Entre Uma Descrição.</string>
+    <string name="bill_amount_hint">Entre Quantidade Para A Conta.  (Necessario)</string>
+    <string name="bill_paid_label">Pago</string>
+    <string name="bill_date_picker_title">Data de vencimento:</string>
+    <string name="new_bill">Nova Conta</string>
+    <string name="show_subtitle">Mostrar Legenda</string>
+    <string name="hide_subtitle">Esconder Legenda</string>
+    <plurals name="subtitle_plural">
+        <item quantity="one">%1$s Conta</item>
+        <item quantity="other">%1$s Contas</item>
+    </plurals>
+    <string name="bill_due_date_label">Data Para Pagamento</string>
+    <string name="empty_title_warning">Por favor Entre Um Titulo.</string>
+    <string name="failed_bill_add">Não Foi Possível Adicionar Conta. Titulo Vazio.</string>
+    <string name="delete_bill">Deletar Conta</string>
+    <string name="remove_bill">Conta Removida</string>
+    <string name="save_bill">Conta Salvada</string>
+
+    <string name="calendar_event_Time">Tempo</string>
+    <string name="calendar_all_day">Dia Inteiro</string>
+    <string name="calendar_guest">Convidado</string>
+    <string name="calendar_note">Nota</string>
+    <string name="calendar_desc">Descrição</string>
+
+</resources>

@@ -12,6 +12,10 @@ import java.util.UUID;
 
 import static com.sdpcrew.android.flatapp.Splash.mDatabase;
 
+/**
+ * TaskLab is a Singleton class, it has methods to manage qualifiers(Creation,deletion,insertion,update).
+ * This class also stores the name of the parent qualifier
+ */
 public class TaskLab {
 
     private String mQualifierTitle;
@@ -21,6 +25,9 @@ public class TaskLab {
         mQualifierTitle = title;
     }
 
+    /**
+     * Add a new Task to the local database
+     */
     public boolean addTask(Task task) {
         ContentValues values = getContentValues(task);
         return mDatabase.insert(TaskTable.NAME, null, values) != -1;
@@ -28,18 +35,27 @@ public class TaskLab {
 
     }
 
+    /**
+     * Remove a new Task to the local database
+     */
     public boolean removeTask(Task task) {
         String[] whereArg = new String[]{mQualifierTitle, task.getId().toString()};
         return mDatabase.delete(TaskTable.NAME, whereClause, whereArg) != 0;
 
     }
 
+    /**
+     * Update a Task in the local database
+     */
     public void updateTask(Task task) {
         String[] whereArg = new String[]{mQualifierTitle, task.getId().toString()};
         ContentValues values = getContentValues(task);
         mDatabase.update(TaskTable.NAME, values, whereClause, whereArg);
     }
 
+    /**
+     * Return a list of all qualifiers from the local database based on qualifier's name
+     */
     public List<Task> getTasks() {
         List<Task> tasks = new ArrayList<>();
         AllCursorWrapper cursor = this.queryTask(TaskTable.Cols.QUALIFIER_ID + "= ?",
@@ -58,6 +74,9 @@ public class TaskLab {
 
     }
 
+    /**
+     * Get a Task by UUID from local database
+     */
     public Task getTask(UUID id) {
         AllCursorWrapper cursor = this.queryTask(
                 whereClause, new String[]{mQualifierTitle, id.toString()}

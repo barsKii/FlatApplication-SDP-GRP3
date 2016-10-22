@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name" translatable="false">FlatApp</string>
-    <string name="title_activity_shopping_list" translatable="false">ShoppingListActivity</string>
     <string name="new_list_heading">Create New List</string>
     <string name="new_list_hint">Enter list name here…</string>
     <string name="new_list_item_heading">Add item</string>
@@ -37,7 +35,6 @@
     <string name="rosrer_exists">This Roster already exists</string>
 
     <string name="bill_title_hint">Enter a title for the bill.  (Required)</string>
-    <string name="bill_due_fragement">Due: </string>
     <string name="bill_title_label">Title</string>
     <string name="bill_details_label">Details</string>
     <string name="bill_amount_label">Amount</string>
@@ -59,7 +56,6 @@
     <string name="remove_bill">Bill Removed</string>
     <string name="save_bill">Save Bill</string>
 
-    <string name="calendar_event_name">EventName</string>
     <string name="calendar_event_Time">Time</string>
     <string name="calendar_all_day">All Day</string>
     <string name="calendar_guest">Guest</string>

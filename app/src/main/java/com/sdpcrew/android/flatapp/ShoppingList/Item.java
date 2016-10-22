@@ -16,7 +16,7 @@ public class Item {
     private UUID mId;
     private String ItemName;
 
-    Item(String name) {
+    public Item(String name) {
         this(UUID.randomUUID(), name);
     }
 
@@ -32,7 +32,7 @@ public class Item {
     void setItemName(String name) {
         if (name != null && !(name.trim().equals(""))) {
             ItemName = name;
-        } else ItemName = "" + R.string.cap_unknown;
+        } else ItemName = "???";
     }
 
     String getItemName() {
