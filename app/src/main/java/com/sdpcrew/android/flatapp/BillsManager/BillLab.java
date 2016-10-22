@@ -36,7 +36,6 @@ public class BillLab {
 
     /**
      * Creates/Opens the bill database
-     * @param context
      */
     private BillLab(Context context) {
         mContext = context.getApplicationContext();
