@@ -39,7 +39,7 @@
     <string name="bill_details_label">Detalhes</string>
     <string name="bill_amount_label">Quantidade</string>
     <string name="bill_details_hint">Entre Uma Descrição.</string>
-    <string name="bill_amount_hint">Entre Quantidade Para A Conta.  (Necessario)</string>
+    <string name="bill_amount_hint">Entre Quantidade Para A Conta.</string>
     <string name="bill_paid_label">Pago</string>
     <string name="bill_date_picker_title">Data de vencimento:</string>
     <string name="new_bill">Nova Conta</string>
@@ -54,7 +54,7 @@
     <string name="failed_bill_add">Não Foi Possível Adicionar Conta. Titulo Vazio.</string>
     <string name="delete_bill">Deletar Conta</string>
     <string name="remove_bill">Conta Removida</string>
-    <string name="save_bill">Conta Salvada</string>
+    <string name="save_bill">Salvar</string>
 
     <string name="calendar_event_Time">Tempo</string>
     <string name="calendar_all_day">Dia Inteiro</string>
