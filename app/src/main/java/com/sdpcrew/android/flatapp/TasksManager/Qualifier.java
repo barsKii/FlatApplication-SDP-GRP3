@@ -20,7 +20,7 @@ public class Qualifier {
 
     public Qualifier(UUID id) {
         mId = id;
-        mTitle = Resources.getSystem().getString(R.string.no_title);
+        mTitle = "";
     }
 
     public UUID getId() {
