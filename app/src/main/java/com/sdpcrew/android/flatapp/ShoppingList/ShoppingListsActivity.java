@@ -3,7 +3,6 @@ package com.sdpcrew.android.flatapp.ShoppingList;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -15,7 +14,6 @@ import android.widget.ListView;
 
 import com.sdpcrew.android.flatapp.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingListsActivity extends AppCompatActivity {
@@ -71,7 +69,7 @@ public class ShoppingListsActivity extends AppCompatActivity {
     }
 
     public void updateListView() {
-        List<String> list = ShoppingListLab.get(getBaseContext()).getShoppingListsNames();
+        List<String> list = ShoppingListLab.get(this).getShoppingListsNames();
         if (list != null) {
             mListView.setAdapter(new ArrayAdapter<>(this, R.layout.text_view, list));
         }

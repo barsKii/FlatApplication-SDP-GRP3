@@ -56,7 +56,7 @@
     <string name="remove_bill">Conta Removida</string>
     <string name="save_bill">Salvar</string>
 
-    <string name="calendar_event_Time">Tempo</string>
+    <string name="calendar_event_Time">Frequencia</string>
     <string name="calendar_all_day">Dia Inteiro</string>
     <string name="calendar_guest">Convidado</string>
     <string name="calendar_note">Nota</string>
