@@ -36,12 +36,12 @@
     <string name="qualifier_must_select">List Deve Ser Selecionada!</string>
     <string name="rosrer_exists">Essa Lista Já Existe</string>
 
-    <string name="bill_title_hint">Entre Nome Da Conta Aqui. (Necessario)</string>
+    <string name="bill_title_hint">Entre Nome Da Conta Aqui.</string>
     <string name="bill_title_label">Titulo</string>
     <string name="bill_details_label">Detalhes</string>
     <string name="bill_amount_label">Quantidade</string>
     <string name="bill_details_hint">Entre Uma Descrição.</string>
-    <string name="bill_amount_hint">Entre Quantidade Para A Conta. (Necessario)</string>
+    <string name="bill_amount_hint">Entre Quantidade Para A Conta.</string>
     <string name="bill_paid_label">Pago</string>
     <string name="bill_date_picker_title">Data de vencimento:</string>
     <string name="new_bill">Nova Conta</string>

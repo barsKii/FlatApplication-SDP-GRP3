@@ -36,12 +36,12 @@
     <string name="qualifier_must_select">Roster muss ausgewählt warden!</string>
     <string name="rosrer_exists">Dieser Roster ist bereits vorhanden</string>
 
-    <string name="bill_title_hint">Geben Sie einen Titel für Rechnung.  (Erforderlich)</string>
+    <string name="bill_title_hint">Geben Sie einen Titel für Rechnung.</string>
     <string name="bill_title_label">Titel</string>
     <string name="bill_details_label">Einzelheiten</string>
     <string name="bill_amount_label">Menge</string>
     <string name="bill_details_hint">Geben Sie zusätzliche Informationen.</string>
-    <string name="bill_amount_hint">Geben Sie den Betrag der Rechnung.  (Erforderlich)</string>
+    <string name="bill_amount_hint">Geben Sie den Betrag der Rechnung.</string>
     <string name="bill_paid_label">Bezahlt</string>
     <string name="bill_date_picker_title">Fälligkeit der Rechnung:</string>
     <string name="new_bill">Neue Rechnung</string>
