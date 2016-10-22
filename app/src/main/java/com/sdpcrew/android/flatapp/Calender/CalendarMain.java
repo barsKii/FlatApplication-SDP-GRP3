@@ -58,7 +58,7 @@ public class CalendarMain extends AppCompatActivity {
             "In order to succeed your desire for success should be greater then fear of failure",
             "Accepting responsibility for your life ",
             "Challenges are what makes life interesting and overcoming them makes life meaningful",
-            "i don’t regret the things I’ve done, i regret the things it i didnt do"};
+            "i don’t regret the things I’ve done, i regret the things it i didn't do"};
 
     public int handler =0;
 
@@ -140,10 +140,10 @@ public class CalendarMain extends AppCompatActivity {
 
     public void setUpCalendar() {
 
-        mCalendar = mCalendar.getInstance(Locale.getDefault());// create calendar using current timezone
+        mCalendar = Calendar.getInstance(Locale.getDefault());// create calendar using current timezone
         mCal = (Calendar) mCalendar.clone(); // clone to differentiate between click changes
 
-        eventList = new ArrayList<String>();
+        eventList = new ArrayList<>();
 
         mCalendarAdapter = new CalendarAdapter(this, mCalendar); // send to constructor class
         mCalendarGridView = (GridView) findViewById(R.id.calendar_gridview);

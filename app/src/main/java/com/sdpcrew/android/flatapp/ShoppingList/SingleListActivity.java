@@ -51,7 +51,7 @@ public class SingleListActivity extends AppCompatActivity {
                 editText.setText(item.getItemName());
                 // setup a dialog window
                 alertDialogBuilder.setCancelable(false)
-                        .setPositiveButton("Change", new DialogInterface.OnClickListener() {
+                        .setPositiveButton(getString(R.string.change), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 //                                ShoppingListsActivity.lists.get(listNum).updateItem(i ,""+editText.getText());
                                 item.setItemName("" + editText.getText());
@@ -59,13 +59,13 @@ public class SingleListActivity extends AppCompatActivity {
                                 updateListView();
                             }
                         })
-                        .setNegativeButton("Cancel",
+                        .setNegativeButton(getString(R.string.cancel),
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         dialog.cancel();
                                     }
                                 })
-                        .setNeutralButton("Delete Item",
+                        .setNeutralButton(getString(R.string.del_item),
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
 //                                        ShoppingListsActivity.lists.get(listNum).deleteItemFromList(i);
@@ -94,7 +94,7 @@ public class SingleListActivity extends AppCompatActivity {
                 final EditText editText = (EditText) promptView.findViewById(R.id.editText);
                 // setup a dialog window
                 alertDialogBuilder.setCancelable(false)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        .setPositiveButton(getString(R.string.cap_ok), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 //                                ShoppingListsActivity.lists.get(listNum);
 //                                ShoppingListsActivity.lists.get(listNum).addItemToList("" + editText.getText());
@@ -103,7 +103,7 @@ public class SingleListActivity extends AppCompatActivity {
                                 updateListView();
                             }
                         })
-                        .setNegativeButton("Cancel",
+                        .setNegativeButton(getString(R.string.cancel),
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         dialog.cancel();

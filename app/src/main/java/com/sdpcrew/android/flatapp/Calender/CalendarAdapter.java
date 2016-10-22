@@ -17,17 +17,18 @@ import android.widget.Toast;
 
 /**
  * Created by iAmacone on 11/09/16.
+ *
  */
 
 public class CalendarAdapter extends BaseAdapter {
 
     private Context mContext;
 
-    public static List<String> dayEvents;
+    static List<String> dayEvents;
 
     private Calendar mCalendarRef;
-    public Calendar mPrevMonth;
-    public Calendar mMonth;
+    private Calendar mPrevMonth;
+    private Calendar mMonth;
     private Calendar mCalendarClone;
 
     private View mPreviousView;
@@ -37,14 +38,13 @@ public class CalendarAdapter extends BaseAdapter {
     private ArrayList<String> items;
 
 
-    int firstDayOfMonth;
-    int MaxWeekInMonth;
-    int MonthLength;
-    int DaysInAMonth;
-    int offDays;
+    private int firstDayOfMonth;
+    private int MaxWeekInMonth;
+    private int MonthLength;
+    private int DaysInAMonth;
+    private int offDays;
 
-    String itemvalue;
-    private static final String TAG = "Calender";
+    private String itemvalue;
 
     public CalendarAdapter(Context c, Calendar CalendarDetails) {
         /* inti variables */
@@ -55,7 +55,7 @@ public class CalendarAdapter extends BaseAdapter {
         mContext = c;
         mCalendarRef.set(Calendar.DAY_OF_MONTH,1);
 
-        this.items = new ArrayList<String>();
+        this.items = new ArrayList<>();
         //get current date without interference of calendar class index values
         df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         mCurentDate = df.format(mCalendarClone.getTime());
@@ -70,7 +70,7 @@ public class CalendarAdapter extends BaseAdapter {
      * offset to be display and passed to
      * calendar main
      */
-    public void refreshDays() {
+    void refreshDays() {
         /*items.clear(); will be changed in the next integration to if() statement filtering out intial start.xml
            as items is working on a hard coded basis for testing.
          */
@@ -107,7 +107,7 @@ public class CalendarAdapter extends BaseAdapter {
         return maxDays;
     }
 
-    public void setItems(ArrayList<String> items) {
+    void setItems(ArrayList<String> items) {
         for (int i = 0; i != items.size(); i++) {
             if (items.get(i).length() == 1) {
                 items.set(i, "0" + items.get(i));
@@ -183,7 +183,7 @@ public class CalendarAdapter extends BaseAdapter {
 
     }
 
-    public View setSelected(View view) {
+    View setSelected(View view) {
         if (mPreviousView != null) {
             mPreviousView.setBackgroundResource(R.drawable.list_item_background);
         }

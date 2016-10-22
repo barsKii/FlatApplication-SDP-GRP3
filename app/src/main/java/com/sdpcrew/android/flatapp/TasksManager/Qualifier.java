@@ -1,5 +1,9 @@
 package com.sdpcrew.android.flatapp.TasksManager;
 
+import android.content.res.Resources;
+
+import com.sdpcrew.android.flatapp.R;
+
 import java.util.UUID;
 
 public class Qualifier {
@@ -13,7 +17,7 @@ public class Qualifier {
 
     public Qualifier(UUID id) {
         mId = id;
-        mTitle = "No Title";
+        mTitle = Resources.getSystem().getString(R.string.no_title);
     }
 
     public UUID getId() {
@@ -28,7 +32,7 @@ public class Qualifier {
         mTitle = title;
     }
 
-    public TaskLab getTaskLab() {
+    TaskLab getTaskLab() {
 
         return new TaskLab(mTitle);
     }

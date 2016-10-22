@@ -8,21 +8,33 @@
     <string name="edit_list_item_heading">Edit item</string>
     <string name="edit_list_item_hint">Enter new name here…</string>
 
+    <string name="cap_unknown">UNKNOWN</string>
+    <string name="cap_ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="change">Change</string>
+    <string name="del_item">Delete Item</string>
+    <string name="no_title">No Title</string>
+    <string name="clicked">Clicked!</string>
+    <string name="sure_question">Are you sure?</string>
+    <string name="del_conformation">Do you really want to delete?</string>
+    <string name="due">Due: </string>
 
     <string name="empty_screen">No Task Created</string>
     <string name="task_add_button">New Task</string>
-    <string name="menu_add_button">New Qualifier</string>
-    <string name="activity_twopane_qualifier">Qualifiers</string>
+    <string name="menu_add_button">New Roster</string>
+    <string name="activity_twopane_qualifier">Rosters</string>
     <string name="activity_twopane_tasks">Tasks</string>
     <string name="hint_enter_title">Enter Title Here</string>
     <string name="title_only">Title:</string>
     <string name="dialog_title_task">Task:</string>
-    <string name="dialog_title_qualifier">Qualifier:</string>
+    <string name="dialog_title_qualifier">Roster:</string>
     <string name="menu_delete_button">Delete</string>
-    <string name="menu_no_qualifier_selected">No Qualifier Selected</string>
+    <string name="menu_no_qualifier_selected">No Roster Selected</string>
     <string name="dialog_task_done">Done</string>
     <string name="no_title_task_enter">No title entered. No Task created</string>
-    <string name="no_title_qualifier_enter">No title entered. No Qualifier created</string>
+    <string name="no_title_qualifier_enter">No title entered. No Roster created</string>
+    <string name="qualifier_must_select">Roster must be selected!</string>
+    <string name="rosrer_exists">This Roster already exists</string>
 
     <string name="bill_title_hint">Enter a title for the bill.  (Required)</string>
     <string name="bill_title_label">Title</string>
