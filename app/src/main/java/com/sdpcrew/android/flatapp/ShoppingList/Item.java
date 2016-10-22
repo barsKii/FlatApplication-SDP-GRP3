@@ -16,7 +16,7 @@ public class Item {
     private UUID mId;
     private String ItemName;
 
-    Item(String name) {
+    public Item(String name) {
         this(UUID.randomUUID(), name);
     }
 
