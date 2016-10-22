@@ -16,7 +16,7 @@ public class Task {
 
     public Task(UUID id) {
         mId = id;
-        mTitle = Resources.getSystem().getString(R.string.no_title);
+        mTitle = "";
         mCompleted = false;
     }
 

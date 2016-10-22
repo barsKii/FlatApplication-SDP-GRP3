@@ -44,7 +44,7 @@ public class ShoppingList {
     public void setListName(String name) {
         if (name != null && !(name.trim().equals(""))) {
             listName = name;
-        } else listName = Resources.getSystem().getString(R.string.cap_unknown);
+        } else listName = "???";
     }
 
     String getListName() {
