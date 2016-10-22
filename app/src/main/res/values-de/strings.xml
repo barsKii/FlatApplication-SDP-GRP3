@@ -16,6 +16,8 @@
     <string name="sure_question">Are you sure?</string>
     <string name="del_conformation">Do you really want to delete?</string>
     <string name="due">Due: </string>
+    <string name="from">Von</string>
+    <string name="to">Nach</string>
 
     <string name="empty_screen">No Task Created</string>
     <string name="task_add_button">New Task</string>

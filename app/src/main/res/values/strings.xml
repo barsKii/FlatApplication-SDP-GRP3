@@ -18,6 +18,8 @@
     <string name="sure_question">Are you sure?</string>
     <string name="del_conformation">Do you really want to delete?</string>
     <string name="due">Due: </string>
+    <string name="from">From</string>
+    <string name="to">To</string>
 
     <string name="empty_screen">No Task Created</string>
     <string name="task_add_button">New Task</string>
@@ -59,7 +61,7 @@
     <string name="remove_bill">Bill Removed</string>
     <string name="save_bill">Save Bill</string>
 
-    <string name="calendar_event_name">EventName</string>
+    <string name="calendar_event_name" translatable="false">EventName</string>
     <string name="calendar_event_Time">Time</string>
     <string name="calendar_all_day">All Day</string>
     <string name="calendar_guest">Guest</string>

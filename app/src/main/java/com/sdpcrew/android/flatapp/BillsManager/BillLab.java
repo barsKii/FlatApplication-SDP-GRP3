@@ -122,7 +122,4 @@ public class BillLab {
     private AllCursorWrapper queryBills(String whereClause, String[] whereArgs) {
         return QueryMethods.queryDb(BillTable.NAME,whereClause,whereArgs);
     }
-
-
-
 }
