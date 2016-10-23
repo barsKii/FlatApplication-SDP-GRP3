@@ -13,10 +13,6 @@ import com.sdpcrew.android.flatapp.Database.BaseHelper;
  */
 public class Splash extends Activity {
 
-//    private static final int SPLASH_DISPLAY_LENGTH = 2000; // Duration that the splash screen will be active
-//    private static final String STARTED = "started"; // for saving purpose when app is destroyed
-//    private boolean screenShown; //Whether or not the screen has been shown
-
     public static SQLiteDatabase mDatabase;
 
     @Override

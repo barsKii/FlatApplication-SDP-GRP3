@@ -1,7 +1,7 @@
 <resources>
     <string name="new_list_heading">Créer Une Nouvelle Liste</string>
-    <string name="add_new_list">Add New List</string>
-    <string name="add_new_item">Add New Item</string>
+    <string name="add_new_list">Ajouter Nouvelle Liste</string>
+    <string name="add_new_item">Ajoute un nouvel objet</string>
     <string name="new_list_hint">Saisir le nom de la liste…</string>
     <string name="new_list_item_heading">Ajouter un élément</string>
     <string name="new_list_item_hint">Saisir le nom de l’élément ici…</string>
@@ -18,15 +18,15 @@
     <string name="sure_question">Êtes-vous sur?</string>
     <string name="del_conformation">Voulez-vous supprimer?</string>
     <string name="due">Due: </string>
-    <string name="from">From</string>
-    <string name="to">To</string>
+    <string name="from">À partir de</string>
+    <string name="to">Jusqu'à</string>
 
     <string name="empty_screen">Aucune Tâche Créée</string>
     <string name="task_add_button">Nouvelle Tâche</string>
     <string name="menu_add_button">Nouvelle Liste</string>
     <string name="activity_twopane_qualifier">Listes</string>
     <string name="activity_twopane_tasks">Tâches</string>
-    <string name="hint_enter_title">Enter Title Here</string>
+    <string name="hint_enter_title">Saisissez le titre ici</string>
     <string name="title_only">Titre:</string>
     <string name="dialog_title_task">Tâche:</string>
     <string name="dialog_title_qualifier">Listes:</string>

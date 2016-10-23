@@ -2,6 +2,7 @@ package com.sdpcrew.android.flatapp.Database;
 
 /**
  * Created by David on 4/10/2016.
+ *
  */
 //Only present to define String constants needed to describe moving pieces of table definitio
 public class DbSchema {
@@ -62,7 +63,5 @@ public class DbSchema {
             public static final String ID = "item_id";
             public static final String TITLE = "item_title";
         }
-
     }
-
 }
