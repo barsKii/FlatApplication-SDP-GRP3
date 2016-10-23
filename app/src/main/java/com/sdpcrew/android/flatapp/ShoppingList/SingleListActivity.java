@@ -11,7 +11,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.sdpcrew.android.flatapp.R;
 
@@ -20,26 +22,30 @@ import java.util.UUID;
 import static com.sdpcrew.android.flatapp.ShoppingList.ShoppingListsActivity.EXTRA_SINGLE_LIST;
 
 public class SingleListActivity extends AppCompatActivity {
-    //    private int listNum;
     private ListView mListView;
     private FloatingActionButton mFab;
     private ShoppingList shoppingList;
+    private TextView mAddText;
+    private ImageView mAddImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list);
+        mAddText = (TextView) findViewById(R.id.addListText);
+        mAddText.setText(getString(R.string.add_new_item));
+        mAddImage = (ImageView) findViewById(R.id.addArrow);
+
         Intent intent = getIntent();
         UUID id;
         if (intent != null) {
             id = UUID.fromString(intent.getStringExtra(EXTRA_SINGLE_LIST));
-            shoppingList = ShoppingListLab.get(getBaseContext()).getShoppingList(id);
+            shoppingList = ShoppingListLab.get(getApplicationContext()).getShoppingList(id);
         }
         mListView = (ListView) findViewById(R.id.shoppingListView);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int pos, long id) {
-//                final int i = pos;
                 final Item item = shoppingList.getItemByIndex(pos);
 
                 LayoutInflater layoutInflater = LayoutInflater.from(v.getContext());
@@ -53,7 +59,6 @@ public class SingleListActivity extends AppCompatActivity {
                 alertDialogBuilder.setCancelable(false)
                         .setPositiveButton(getString(R.string.change), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-//                                ShoppingListsActivity.lists.get(listNum).updateItem(i ,""+editText.getText());
                                 item.setItemName("" + editText.getText());
                                 shoppingList.updateItem(item);
                                 updateListView();
@@ -68,7 +73,6 @@ public class SingleListActivity extends AppCompatActivity {
                         .setNeutralButton(getString(R.string.del_item),
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
-//                                        ShoppingListsActivity.lists.get(listNum).deleteItemFromList(i);
                                         shoppingList.deleteItemFromList(item);
                                         updateListView();
                                     }
@@ -79,8 +83,6 @@ public class SingleListActivity extends AppCompatActivity {
             }
         });
         updateListView();
-
-//        listNum = getIntent().getExtras().getInt("list");
 
         mFab = (FloatingActionButton) findViewById(R.id.fab);
         mFab.setOnClickListener(new View.OnClickListener() {
@@ -96,8 +98,6 @@ public class SingleListActivity extends AppCompatActivity {
                 alertDialogBuilder.setCancelable(false)
                         .setPositiveButton(getString(R.string.cap_ok), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-//                                ShoppingListsActivity.lists.get(listNum);
-//                                ShoppingListsActivity.lists.get(listNum).addItemToList("" + editText.getText());
                                 Item anItem = new Item("" + editText.getText());
                                 shoppingList.addItemToList(anItem);
                                 updateListView();
@@ -118,11 +118,19 @@ public class SingleListActivity extends AppCompatActivity {
     }
 
     public void updateListView() {
-//        if (ShoppingListsActivity.lists.get(listNum) != null) {
-//            mListView.setAdapter(new ArrayAdapter<>(this, R.layout.text_view, ShoppingListsActivity.lists.get(listNum).getListOfItems()));
-//        }
-        mListView.setAdapter(new ArrayAdapter<>(this, R.layout.text_view,
-                shoppingList.getListOfItemsByName()));
+        if (shoppingList.getListOfItemsByName() != null) {
+            mListView.setAdapter(new ArrayAdapter<>(this, R.layout.text_view,
+                    shoppingList.getListOfItemsByName()));
+
+            if (!shoppingList.getListOfItemsByName().isEmpty()) {
+                mAddText.setVisibility(View.GONE);
+                mAddImage.setVisibility(View.GONE);
+            } else {
+                mAddText.setVisibility(View.VISIBLE);
+                mAddImage.setVisibility(View.VISIBLE);
+            }
+        }
+
 
     }
 }

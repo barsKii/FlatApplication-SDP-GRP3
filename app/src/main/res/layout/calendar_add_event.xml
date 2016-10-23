@@ -52,7 +52,7 @@
         android:id="@+id/calendar_events_from">
 
         <TextView
-            android:text="From"
+            android:text="@string/from"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/calendar_text_from"
@@ -83,7 +83,7 @@
         android:id="@+id/calendar_events_to">
 
         <TextView
-            android:text="To"
+            android:text="@string/to"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/calendar_text_to"

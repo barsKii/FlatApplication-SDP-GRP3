@@ -23,7 +23,7 @@ public class Splash extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mDatabase = new BaseHelper(getBaseContext())
+        mDatabase = new BaseHelper(getApplicationContext())
                 .getWritableDatabase();
 
         Intent mainIntent = new Intent(Splash.this, MainActivity.class);
