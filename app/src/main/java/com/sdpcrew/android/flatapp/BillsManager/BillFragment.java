@@ -237,7 +237,7 @@ public class BillFragment extends Fragment {
                     mAmountField.removeTextChangedListener(this);
 
                     //Gets the symbol for the current currency on the phone to implement the correct currency symbol
-                    String replaceable = String.format("[%s,.]", NumberFormat.getCurrencyInstance().getCurrency().getSymbol());
+                    String replaceable = String.format("[%s,.\\s]", NumberFormat.getCurrencyInstance().getCurrency().getSymbol());
                     String cleanString = s.toString().replaceAll(replaceable, "");
 
                     BigDecimal parsed = new BigDecimal(cleanString).setScale(2, BigDecimal.ROUND_FLOOR)
