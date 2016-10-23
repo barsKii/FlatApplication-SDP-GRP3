@@ -27,7 +27,9 @@
             android:hint="@string/hint_enter_title"
             android:textColor="@android:color/primary_text_light"
             android:layout_toRightOf="@+id/dialog_qualifier_titletext"
-            android:layout_marginLeft="4dp"/>
+            android:layout_marginLeft="4dp"
+            android:layout_toEndOf="@+id/dialog_qualifier_titletext"
+            android:layout_marginStart="4dp" />
 
     </LinearLayout>
 

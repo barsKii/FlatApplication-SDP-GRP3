@@ -7,4 +7,6 @@
     android:paddingLeft="15dip"
     android:paddingRight="15dip"
     android:paddingTop="10dip"
-    android:textSize="20sp" />
+    android:textSize="20sp"
+    android:paddingStart="15dip"
+    android:paddingEnd="15dip" />

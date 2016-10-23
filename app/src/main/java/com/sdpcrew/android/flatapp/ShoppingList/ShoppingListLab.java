@@ -18,7 +18,7 @@ import static com.sdpcrew.android.flatapp.Splash.mDatabase;
  *
  */
 
-class ShoppingListLab {
+public class ShoppingListLab {
     private static final String whereClause = ShoppingListsTable.Cols.ID + "=?";
     private static ShoppingListLab sShoppingListLab;
     private Context mContext;
@@ -34,7 +34,7 @@ class ShoppingListLab {
         mContext = context.getApplicationContext();
     }
 
-    boolean addShoppingList(ShoppingList shoppingList) {
+    public boolean addShoppingList(ShoppingList shoppingList) {
         ContentValues values = getContentValues(shoppingList);
         return mDatabase.insert(ShoppingListsTable.NAME, null, values) == 0;
 

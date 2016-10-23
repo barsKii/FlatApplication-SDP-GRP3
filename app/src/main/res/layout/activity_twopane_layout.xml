@@ -75,7 +75,7 @@
                 android:title="@string/task_add_button"
                 app:backgroundTint="@color/tile3"
                 app:rippleColor="#FFF"
-                android:layout_gravity="bottom|right"/>
+                android:layout_gravity="bottom|end"/>
         </FrameLayout>
 
     </LinearLayout>

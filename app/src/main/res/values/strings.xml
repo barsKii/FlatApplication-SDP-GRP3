@@ -69,5 +69,7 @@
     <string name="calendar_guest">Guest</string>
     <string name="calendar_note">Note</string>
     <string name="calendar_desc">Description</string>
+    <string name="sync_flat_data">Sync Flat Data</string>
+    <string name="sync_started">Syncing Started</string>
 
 </resources>

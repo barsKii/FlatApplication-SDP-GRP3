@@ -5,61 +5,63 @@
 
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
-                     android:maxSdkVersion="18" />
-    <uses-feature android:name="android.hardware.camera"
-                  android:required="false" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.access_wifi_state" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/FlatAppCustomTheme"
-        >
-
+        android:theme="@style/FlatAppCustomTheme">
         <activity
             android:name=".Splash"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".MainActivity">
             android:configChanges="orientation" >
         </activity>
-
-        <activity android:name=".ShoppingList.ShoppingListsActivity"
+        <activity
+            android:name=".ShoppingList.ShoppingListsActivity"
             android:parentActivityName=".MainActivity">
-            android:configChanges="orientation|keyboard"</activity>
-        <activity android:name=".ShoppingList.SingleListActivity"
+            android:configChanges="orientation|keyboard"
+        </activity>
+        <activity
+            android:name=".ShoppingList.SingleListActivity"
             android:parentActivityName=".ShoppingList.ShoppingListsActivity">
-            android:configChanges="orientation|keyboard"</activity>
-
-        <activity android:name=".TasksManager.TaskManagerActivity"
-                  android:parentActivityName=".MainActivity"
-                  android:theme="@style/FlatAppTaskManager"
-            tools:ignore="InnerclassSeparator">
-              </activity>
-
+            android:configChanges="orientation|keyboard"
+        </activity>
+        <activity
+            android:name=".TasksManager.TaskManagerActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/FlatAppTaskManager"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".Calender.CalendarMain"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".Calender.CalenderEventHandler" />
         <activity android:name=".Calender.CalendarActivity" />
-
         <activity
             android:name=".BillsManager.BillListActivity"
             android:parentActivityName=".MainActivity"
             android:theme="@style/FlatAppBillTheme" />
         <activity
             android:name=".BillsManager.BillPagerActivity"
-            android:theme="@style/FlatAppBillTheme"
-            android:parentActivityName=".BillsManager.BillListActivity">
-        </activity>
-
+            android:parentActivityName=".BillsManager.BillListActivity"
+            android:theme="@style/FlatAppBillTheme" />
     </application>
+
 </manifest>
