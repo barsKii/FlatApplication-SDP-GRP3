@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -43,6 +44,7 @@ public class BillFragment extends Fragment {
 
     private static final String ARG_BILL_ID = "bill_id";
     private static final String DIALOG_DATE = "DialogDate";
+    private static final String DIALOG_IMAGE = "image";
 
     private static final int REQUEST_DATE = 0;
     private static final int REQUEST_PHOTO = 1;
@@ -57,7 +59,8 @@ public class BillFragment extends Fragment {
     private ImageButton mPhotoButton;
     private ImageView mPhotoView;
 
-    public static BillFragment newInstance (UUID billId) {
+
+    public static BillFragment newInstance(UUID billId) {
         Bundle args = new Bundle();
         args.putSerializable(ARG_BILL_ID, billId);
 
@@ -69,11 +72,12 @@ public class BillFragment extends Fragment {
 
     /**
      * Retrieves a bill from the bill lab to be represented by this fragment
+     *
      * @param savedInstanceState
      */
     @Override
-    public void onCreate (Bundle savedInstanceState) {
-        super.onCreate (savedInstanceState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);    //Options menu to delete the bill
         UUID billId = (UUID) getArguments().getSerializable(ARG_BILL_ID);
         mBill = BillLab.get(getActivity()).getBill(billId);
@@ -88,27 +92,29 @@ public class BillFragment extends Fragment {
     public void onPause() {
         super.onPause();
         //Checks the status of title and amount and responds appropriately
-        if(mBill.getTitle() != null && !mBill.getTitle().isEmpty() && mBill.getAmount() != null &&
-                !mBill.getAmount().isEmpty()){
+        if (mBill.getTitle() != null && !mBill.getTitle().isEmpty() && mBill.getAmount() != null &&
+                !mBill.getAmount().isEmpty()) {
             BillLab.get(getActivity()).updateBill(mBill);
-        }else{
+        } else {
             BillLab.get(getActivity()).deleteBill(mBill);
         }
     }
 
     /**
      * Inflates a menu with two icons, one to save the bill and the other to delete it
+     *
      * @param menu
      * @param inflater
      */
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.fragment_bill, menu);
     }
 
     /**
      * Records the responses to menu items selected.
+     *
      * @param item
      * @return
      */
@@ -134,13 +140,14 @@ public class BillFragment extends Fragment {
     /**
      * Initializes the elements that will be viewed in the fragment view. Creates listeners for each
      * item as well.
+     *
      * @param inflater
      * @param container
      * @param savedInstanceState
      * @return
      */
     @Override
-    public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_bill, container, false);
 
         mTitleField = (EditText) v.findViewById(R.id.bill_title);
@@ -155,7 +162,7 @@ public class BillFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // Will not allow a title to be set to 0 length, will provide a warning if user
                 //deletes to 0 length
-                if(TextUtils.isEmpty(s.toString())) {
+                if (TextUtils.isEmpty(s.toString())) {
                     CharSequence err = getString(R.string.empty_title_warning);
                     mTitleField.setError(err);
                     return;
@@ -222,17 +229,18 @@ public class BillFragment extends Fragment {
             }
 
             private String current = "";
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 //Ensures that the money symbol for the selected user appears and formats to currency length
-                if(!s.toString().equals(current)){
+                if (!s.toString().equals(current)) {
                     mAmountField.removeTextChangedListener(this);
 
                     //Gets the symbol for the current currency on the phone to implement the correct currency symbol
                     String replaceable = String.format("[%s,.]", NumberFormat.getCurrencyInstance().getCurrency().getSymbol());
                     String cleanString = s.toString().replaceAll(replaceable, "");
 
-                    BigDecimal parsed = new BigDecimal(cleanString).setScale(2,BigDecimal.ROUND_FLOOR)
+                    BigDecimal parsed = new BigDecimal(cleanString).setScale(2, BigDecimal.ROUND_FLOOR)
                             .divide(new BigDecimal(100), BigDecimal.ROUND_FLOOR);
                     String formatted = NumberFormat.getCurrencyInstance().format((parsed));
 
@@ -259,7 +267,7 @@ public class BillFragment extends Fragment {
         boolean canTakePhoto = mPhotoFile != null && captureImage.resolveActivity(packageManager) != null;
         mPhotoButton.setEnabled(canTakePhoto);
 
-        if(canTakePhoto) {
+        if (canTakePhoto) {
             Uri uri = Uri.fromFile(mPhotoFile);
             captureImage.putExtra(MediaStore.EXTRA_OUTPUT, uri);
         }
@@ -273,27 +281,39 @@ public class BillFragment extends Fragment {
 
         mPhotoView = (ImageView) v.findViewById(R.id.bill_photo);
         updatePhotoView();
+        mPhotoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mPhotoFile == null || !mPhotoFile.exists()) {
+                    return;
+                }
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                ImageFragment.createInstance(mPhotoFile.getAbsolutePath()).show(fm, DIALOG_IMAGE);
+            }
 
+
+        });
 
         return v;
     }
 
     /**
      * Utilized for receiving date back from DatePickerFragment
+     *
      * @param requestCode
      * @param resultCode
      * @param data
      */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode != Activity.RESULT_OK){
+        if (resultCode != Activity.RESULT_OK) {
             return;
         }
         if (requestCode == REQUEST_DATE) {
             Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
             mBill.setDate(date);
             updateDate();
-        }else if (requestCode == REQUEST_PHOTO) {
+        } else if (requestCode == REQUEST_PHOTO) {
             updatePhotoView();
         }
     }
@@ -306,8 +326,8 @@ public class BillFragment extends Fragment {
         if (mPhotoFile == null || !mPhotoFile.exists()) {
             mPhotoView.setImageDrawable(null);
         } else {
-            Bitmap bitmap = PictureUtils.getScaledBitmap(mPhotoFile.getPath(), getActivity());
-            mPhotoView.setImageBitmap(bitmap);
+            BitmapDrawable bitmap = PictureUtils.getScaledBitmap(mPhotoFile.getPath(), getActivity());
+            mPhotoView.setImageDrawable(bitmap);
         }
     }
 

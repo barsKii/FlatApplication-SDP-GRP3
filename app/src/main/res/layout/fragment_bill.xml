@@ -3,98 +3,105 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:layout_height="match_parent">
 
-        <TextView
-            style="?android:listSeparatorTextViewStyle"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/bill_title_label"
-            />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
 
-        <EditText
-            android:id="@+id/bill_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/bill_title_hint"
-            android:imeOptions="actionDone"
-            android:inputType="textCapWords|textAutoCorrect"
-            />
+            <TextView
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/bill_title_label"
+                />
 
-        <TextView
-            style="?android:listSeparatorTextViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/bill_details_label"
-            />
+            <EditText
+                android:id="@+id/bill_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/bill_title_hint"
+                android:imeOptions="actionDone"
+                android:inputType="textCapWords|textAutoCorrect"
+                />
 
-        <EditText
-            android:id="@+id/bill_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/bill_details_hint"
-            android:inputType="textCapSentences|textAutoCorrect"
-            />
+            <TextView
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/bill_details_label"
+                />
 
-        <TextView
-            style="?android:listSeparatorTextViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/bill_due_date_label"
-            />
+            <EditText
+                android:id="@+id/bill_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/bill_details_hint"
+                android:inputType="textCapSentences|textAutoCorrect"
+                />
 
-        <Button
-            android:id="@+id/bill_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            />
+            <TextView
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/bill_due_date_label"
+                />
 
-        <TextView
-            style="?android:listSeparatorTextViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/bill_amount_label"
-            />
+            <Button
+                android:id="@+id/bill_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                />
 
-        <EditText
-            android:id="@+id/bill_amount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/bill_amount_hint"
-            android:inputType="numberDecimal"
-            />
+            <TextView
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/bill_amount_label"
+                />
 
-        <ImageView
-            android:id="@+id/bill_photo"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_weight="50"
-            android:scaleType="centerInside"
-            android:layout_gravity="center_horizontal"
-            android:background="@android:color/darker_gray"
-            android:cropToPadding="true"/>
+            <EditText
+                android:id="@+id/bill_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/bill_amount_hint"
+                android:inputType="numberDecimal"
+                />
 
-        <ImageButton
-            android:id="@+id/bill_camera"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="50"
-            android:src="@android:drawable/ic_menu_camera"/>
+            <ImageView
+                android:id="@+id/bill_photo"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="50"
+                android:background="@android:color/darker_gray"
+                android:adjustViewBounds="true"
+                android:clickable="true"
+                android:cropToPadding="true"
+                android:scaleType="centerInside"/>
 
-        <CheckBox
-            android:id="@+id/bill_paid"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:text="@string/bill_paid_label"
-            />
-    </LinearLayout>
+            <ImageButton
+                android:id="@+id/bill_camera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:src="@android:drawable/ic_menu_camera"/>
+
+            <CheckBox
+                android:id="@+id/bill_paid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/bill_paid_label"
+                />
+        </LinearLayout>
+    </FrameLayout>
 </ScrollView>
