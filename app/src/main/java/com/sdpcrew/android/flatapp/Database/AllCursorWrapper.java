@@ -64,16 +64,14 @@ public class AllCursorWrapper extends android.database.CursorWrapper {
     public ShoppingList getList() {
         String uuidString = getString(getColumnIndex(ShoppingListsTable.Cols.ID));
         String title = getString(getColumnIndex(ShoppingListsTable.Cols.TITLE));
-        ShoppingList shoppingList = new ShoppingList(UUID.fromString(uuidString),title);
-        return shoppingList;
+        return new ShoppingList(UUID.fromString(uuidString),title);
     }
 
     public Item getItem() {
 //        String uuidList = getString(getColumnIndex(ShoppingItemsTable.Cols.SHOPPING_LIST_ID));
         String uuidItem = getString(getColumnIndex(ShoppingItemsTable.Cols.ID));
         String title = getString(getColumnIndex(ShoppingItemsTable.Cols.TITLE));
-        Item shoppingItem = new Item(UUID.fromString(uuidItem),title);
-        return shoppingItem;
+        return new Item(UUID.fromString(uuidItem),title);
     }
 
 

@@ -19,7 +19,7 @@
     <string name="del_conformation">Voulez-vous supprimer?</string>
     <string name="due">Due: </string>
     <string name="from">À partir de</string>
-    <string name="to">Jusqu'à</string>
+    <string name="to">Jusquà</string>
 
     <string name="empty_screen">Aucune Tâche Créée</string>
     <string name="task_add_button">Nouvelle Tâche</string>

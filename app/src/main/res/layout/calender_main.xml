@@ -52,7 +52,8 @@
             android:textColor="#fff"
             android:layout_alignTop="@+id/calendar_previous"
             android:layout_width="270dp"
-            android:gravity="center" />
+            android:gravity="center"
+            android:layout_toEndOf="@+id/calendar_previous" />
 
         <RelativeLayout
             android:layout_width="40dip"
@@ -60,7 +61,8 @@
             android:id="@+id/calendar_next"
             android:layout_alignTop="@+id/calendar_qoute"
             android:layout_toRightOf="@+id/calendar_qoute"
-            android:layout_alignBottom="@+id/calendar_previous">
+            android:layout_alignBottom="@+id/calendar_previous"
+            android:layout_toEndOf="@+id/calendar_qoute">
 
             <ImageView
                 android:layout_width="wrap_content"

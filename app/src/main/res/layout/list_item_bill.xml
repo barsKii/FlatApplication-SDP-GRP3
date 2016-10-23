@@ -20,7 +20,8 @@
         android:layout_toLeftOf="@id/list_item_bill_paid_check_box"
         android:textStyle="bold"
         android:padding="4dp"
-        tools:text="Bill Title"/>
+        tools:text="Bill Title"
+        android:layout_toStartOf="@id/list_item_bill_paid_check_box" />
 
     <TextView
         android:id="@+id/list_item_bill_date_text_view"
@@ -29,7 +30,8 @@
         android:layout_toLeftOf="@id/list_item_bill_paid_check_box"
         android:layout_below="@id/list_item_bill_title_text_view"
         android:padding="4dp"
-        tools:text="Bill Date"/>
+        tools:text="Bill Date"
+        android:layout_toStartOf="@id/list_item_bill_paid_check_box" />
 
     <TextView
         android:id="@+id/list_item_bill_amount_text_view"
@@ -40,7 +42,7 @@
         tools:text="Bill Amount"
         android:layout_toLeftOf="@id/list_item_bill_paid_check_box"
         android:layout_below="@id/list_item_bill_date_text_view"
-        />
+        android:layout_toStartOf="@id/list_item_bill_paid_check_box" />
 
 
 </RelativeLayout>

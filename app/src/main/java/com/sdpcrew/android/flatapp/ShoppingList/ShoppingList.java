@@ -47,7 +47,7 @@ public class ShoppingList {
         } else listName = "???";
     }
 
-    String getListName() {
+    public String getListName() {
         return listName;
     }
 

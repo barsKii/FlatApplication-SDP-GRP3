@@ -24,6 +24,7 @@
             android:onClick="showCalendar"
             android:longClickable="true"
             app:srcCompat="@drawable/cal"/>
+
         <ImageButton
             android:id="@+id/shopping_list_button"
             android:layout_width="0dp"
@@ -60,6 +61,15 @@
             android:layout_weight="1"/>
 
     </LinearLayout>
+
+    <Button
+        android:text="@string/sync_flat_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:textColor="@android:color/background_light"
+        android:background="@color/colorPrimary"
+        android:onClick="syncData" />
 
     <!--<LinearLayout-->
     <!--android:layout_width="match_parent"-->
