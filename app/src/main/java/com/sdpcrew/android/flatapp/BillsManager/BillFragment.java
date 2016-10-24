@@ -3,7 +3,6 @@ package com.sdpcrew.android.flatapp.BillsManager;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -165,7 +164,6 @@ public class BillFragment extends Fragment {
                 if (TextUtils.isEmpty(s.toString())) {
                     CharSequence err = getString(R.string.empty_title_warning);
                     mTitleField.setError(err);
-                    return;
                 } else {
                     mBill.setTitle(s.toString());
                 }

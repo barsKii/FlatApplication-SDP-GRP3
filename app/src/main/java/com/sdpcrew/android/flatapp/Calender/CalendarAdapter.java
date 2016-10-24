@@ -7,12 +7,9 @@ import android.widget.ImageView;
 import com.sdpcrew.android.flatapp.*;
 import android.content.Context;
 
-import java.io.Console;
 import java.util.*;
 import java.text.*;
 import android.graphics.Color;
-import android.util.*;
-import android.widget.Toast;
 
 
 /**
@@ -167,10 +164,6 @@ public class CalendarAdapter extends BaseAdapter {
 
         if (date.length() == 1) {
             date = "0" + date;
-        }
-        String monthStr = "" + (mCalendarRef.get(Calendar.MONTH) + 1);
-        if (monthStr.length() == 1) {
-            monthStr = "0" + monthStr;
         }
 
         ImageView iw = (ImageView) v.findViewById(R.id.date_icon);

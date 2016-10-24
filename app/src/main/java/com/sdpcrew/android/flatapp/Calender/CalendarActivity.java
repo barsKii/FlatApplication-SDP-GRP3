@@ -5,15 +5,13 @@ import android.os.Bundle;
 
 import com.sdpcrew.android.flatapp.R;
 
-import android.support.v4.app.FragmentActivity;
-
-import android.widget.TextView;
 import android.support.v4.app.*;
 
 
 
 /**
  * Created by iAmacone on 1/10/16.
+ *
  */
 
 public class CalendarActivity extends FragmentActivity {

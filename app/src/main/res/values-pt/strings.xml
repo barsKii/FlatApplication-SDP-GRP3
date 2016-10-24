@@ -17,7 +17,7 @@
     <string name="clicked">Pressionado!</string>
     <string name="sure_question">Voce Tem Certeza?</string>
     <string name="del_conformation">Voce Realmente Deseja Deletar?</string>
-    <string name="due">Devido: </string>
+    <string name="bill_due_fragement">Devido: </string>
     <string name="from">De</string>
     <string name="to">Ate</string>
 
@@ -67,5 +67,7 @@
     <string name="calendar_desc">Descrição</string>
     <string name="calendar_event_name">Nome do Evento</string>
     <string name="bill_add_button">Nova Conta</string>
+    <string name="sync_flat_data">Sincronizar Dados</string>
+    <string name="sync_started">Sincronização iniciada</string>
 
 </resources>

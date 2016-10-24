@@ -4,8 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.sdpcrew.android.flatapp.Database.DbSchema.BillTable;
-
 import static com.sdpcrew.android.flatapp.Database.DbSchema.*;
 
 /**

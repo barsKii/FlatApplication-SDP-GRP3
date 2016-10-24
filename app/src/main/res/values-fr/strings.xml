@@ -17,7 +17,7 @@
     <string name="clicked">Selectionné!</string>
     <string name="sure_question">Êtes-vous sur?</string>
     <string name="del_conformation">Voulez-vous supprimer?</string>
-    <string name="due">Due: </string>
+    <string name="bill_due_fragement">Due: </string>
     <string name="from">À partir de</string>
     <string name="to">Jusquà</string>
 
@@ -65,5 +65,7 @@
     <string name="calendar_guest">Invité</string>
     <string name="calendar_note">Note</string>
     <string name="calendar_desc">Description</string>
+    <string name="sync_flat_data">Synchroniser</string>
+    <string name="sync_started">La synchronisation a commencé</string>
 
 </resources>

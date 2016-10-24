@@ -1,6 +1,5 @@
 package com.sdpcrew.android.flatapp.Database;
 
-import android.util.Log;
 import com.sdpcrew.android.flatapp.ShoppingList.Item;
 import com.sdpcrew.android.flatapp.ShoppingList.ShoppingList;
 import java.sql.Connection;

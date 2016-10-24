@@ -2,7 +2,6 @@ package com.sdpcrew.android.flatapp.BillsManager;
 
 import java.util.Date;
 import java.util.UUID;
-import com.sdpcrew.android.flatapp.*;
 
 /**
  * Created by David on 20/09/2016.
@@ -22,11 +21,11 @@ public class Bill {
         mDate = new Date();
     }
 
-    public Bill() {
+    Bill() {
         this(UUID.randomUUID());
     }
 
-    public boolean isPaid() {
+    boolean isPaid() {
         return mPaid;
     }
 
@@ -54,7 +53,7 @@ public class Bill {
         return mId;
     }
 
-    public String getAmount() {
+    String getAmount() {
         return mAmount;
     }
 
@@ -62,7 +61,7 @@ public class Bill {
         mAmount = amount;
     }
 
-    public String getDescription() {
+    String getDescription() {
         return mDescription;
     }
 
@@ -70,7 +69,7 @@ public class Bill {
         mDescription = description;
     }
 
-    public String getPhotoFilename() {
+    String getPhotoFilename() {
         return "IMG_" + getId().toString() + ".jpg";
     }
 }

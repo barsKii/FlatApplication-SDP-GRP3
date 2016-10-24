@@ -7,7 +7,6 @@ import com.sdpcrew.android.flatapp.ShoppingList.Item;
 import com.sdpcrew.android.flatapp.ShoppingList.ShoppingList;
 import com.sdpcrew.android.flatapp.TasksManager.Qualifier;
 import com.sdpcrew.android.flatapp.TasksManager.Task;
-import com.sdpcrew.android.flatapp.Database.DbSchema.BillTable;
 
 import java.util.Date;
 import java.util.UUID;
@@ -15,7 +14,7 @@ import java.util.UUID;
 import static com.sdpcrew.android.flatapp.Database.DbSchema.*;
 
 public class AllCursorWrapper extends android.database.CursorWrapper {
-    public AllCursorWrapper(Cursor cursor) {
+    AllCursorWrapper(Cursor cursor) {
         super(cursor);
     }
 

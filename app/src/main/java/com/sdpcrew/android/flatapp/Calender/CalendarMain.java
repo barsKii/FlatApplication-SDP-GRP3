@@ -204,10 +204,7 @@ public class CalendarMain extends AppCompatActivity {
             eventList.clear();
 
             // Print dates of the current week
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd",Locale.getDefault());
-            String itemvalue;
             for (int i = 0; i < 7; i++) {
-                itemvalue = df.format(mCal.getTime());
                 mCal.add(Calendar.DATE, 1);
                 eventList.add("2012-09-12");
                 eventList.add("2012-10-07");

@@ -1,9 +1,5 @@
 package com.sdpcrew.android.flatapp.TasksManager;
 
-import android.content.res.Resources;
-
-import com.sdpcrew.android.flatapp.R;
-
 import java.util.UUID;
 
 /**

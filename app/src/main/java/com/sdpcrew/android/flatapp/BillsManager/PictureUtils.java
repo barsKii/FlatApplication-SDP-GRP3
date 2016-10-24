@@ -3,16 +3,16 @@ package com.sdpcrew.android.flatapp.BillsManager;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.Display;
 import android.widget.ImageView;
 
 /**
  * Created by David on 18/10/2016.
+ *
  */
 
-public class PictureUtils {
+class PictureUtils {
     /*public static Bitmap getScaledBitmap(String path, Activity activity) {
         Point size = new Point();
         activity.getWindowManager().getDefaultDisplay().getSize(size);
@@ -25,7 +25,7 @@ public class PictureUtils {
      * to fit the current Window size.
      */
     @SuppressWarnings("deprecation")
-    public static BitmapDrawable getScaledBitmap(String path, Activity a) {
+    static BitmapDrawable getScaledBitmap(String path, Activity a) {
         Display display = a.getWindowManager().getDefaultDisplay();
         float destWidth = display.getWidth();
         float destHeight = display.getHeight();
@@ -41,9 +41,9 @@ public class PictureUtils {
         int inSampleSize = 1;
         if (srcHeight > destHeight || srcWidth > destWidth) {
             if (srcWidth > srcHeight) {
-                inSampleSize = Math.round((float)srcHeight / (float)destHeight);
+                inSampleSize = Math.round(srcHeight / destHeight);
             } else {
-                inSampleSize = Math.round((float)srcWidth / (float)destWidth);
+                inSampleSize = Math.round(srcWidth / destWidth);
             }
         }
 
@@ -80,7 +80,7 @@ public class PictureUtils {
         return BitmapFactory.decodeFile(path, options);
     }
 
-    public static void cleanImageView(ImageView imageView) {
+    static void cleanImageView(ImageView imageView) {
         if (!(imageView.getDrawable() instanceof BitmapDrawable))
             return;
 
