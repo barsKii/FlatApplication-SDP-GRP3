@@ -114,7 +114,6 @@ public class SingleListActivity extends AppCompatActivity {
                 alert.show();
             }
         });
-
     }
 
     public void updateListView() {
@@ -130,7 +129,5 @@ public class SingleListActivity extends AppCompatActivity {
                 mAddImage.setVisibility(View.VISIBLE);
             }
         }
-
-
     }
 }

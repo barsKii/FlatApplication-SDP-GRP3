@@ -1,11 +1,8 @@
 package com.sdpcrew.android.flatapp.Database;
 
-import android.os.AsyncTask;
 import android.util.Log;
-
 import com.sdpcrew.android.flatapp.ShoppingList.Item;
 import com.sdpcrew.android.flatapp.ShoppingList.ShoppingList;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -17,6 +14,10 @@ import java.util.List;
 /**
  * Created by Shane on 24/10/2016.
  * This class handles the connection between the application and the Google Cloud MySQL database.
+ * Functions provided include functionality to write and read data to/from the shopping lists.
+ * This includes saving and reading the items within the lists. This functionality will be used
+ * by a sync button in the main menu. A delete item function is also present. Further functions
+ * which require access to the online database can be constructed within this class.
  */
 
 public class MySqlConnection {
@@ -32,6 +33,9 @@ public class MySqlConnection {
         url = "jdbc:mysql://104.199.144.195:3306/flatappdb";
     }
 
+    /**
+        This function is used to delete a passed in item from the online database using SQL.
+     */
     public void deleteItem(String listName, Item item) {
         try {
             if (conn == null) {
@@ -45,6 +49,10 @@ public class MySqlConnection {
         }
     }
 
+    /**
+        This function is used to read in all of the shopping list data from the online server
+        by using SQL statements.
+     */
     public List<ShoppingList> readInShoppingLists() {
         try {
             if (conn == null) {
@@ -69,14 +77,16 @@ public class MySqlConnection {
 
             stmt.close();
             return shopping;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return null;
     }
 
+    /**
+        This function is used to write all of the shopping list data to the online server
+        by using SQL statements.
+     */
     public void saveShoppingLists(List<ShoppingList> shopping) {
         try {
             if (conn == null) {
@@ -84,9 +94,10 @@ public class MySqlConnection {
                 conn = DriverManager.getConnection(url, user, pass);
             }
             stmt = conn.createStatement();
+            // insert ignore used to stop duplicate errors
             String listInsert = "insert ignore into " + DbSchema.ShoppingListsTable.NAME + " values";
             String itemInsert = "insert ignore into " + DbSchema.ShoppingItemsTable.NAME + " values";
-            for (int i = 0; i < shopping.size(); i++) {
+            for (int i = 0; i < shopping.size(); i++) { // Add values to write
                 List<Item> items = shopping.get(i).getListOfItems();
                 for (int j = 0; j < items.size(); j++) {
                     itemInsert += "('" + shopping.get(i).getListName() + "', '" + items.get(j).getId() + "', '"
@@ -97,14 +108,11 @@ public class MySqlConnection {
                     listInsert += ",";
                 }
             }
-            itemInsert = itemInsert.substring(0, itemInsert.length() - 1);
+            itemInsert = itemInsert.substring(0, itemInsert.length() - 1); // Remove extra ,
             stmt.executeUpdate(listInsert);
-            stmt.executeUpdate(itemInsert);
+            stmt.executeUpdate(itemInsert); // Execute inserts.
             stmt.close();
-        } catch (SQLException e) {
-            Log.e("error", "error", e);
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

@@ -15,7 +15,6 @@ import static com.sdpcrew.android.flatapp.Splash.mDatabase;
 
 /**
  * Created by vini on 18/10/16.
- *
  */
 
 public class ShoppingListLab {
@@ -45,13 +44,8 @@ public class ShoppingListLab {
                 new String[]{shoppingList.getId().toString()}) != 0;
     }
 
-    public void updateShoppingList(ShoppingList shoppingList) {
-        ContentValues values = getContentValues(shoppingList);
-        mDatabase.update(ShoppingListsTable.NAME, values, whereClause,
-                new String[]{shoppingList.getId().toString()});
-    }
 
-    public ShoppingList getShoppingList(UUID id) {
+    ShoppingList getShoppingList(UUID id) {
         AllCursorWrapper cursor = this.queryShoppingList(
                 whereClause, new String[]{id.toString()}
         );
@@ -83,7 +77,7 @@ public class ShoppingListLab {
 
     }
 
-    public List<String> getShoppingListsNames() {
+    List<String> getShoppingListsNames() {
         List<String> shoppingLists = new ArrayList<>();
         AllCursorWrapper cursor = this.queryShoppingList(null, null);
         try {
@@ -109,6 +103,6 @@ public class ShoppingListLab {
 
     private AllCursorWrapper queryShoppingList(String whereClause, String[] whereArgs) {
 
-        return QueryMethods.queryDb(ShoppingListsTable.NAME,whereClause,whereArgs);
+        return QueryMethods.queryDb(ShoppingListsTable.NAME, whereClause, whereArgs);
     }
 }

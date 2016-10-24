@@ -48,6 +48,9 @@ public class ShoppingListsActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Functionality used to created a new shopping list when user presses the created fab button.
+     */
     public void createNewShoppingList(View v) {
         LayoutInflater layoutInflater = LayoutInflater.from(this);
         View promptView = layoutInflater.inflate(R.layout.new_list_dialog, null);
@@ -74,11 +77,14 @@ public class ShoppingListsActivity extends AppCompatActivity {
         alert.show();
     }
 
+    /**
+     * Functionality used to update the view when needed.
+     */
     public void updateListView() {
         List<String> list = ShoppingListLab.get(getApplicationContext()).getShoppingListsNames();
         if (list != null) {
             mListView.setAdapter(new ArrayAdapter<>(this, R.layout.text_view, list));
-            if(!list.isEmpty()) {
+            if (!list.isEmpty()) {
                 mAddText.setVisibility(View.GONE);
                 mAddImage.setVisibility(View.GONE);
             } else {
@@ -86,7 +92,5 @@ public class ShoppingListsActivity extends AppCompatActivity {
                 mAddImage.setVisibility(View.VISIBLE);
             }
         }
-
     }
-
 }

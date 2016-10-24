@@ -1,7 +1,6 @@
 package com.sdpcrew.android.flatapp.ShoppingList;
 
 import android.content.ContentValues;
-import android.content.res.Resources;
 import android.database.sqlite.SQLiteConstraintException;
 import android.os.AsyncTask;
 
@@ -9,7 +8,6 @@ import com.sdpcrew.android.flatapp.Database.AllCursorWrapper;
 import com.sdpcrew.android.flatapp.Database.DbSchema.ShoppingItemsTable;
 import com.sdpcrew.android.flatapp.Database.MySqlConnection;
 import com.sdpcrew.android.flatapp.Database.QueryMethods;
-import com.sdpcrew.android.flatapp.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +16,8 @@ import java.util.UUID;
 import static com.sdpcrew.android.flatapp.Splash.mDatabase;
 
 /**
- * Created by Shane Birdsall  on 1/09/2016.
+ * Created by Shane Birdsall on 1/09/2016.
+ * Shopping list class which represents a list of items.
  */
 public class ShoppingList implements Comparable<ShoppingList> {
 
@@ -94,25 +93,7 @@ public class ShoppingList implements Comparable<ShoppingList> {
         return list.get(index);
     }
 
-    public Item getItem(UUID id) {
-        AllCursorWrapper cursor = QueryMethods.queryDb(ShoppingItemsTable.NAME,
-                whereClause, new String[]{this.mId.toString(), id.toString()}
-        );
-        try {
-            if (cursor.getCount() == 0) {
-                return null;
-            }
-            cursor.moveToFirst();
-            return cursor.getItem();
-        } finally {
-            cursor.close();
-        }
-    }
-
     public void addItemToList(Item item) {
-//        if (item != null && !item.getItemName().trim().isEmpty()) {
-//
-//        }
         try {
             list.add(item);
             ContentValues values = getContentValues(item);

@@ -1,14 +1,9 @@
 package com.sdpcrew.android.flatapp.ShoppingList;
-
-import android.content.Context;
-
-import com.sdpcrew.android.flatapp.R;
-
 import java.util.UUID;
 
 /**
- * Created by vini on 18/10/16.
- *
+ * Created by vini, Shane on 18/10/16.
+ * Item class which represents a individual shopping list item.
  */
 
 public class Item implements Comparable<Item> {

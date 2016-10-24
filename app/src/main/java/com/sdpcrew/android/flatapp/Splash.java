@@ -27,36 +27,4 @@ public class Splash extends Activity {
         Splash.this.finish();
 
     }
-
-    // Code commented out in case as an option to the current implementation. It may allow
-    // some different features to be implemented like loading bar.
-
-//        // Updates screenShown based on the current state.
-//        if (savedInstanceState != null) {
-//            screenShown = savedInstanceState.getBoolean(STARTED);
-//        }
-
-    // This is not working as intended at the moment. Above code tested as I wanted to the specifications
-    // If the app has been initialised it creates an intent of the main class and ends this activity.
-    // Otherwise, it create an intent and only finishes when the SPLASH_DISPLAY_LENGTH ends.
-//        if (screenShown) {
-//            Intent mainIntent = new Intent(Splash.this, MainActivity.class);
-//            Splash.this.startActivity(mainIntent);
-//            Splash.this.finish();
-//        } else {
-//            new Handler().postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    Intent mainIntent = new Intent(Splash.this, MainActivity.class);
-//                    Splash.this.startActivity(mainIntent);
-//                    Splash.this.finish(); //finishes this activity.
-//                }
-//            }, SPLASH_DISPLAY_LENGTH);
-//        }
-
-//    @Override
-//    public void onSaveInstanceState(Bundle onSavedInstanceState) {
-//        super.onSaveInstanceState(onSavedInstanceState);
-//        onSavedInstanceState.putBoolean(STARTED, screenShown);
-//    }
 }
