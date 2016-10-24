@@ -50,9 +50,9 @@ public class BaseHelper extends SQLiteOpenHelper {
                 ShoppingListsTable.Cols.TITLE+" primary key  )");
 
         db.execSQL("create table " + ShoppingItemsTable.NAME + "( " +
-                ShoppingItemsTable.Cols.SHOPPING_LIST_ID+" , "+
-                ShoppingItemsTable.Cols.ID+", "+
-                ShoppingItemsTable.Cols.TITLE+" primary key )");
+                ShoppingItemsTable.Cols.SHOPPING_LIST_ID+", "+
+                ShoppingItemsTable.Cols.ID+" primary key, "+
+                ShoppingItemsTable.Cols.TITLE+" )");
     }
 
     @Override
