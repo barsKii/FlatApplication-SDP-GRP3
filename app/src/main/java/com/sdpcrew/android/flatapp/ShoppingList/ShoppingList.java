@@ -16,7 +16,7 @@ import java.util.UUID;
 import static com.sdpcrew.android.flatapp.Splash.mDatabase;
 
 /**
- * Created by Shane Birdsall on 1/09/2016.
+ * Created by Shane Birdsall  on 1/09/2016.
  *
  */
 public class ShoppingList implements Comparable<ShoppingList> {
