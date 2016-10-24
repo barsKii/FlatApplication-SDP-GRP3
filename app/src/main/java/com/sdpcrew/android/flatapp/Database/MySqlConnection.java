@@ -32,6 +32,19 @@ public class MySqlConnection {
         url = "jdbc:mysql://104.199.144.195:3306/flatappdb";
     }
 
+    public void deleteItem(String listName, Item item) {
+        try {
+            if (conn == null) {
+                Class.forName("com.mysql.jdbc.Driver");
+                conn = DriverManager.getConnection(url, user, pass);
+            }
+            stmt = conn.createStatement();
+            stmt.executeUpdate("delete from " + DbSchema.ShoppingItemsTable.NAME + " where item_title = '" + item.getItemName() + "' and list_id = '" + listName + "'");
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public List<ShoppingList> readInShoppingLists() {
         try {
             if (conn == null) {
@@ -84,7 +97,7 @@ public class MySqlConnection {
                     listInsert += ",";
                 }
             }
-            itemInsert = itemInsert.substring(0, itemInsert.length()-1);
+            itemInsert = itemInsert.substring(0, itemInsert.length() - 1);
             stmt.executeUpdate(listInsert);
             stmt.executeUpdate(itemInsert);
             stmt.close();

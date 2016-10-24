@@ -3,9 +3,11 @@ package com.sdpcrew.android.flatapp.ShoppingList;
 import android.content.ContentValues;
 import android.content.res.Resources;
 import android.database.sqlite.SQLiteConstraintException;
+import android.os.AsyncTask;
 
 import com.sdpcrew.android.flatapp.Database.AllCursorWrapper;
 import com.sdpcrew.android.flatapp.Database.DbSchema.ShoppingItemsTable;
+import com.sdpcrew.android.flatapp.Database.MySqlConnection;
 import com.sdpcrew.android.flatapp.Database.QueryMethods;
 import com.sdpcrew.android.flatapp.R;
 
@@ -17,7 +19,6 @@ import static com.sdpcrew.android.flatapp.Splash.mDatabase;
 
 /**
  * Created by Shane Birdsall  on 1/09/2016.
- *
  */
 public class ShoppingList implements Comparable<ShoppingList> {
 
@@ -116,13 +117,15 @@ public class ShoppingList implements Comparable<ShoppingList> {
             list.add(item);
             ContentValues values = getContentValues(item);
             mDatabase.insert(ShoppingItemsTable.NAME, null, values);
-        } catch (SQLiteConstraintException e) {} // Ignore
+        } catch (SQLiteConstraintException e) {
+        } // Ignore
     }
 
     public void deleteItemFromList(Item item) {
         list.remove(item);
         mDatabase.delete(ShoppingItemsTable.NAME, whereClause,
                 new String[]{this.mId.toString(), item.getId().toString()});
+        new DeleteItem().execute(item);
     }
 
     public void updateItem(Item item) {
@@ -142,5 +145,17 @@ public class ShoppingList implements Comparable<ShoppingList> {
     @Override
     public int compareTo(ShoppingList o) {
         return listName.compareTo(o.listName);
+    }
+
+    private class DeleteItem extends AsyncTask<Item, Void, Void> {
+        @Override
+        protected final Void doInBackground(Item... params) {
+            if (params[0] != null) {
+                MySqlConnection mSql = new MySqlConnection();
+                mSql.deleteItem(listName, params[0]);
+                mSql.closeConnections();
+            }
+            return null;
+        }
     }
 }
