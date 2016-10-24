@@ -19,30 +19,18 @@ import java.util.List;
  * This class handles the connection between the application and the Google Cloud MySQL database.
  */
 
-public class MySqlConnection extends AsyncTask<Void, Void, List<ShoppingList>> {
+public class MySqlConnection {
     private Connection conn;
     private Statement stmt;
-    private String pass = "flatapp123";
-    private String user = "root";
-    private String url = "jdbc:mysql://104.199.144.195:3306/flatappdb";
+    private String pass;
+    private String user;
+    private String url;
 
     public MySqlConnection() {
-//        try {
-//            Class.forName("com.mysql.jdbc.Driver");
-//            conn = DriverManager.getConnection(url, user, pass);
-//        } catch (SQLException e) {
-//            Log.e("error", "error", e);
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
+        pass = "flatapp123";
+        user = "root";
+        url = "jdbc:mysql://104.199.144.195:3306/flatappdb";
     }
-
-    @Override
-    protected List<ShoppingList> doInBackground(Void... params) {
-
-        return readInShoppingLists();
-    }
-
 
     public List<ShoppingList> readInShoppingLists() {
         try {
@@ -83,24 +71,20 @@ public class MySqlConnection extends AsyncTask<Void, Void, List<ShoppingList>> {
                 conn = DriverManager.getConnection(url, user, pass);
             }
             stmt = conn.createStatement();
-            stmt.executeUpdate("DELETE FROM " + DbSchema.ShoppingListsTable.NAME);
-            stmt.executeUpdate("DELETE FROM " + DbSchema.ShoppingItemsTable.NAME);
-            String listInsert = "insert into " + DbSchema.ShoppingListsTable.NAME + " values";
-            String itemInsert = "insert into " + DbSchema.ShoppingItemsTable.NAME + " values";
+            String listInsert = "insert ignore into " + DbSchema.ShoppingListsTable.NAME + " values";
+            String itemInsert = "insert ignore into " + DbSchema.ShoppingItemsTable.NAME + " values";
             for (int i = 0; i < shopping.size(); i++) {
                 List<Item> items = shopping.get(i).getListOfItems();
-                for (Item item : items) {
-                    itemInsert += "('" + shopping.get(i).getListName() + "', " + item.getId() + "', "
-                            + item.getId() + ")";
-                    if (!item.equals(items.get(items.size()))) {
-                        itemInsert += ",";
-                    }
+                for (int j = 0; j < items.size(); j++) {
+                    itemInsert += "('" + shopping.get(i).getListName() + "', '" + items.get(j).getId() + "', '"
+                            + items.get(j).getItemName() + "'),";
                 }
-                listInsert += "('" + shopping.get(i).getId() + "', " + shopping.get(i).getListName() + ")";
+                listInsert += "('" + shopping.get(i).getId() + "', '" + shopping.get(i).getListName() + "')";
                 if (i != shopping.size() - 1) {
                     listInsert += ",";
                 }
             }
+            itemInsert = itemInsert.substring(0, itemInsert.length()-1);
             stmt.executeUpdate(listInsert);
             stmt.executeUpdate(itemInsert);
             stmt.close();

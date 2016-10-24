@@ -46,13 +46,13 @@ public class BaseHelper extends SQLiteOpenHelper {
                 TaskTable.Cols.COMPLETED+" INTEGER )");
 
         db.execSQL("create table " + ShoppingListsTable.NAME + "( " +
-                ShoppingListsTable.Cols.ID+" primary key , "+
-                ShoppingListsTable.Cols.TITLE+" )");
+                ShoppingListsTable.Cols.ID+", "+
+                ShoppingListsTable.Cols.TITLE+" primary key  )");
 
         db.execSQL("create table " + ShoppingItemsTable.NAME + "( " +
                 ShoppingItemsTable.Cols.SHOPPING_LIST_ID+" , "+
-                ShoppingItemsTable.Cols.ID+" primary key, "+
-                ShoppingItemsTable.Cols.TITLE+" )");
+                ShoppingItemsTable.Cols.ID+", "+
+                ShoppingItemsTable.Cols.TITLE+" primary key )");
     }
 
     @Override

@@ -11,7 +11,7 @@ import java.util.UUID;
  *
  */
 
-public class Item {
+public class Item implements Comparable<Item> {
 
     private UUID mId;
     private String ItemName;
@@ -35,8 +35,18 @@ public class Item {
         } else ItemName = "???";
     }
 
-    String getItemName() {
+    public String getItemName() {
         return ItemName;
     }
 
+    @Override
+    public int compareTo(Item o) {
+        return getItemName().compareTo(o.getItemName());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        Item s = (Item) o;
+        return getItemName().equals(s.getItemName());
+    }
 }

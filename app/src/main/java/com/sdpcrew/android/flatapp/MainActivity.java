@@ -10,7 +10,6 @@ import android.widget.Toast;
 import com.sdpcrew.android.flatapp.BillsManager.BillListActivity;
 import com.sdpcrew.android.flatapp.Calender.CalendarMain;
 import com.sdpcrew.android.flatapp.Database.MySqlConnection;
-import com.sdpcrew.android.flatapp.ShoppingList.Item;
 import com.sdpcrew.android.flatapp.ShoppingList.ShoppingList;
 import com.sdpcrew.android.flatapp.ShoppingList.ShoppingListLab;
 import com.sdpcrew.android.flatapp.ShoppingList.ShoppingListsActivity;
@@ -44,19 +43,50 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void syncData(View v) {
-        connection.execute();
-//        List<ShoppingList> list = connection.readInShoppingLists();
-//        // read
-//        if (list != null) {
-//            for (ShoppingList sl : list) {
-//                if (!ShoppingListLab.get(v.getContext()).addShoppingList(sl)) {
-//                    ShoppingListLab.get(v.getContext()).updateShoppingList(sl);
-//                }
-//            }
-//        }
-//
-//        // write
-//        connection.saveShoppingLists(ShoppingListLab.get(v.getContext()).getShoppingLists());
+        new ReadData().execute();
+        new WriteData().execute(ShoppingListLab.get(v.getContext()).getShoppingLists());
+        connection.closeConnections();
         Toast.makeText(v.getContext(), getString(R.string.sync_started), Toast.LENGTH_SHORT).show();
+    }
+
+    private class ReadData extends AsyncTask<Void, Void, List<ShoppingList>> {
+
+        @Override
+        protected List<ShoppingList> doInBackground(Void... params) {
+            List<ShoppingList> list = connection.readInShoppingLists();
+            return list;
+        }
+
+        protected void onPostExecute(List<ShoppingList> list) {
+            if (list != null) {
+                boolean exists = false;
+                List<ShoppingList> shopping = ShoppingListLab.get(getApplicationContext()).getShoppingLists();
+                for (ShoppingList sl : list) {
+                    for (ShoppingList s: shopping) {
+                        if(sl.getListName().equals(s.getListName())) {
+                            ShoppingListLab.get(getApplicationContext()).removeShoppingList(s);
+                            ShoppingListLab.get(getApplicationContext()).addShoppingList(s);
+                            exists = true;
+                            break;
+                        }
+                    }
+                    if(!exists) {
+                        ShoppingListLab.get(getApplicationContext()).addShoppingList(sl);
+                    } else exists = false;
+                }
+            }
+        }
+    }
+
+    private class WriteData extends AsyncTask<List<ShoppingList>, Void, Void> {
+
+        @SafeVarargs
+        @Override
+        protected final Void doInBackground(List<ShoppingList>... params) {
+            if (params[0].size() != 0) {
+                connection.saveShoppingLists(params[0]);
+            }
+            return null;
+        }
     }
 }
