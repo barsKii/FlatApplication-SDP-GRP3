@@ -53,8 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected List<ShoppingList> doInBackground(Void... params) {
-            List<ShoppingList> list = connection.readInShoppingLists();
-            return list;
+            return connection.readInShoppingLists();
         }
 
         protected void onPostExecute(List<ShoppingList> list) {
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                     for (ShoppingList s: shopping) {
                         if(sl.getListName().equals(s.getListName())) {
                             ShoppingListLab.get(getApplicationContext()).removeShoppingList(s);
-                            ShoppingListLab.get(getApplicationContext()).addShoppingList(s);
+                            ShoppingListLab.get(getApplicationContext()).addShoppingList(sl);
                             exists = true;
                             break;
                         }
