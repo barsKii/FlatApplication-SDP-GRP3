@@ -29,10 +29,9 @@ public class BillListFragment extends Fragment{
 
     private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
 
-    private RecyclerView mBillRecyclerView;
-    private BillAdapter mAdapter;
-    private boolean mSubtitleVisible;
-    private BillLab mBillLab;
+    private RecyclerView mBillRecyclerView; //The Recycler view to allow multiple bills appear in list
+    private BillAdapter mAdapter; //Adapts the bills
+    private boolean mSubtitleVisible; //Subtitle shows how many bills there are
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +39,13 @@ public class BillListFragment extends Fragment{
         setHasOptionsMenu(true);
     }
 
+    /**
+     * Sets up the Recycler View and sets the layout manager
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_bill_list, container, false);
@@ -97,7 +103,9 @@ public class BillListFragment extends Fragment{
         switch (item.getItemId()) {
             case R.id.menu_item_new_bill:
                 Bill bill = new Bill();
+                //Adds the bill to the database and retrieves it to be worked on
                 BillLab.get(getActivity()).addBill(bill);
+                //Opens a new intent to work on the bill
                 Intent intent = BillPagerActivity.newIntent(getActivity(), bill.getId());
                 startActivity(intent);
                 return true;
@@ -107,12 +115,14 @@ public class BillListFragment extends Fragment{
     }
 
     /**
-     * Provides the subtitle count of current bills
+     * Provides the subtitle count of current bills. Has nullable option for potential future
+     * to hide the subtitle if user wishes.
      */
     private void updateSubtitle() {
         BillLab billLab = BillLab.get(getActivity());
 
         int billCount = billLab.getBills().size();
+        // Quantity string used to represent the bill gramatically correctly
         String subtitle = getResources().getQuantityString(R.plurals.subtitle_plural, billCount, billCount);
 
         if (!mSubtitleVisible) {
@@ -130,7 +140,7 @@ public class BillListFragment extends Fragment{
     private void updateUI() {
         BillLab billLab = BillLab.get(getActivity());
         List<Bill> bills = billLab.getBills();
-
+        //Sets adapter if not existing otherwise updates information
         if(mAdapter == null){
             mAdapter = new BillAdapter(bills);
             mBillRecyclerView.setAdapter(mAdapter);
@@ -146,15 +156,18 @@ public class BillListFragment extends Fragment{
      * Provides the functionality to show each individual bill in a small fragment to fit multiple
      * ones on a single screen and make them clickable
      */
-    private class BillHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+    private class BillHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView mTitleTextView;
         private TextView mDateTextView;
         private CheckBox mPaidCheckBox;
         private TextView mAmountTextView;
-        //private FloatingActionButton mNewBillButton;
 
         private Bill mBill;
 
+        /**
+         * Binds the views to the variables
+         * @param itemView
+         */
         BillHolder(View itemView){
             super(itemView);
             itemView.setOnClickListener(this);
@@ -163,9 +176,12 @@ public class BillListFragment extends Fragment{
             mDateTextView = (TextView) itemView.findViewById(R.id.list_item_bill_date_text_view);
             mPaidCheckBox = (CheckBox) itemView.findViewById(R.id.list_item_bill_paid_check_box);
             mAmountTextView = (TextView) itemView.findViewById(R.id.list_item_bill_amount_text_view);
-            //mNewBillButton = (FloatingActionButton) itemView.findViewById(R.id.fragment_bill_add);
         }
 
+        /**
+         * Sets the views to the content retrieved from the database
+         * @param bill
+         */
         void bindBill(Bill bill) {
             mBill = bill;
             mTitleTextView.setText(mBill.getTitle());
@@ -174,29 +190,20 @@ public class BillListFragment extends Fragment{
             mAmountTextView.setText(mBill.getAmount());
         }
 
+        /**
+         * Starts the intent on click
+         * @param v
+         */
         public void onClick (View v) {
             Intent intent = BillPagerActivity.newIntent(getActivity(), mBill.getId());
             startActivity(intent);
         }
-
-        //Added but not working as of yet
-        @Override
-        public boolean onLongClick(View view) {
-            new AlertDialog.Builder(getContext())
-                    .setTitle(getString(R.string.sure_question))
-                    .setMessage(getString(R.string.del_conformation))
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            mBillLab.deleteBill(mBill);
-                            updateUI();
-                        }
-                    })
-                    .setNegativeButton(android.R.string.no, null).show();
-            return false;
-        }
     }
 
+    /**
+     * Bill Adapter provides the holding mechanism of each bill fragment in the list and manages items
+     * such as the count of items
+     */
     private class BillAdapter extends RecyclerView.Adapter<BillHolder> {
         private List<Bill> mBills;
 

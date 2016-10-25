@@ -1,6 +1,7 @@
 package com.sdpcrew.android.flatapp.BillsManager;
 
 /**
+ * Class used to host an enlarged image fragment of photo taken in the bills class
  * Created by David on 23/10/2016.
  */
 
@@ -13,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 public class ImageFragment extends DialogFragment {
-    public static final String EXTRA_IMAGE_PATH = "path";
+    public static final String EXTRA_IMAGE_PATH = "path"; //Defines name for pathway
 
     public static ImageFragment createInstance(String imagePath) {
         Bundle args = new Bundle();
@@ -21,6 +22,7 @@ public class ImageFragment extends DialogFragment {
 
         ImageFragment fragment = new ImageFragment();
         fragment.setArguments(args);
+        //Defines the visual style of pop out
         fragment.setStyle(DialogFragment.STYLE_NO_TITLE, 0);
 
         return fragment;
@@ -28,6 +30,13 @@ public class ImageFragment extends DialogFragment {
 
     private ImageView mImageView;
 
+    /**
+     * Creates the view and sets the Bitmap drawable to it
+     * @param inflater
+     * @param parent
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup parent, Bundle savedInstanceState) {
@@ -40,6 +49,9 @@ public class ImageFragment extends DialogFragment {
         return mImageView;
     }
 
+    /**
+     * Method destroys the view and cleans it
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();

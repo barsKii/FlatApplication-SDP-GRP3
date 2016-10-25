@@ -138,7 +138,7 @@ public class BillFragment extends Fragment {
 
     /**
      * Initializes the elements that will be viewed in the fragment view. Creates listeners for each
-     * item as well.
+     * item as well. Individual code is straight forward and doesn't require extra explanation
      *
      * @param inflater
      * @param container
@@ -237,7 +237,7 @@ public class BillFragment extends Fragment {
                     //Gets the symbol for the current currency on the phone to implement the correct currency symbol
                     String replaceable = String.format("[%s,.\\s]", NumberFormat.getCurrencyInstance().getCurrency().getSymbol());
                     String cleanString = s.toString().replaceAll(replaceable, "");
-
+                    //Parses the value in so that only a bigdecimal remains
                     BigDecimal parsed = new BigDecimal(cleanString).setScale(2, BigDecimal.ROUND_FLOOR)
                             .divide(new BigDecimal(100), BigDecimal.ROUND_FLOOR);
                     String formatted = NumberFormat.getCurrencyInstance().format((parsed));
@@ -264,12 +264,10 @@ public class BillFragment extends Fragment {
 
         boolean canTakePhoto = mPhotoFile != null && captureImage.resolveActivity(packageManager) != null;
         mPhotoButton.setEnabled(canTakePhoto);
-
         if (canTakePhoto) {
             Uri uri = Uri.fromFile(mPhotoFile);
             captureImage.putExtra(MediaStore.EXTRA_OUTPUT, uri);
         }
-
         mPhotoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -279,6 +277,7 @@ public class BillFragment extends Fragment {
 
         mPhotoView = (ImageView) v.findViewById(R.id.bill_photo);
         updatePhotoView();
+        //On click listener available to enlarge the bill image if selected
         mPhotoView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -320,6 +319,9 @@ public class BillFragment extends Fragment {
         mDateButton.setText(android.text.format.DateFormat.format("dd-MM-yyyy", mBill.getDate()));
     }
 
+    /**
+     * Method used to update the image tile on the bill screen
+     */
     private void updatePhotoView() {
         if (mPhotoFile == null || !mPhotoFile.exists()) {
             mPhotoView.setImageDrawable(null);

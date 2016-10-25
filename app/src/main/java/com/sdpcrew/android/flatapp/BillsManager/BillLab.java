@@ -22,11 +22,15 @@ import static com.sdpcrew.android.flatapp.Splash.mDatabase;
  */
 public class BillLab {
 
-    private static BillLab sBillLab;
-
+    private static BillLab sBillLab; // Singleton. Creates a single instance of BillLab that will get referenced back
     private Context mContext;
-//    private SQLiteDatabase mDatabase;
 
+    /**
+     * Constructor checks to see if an instance already exists. If it does, returns it, otherwise
+     * creates a new one
+     * @param context
+     * @return
+     */
     public static BillLab get(Context context) {
         if (sBillLab == null) {
             sBillLab = new BillLab(context);
@@ -39,15 +43,21 @@ public class BillLab {
      */
     private BillLab(Context context) {
         mContext = context.getApplicationContext();
-//        mDatabase = new BaseHelper(mContext).getWritableDatabase();
     }
 
+    /**
+     * Adds the passed bill to the database via filling db Contents in contentvalues.
+     * @param b
+     */
     public void addBill(Bill b) {
         ContentValues values = getContentValues(b);
-
         mDatabase.insert(BillTable.NAME, null, values);
     }
 
+    /**
+     * Retrieves the bills from the local database and puts them into an ArrayList
+     * @return
+     */
     public List<Bill> getBills() {
         List<Bill> bills = new ArrayList<>();
 
@@ -66,11 +76,17 @@ public class BillLab {
         return bills;
     }
 
+    /**
+     * Retrieves the bill with the specified UUID, otherwise will return null
+     * @param id
+     * @return
+     */
     public Bill getBill(UUID id) {
+        //Moves the cursor to the specified bill if it is in the list
         AllCursorWrapper cursor = queryBills(
                 BillTable.Cols.UUID + " = ?", new String[] { id.toString()}
         );
-
+        //If the return is empty, returns null otherwise returns the bill
         try {
             if (cursor.getCount() == 0) {
                 return null;
@@ -79,10 +95,17 @@ public class BillLab {
             cursor.moveToFirst();
             return cursor.getBill();
         } finally {
+            //Close the cursor for data integrity
             cursor.close();
         }
     }
 
+    /**
+     * Retrieves the photo stored in the external files directory, currently where all the bills are
+     * stored
+     * @param bill
+     * @return
+     */
     public File getPhotoFile(Bill bill) {
         File externalFilesDir = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 
@@ -93,6 +116,11 @@ public class BillLab {
         return new File(externalFilesDir, bill.getPhotoFilename());
     }
 
+    /**
+     * Method used to update bills to the database through the content values method to ensure correct
+     * formatting
+     * @param bill
+     */
     public void updateBill(Bill bill) {
         String uuidString = bill.getId().toString();
         ContentValues values = getContentValues(bill);
@@ -100,6 +128,10 @@ public class BillLab {
         mDatabase.update(BillTable.NAME, values, BillTable.Cols.UUID + " = ?", new String[] { uuidString });
     }
 
+    /**
+     * Method deletes bills based on UUID of the passed bill
+     * @param bill
+     */
     public void deleteBill(Bill bill) {
         String[] whereArg = new String[] {bill.getId().toString()};
         String whereClause = "uuid" + "=?";
@@ -107,6 +139,11 @@ public class BillLab {
         mDatabase.delete(BillTable.NAME, whereClause, whereArg);
     }
 
+    /**
+     * Method ensures that all database queries are in correct format. Also improves reusability of code
+     * @param bill
+     * @return
+     */
     private static ContentValues getContentValues(Bill bill) {
         ContentValues values = new ContentValues();
         values.put(BillTable.Cols.UUID, bill.getId().toString());
@@ -119,6 +156,12 @@ public class BillLab {
         return values;
     }
 
+    /**
+     * Method used to access the database and pick out bills.
+     * @param whereClause
+     * @param whereArgs
+     * @return
+     */
     private AllCursorWrapper queryBills(String whereClause, String[] whereArgs) {
         return QueryMethods.queryDb(BillTable.NAME,whereClause,whereArgs);
     }

@@ -54,6 +54,13 @@ class PictureUtils {
         return new BitmapDrawable(a.getResources(), bitmap);
     }
 
+    /**
+     * Method is available if specific dimensions are specified
+     * @param path
+     * @param destWidth
+     * @param destHeight
+     * @return
+     */
     public static Bitmap getScaledBitmap(String path, int destWidth, int destHeight) {
         // Read in the dimensions of the image on disk
         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -80,6 +87,10 @@ class PictureUtils {
         return BitmapFactory.decodeFile(path, options);
     }
 
+    /**
+     * Cleans up view's image to reduce memory cost to device
+     * @param imageView
+     */
     static void cleanImageView(ImageView imageView) {
         if (!(imageView.getDrawable() instanceof BitmapDrawable))
             return;
